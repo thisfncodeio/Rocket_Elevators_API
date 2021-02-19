@@ -1,5 +1,4 @@
 class QuotesController < ApplicationController
-  skip_before_action :verify_authenticity_token
  
   # # GET /quotes or /quotes.json
   # def index
