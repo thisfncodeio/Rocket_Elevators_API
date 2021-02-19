@@ -58,7 +58,9 @@ puts "Seed Started"
 employee_list.each do |employee|
   user = User.create!(
     email: employee[:email],
-    password: "codeboxx1"
+    password: "codeboxx1",
+    employee_role: true,
+    user_role: false
   )
   employee = Employee.create!(
     first_name: employee[:first_name],
@@ -71,15 +73,10 @@ end
 
 puts "#{Employee.count} employees created"
 
-
-
-
-
-
-
-
-
-
+### Seeding Users for presentation ###
+User.create!(email: 'admin@admin.com', password: 'password', superadmin_role: 1, employee_role: 0, user_role: 0)
+User.create!(email: 'employee@employee.com', password: 'password', superadmin_role: 0, employee_role: 1, user_role: 0)
+User.create!(email: 'user@user.com', password: 'password', superadmin_role: 0, employee_role: 0, user_role: 1)
 
 
 #####################################################

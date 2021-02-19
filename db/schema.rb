@@ -28,13 +28,14 @@ ActiveRecord::Schema.define(version: 2021_02_19_042230) do
     t.string "full_name"
     t.string "email"
     t.string "product_line"
-    t.integer "installation_fee"
-    t.integer "sub_total"
-    t.integer "total"
+    t.string "installation_fee"
+    t.string "sub_total"
+    t.string "total"
     t.string "building_type"
     t.integer "num_of_floors"
     t.integer "num_of_apartments"
     t.integer "num_of_basements"
+    t.integer "num_of_parking_spots"
     t.integer "num_of_distinct_businesses"
     t.integer "num_of_elevator_cages"
     t.integer "num_of_occupants_per_Floor"
@@ -43,8 +44,6 @@ ActiveRecord::Schema.define(version: 2021_02_19_042230) do
     t.integer "required_shafts"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_quotes_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -63,5 +62,4 @@ ActiveRecord::Schema.define(version: 2021_02_19_042230) do
   end
 
   add_foreign_key "employees", "users"
-  add_foreign_key "quotes", "users"
 end

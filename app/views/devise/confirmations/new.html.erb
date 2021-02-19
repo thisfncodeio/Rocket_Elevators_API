@@ -1,6 +1,6 @@
+  
 <div class="container col-5 mt-5 mb-5 text-center">
   <h2 class ="text-center">Resend confirmation instructions</h2>
-
   <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 

@@ -1,5 +1,4 @@
 class QuotesController < ApplicationController
-  skip_before_action :verify_authenticity_token
  
   # # GET /quotes or /quotes.json
   # def index
@@ -15,19 +14,26 @@ class QuotesController < ApplicationController
   #   @quote = Quote.new
   # end
 
-  # # GET /quotes/1/edit
-  # def edit
-  # end
-
+  
   # POST /quotes or /quotes.json
   def create
+
     # if !current_user
     #   puts "YOU ARE NOT A USER!" 
     # end
+
+    #===================================================================================================
+    # PRINTS PARAMS INTO TERMINAL WINDOW
+    #===================================================================================================
+   
     puts "===========START================"
     puts params
-    puts "=============END=============="
-    # SETUP VARIABLES
+    puts "=============END================"
+
+    #===================================================================================================
+    # SETUP VARIABLES BELOW
+    #===================================================================================================
+   
     # Building Type
     building_type = params["buildType"]
     
@@ -62,40 +68,40 @@ class QuotesController < ApplicationController
     product_line = params["radio-btn"]
 
     # Recommendations
-    # number_of_columns = params[]
-    # number_of_elevator_shafts = params[]
+    number_of_columns = params["recommended-columns"]
+    number_of_elevator_shafts = params["recommended-elevators"]
 
     # Cost
-    # cost = params[]
-    # installation = params[]
-    # total = params[]
+    cost = params["cost"]
+    installation = params["installation"]
+    total = params["total"]
 
+    #Mr, Mrs, Miss, NBP
     prefix = params["titles"]
+    #Name
     full_name = params["name"]
+    #Email Address
     email = params["email"]
     
-    @quote = Quote.new(quote_params)
+   #===================================================================================================
+   #SETUP OF LOGIC 
+   #===================================================================================================
+  
+   @quote = Quote.new(quote_params)
 
     @quote.prefix = prefix
     @quote.full_name = full_name
     @quote.email = email
 
-    if product_line == "1"
-      @quote.product_line = "Standard"
-    elsif product_line == "2"
-      @quote.product_line = "Premium"
-    else
-      @quote.product_line = "Excelium"
-    end
-
     @quote.building_type =  building_type
 
-    @quote.installation_fee = 
-    @quote.sub_total = 
-    @quote.total = 
+    @quote.required_columns = number_of_columns
+    @quote.required_shafts = number_of_elevator_shafts
 
-    @quote.required_columns = 
-    @quote.required_shafts = 
+    @quote.installation_fee = installation
+    @quote.sub_total = cost
+    @quote.total = total
+
 
     if building_type == "residential" 
       @quote.num_of_floors = residential_floors
@@ -128,50 +134,39 @@ class QuotesController < ApplicationController
       @quote.num_of_activity_hours_per_day = hybrid_activity
     end
     
-    @quote.user = current_user
+    if product_line == "1"
+      @quote.product_line = "Standard"
+    elsif product_line == "2"
+      @quote.product_line = "Premium"
+    else
+      @quote.product_line = "Excelium"
+    end
+    
     @quote.save!
 
-    # respond_to do |format|
-    #   if @quote.save
-    #     format.html { redirect_to @quote, notice: "Your Quote was successfully created and sent!" }
-    #     format.json { render :show, status: :created, location: @quote }
-    #   else
-    #     format.html { render :new, status: :unprocessable_entity }
-    #     format.json { render json: @quote.errors, status: :unprocessable_entity }
-    #   end
-    # end
+
+   #===================================================================================================
+   # AFTER FORM SUBMISSION LOGIC (submission alert, redirecting, rendering, errors) 
+   #===================================================================================================
+
+    
+    if @quote.save
+      redirect_back fallback_location: root_path, alert: "Your Quote was successfully created and sent!"
+      # format.html { redirect_to @quote, notice: "Your Quote was successfully created and sent!" }
+      # format.json { render :quote, status: :quotes, location: @quote }
+    else
+      # format.html { render :new, status: :unprocessable_entity }
+      # format.json { render json: @quote.errors, status: :unprocessable_entity }
+    end
   end
 
-  # # PATCH/PUT /quotes/1 or /quotes/1.json
-  # def update
-  #   respond_to do |format|
-  #     if @quote.update(quote_params)
-  #       format.html { redirect_to @quote, notice: "Quote was successfully updated." }
-  #       format.json { render :show, status: :ok, location: @quote }
-  #     else
-  #       format.html { render :edit, status: :unprocessable_entity }
-  #       format.json { render json: @quote.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
+   #===================================================================================================
+   # WHITELISTING SPECIFIC PARAMS BELOW
+   #===================================================================================================
 
-  # # DELETE /quotes/1 or /quotes/1.json
-  # def destroy
-  #   @quote.destroy
-  #   respond_to do |format|
-  #     format.html { redirect_to quotes_url, notice: "Quote was successfully destroyed." }
-  #     format.json { head :no_content }
-  #   end
-  # end
+   # Only allow a list of trusted parameters through.
+  def quote_params
+    params.fetch(:quote, {})
+  end
 
-  # private
-  #   # Use callbacks to share common setup or constraints between actions.
-  #   def set_quote
-  #     @quote = Quote.find(params[:id])
-  #   end
-
-    # Only allow a list of trusted parameters through.
-    def quote_params
-      params.fetch(:quote, {})
-    end
 end
