@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_19_022649) do
+ActiveRecord::Schema.define(version: 2021_02_19_042230) do
 
   create_table "employees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2021_02_19_022649) do
     t.integer "num_of_floors"
     t.integer "num_of_apartments"
     t.integer "num_of_basements"
+    t.integer "num_of_parking_spots"
     t.integer "num_of_distinct_businesses"
     t.integer "num_of_elevator_cages"
     t.integer "num_of_occupants_per_Floor"

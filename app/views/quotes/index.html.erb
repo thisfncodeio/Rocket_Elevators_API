@@ -209,26 +209,26 @@
                                                 </div>
                                                 <div class="col-md-2">
                                                     <label>No. of floor</label>
-                                                    <input name="floors-hybrid"type="number" value="0" min="0" class="form-control" id="inputFloorHybrid" oninput="validity.valid||(value='');">
+                                                    <input name="floors-hybrid" type="number" value="0" min="0" class="form-control" id="inputFloorHybrid" oninput="validity.valid||(value='');">
                                                 </div>
 
                                                 <div class="col-md-2">
                                                     <label>No. of basements</label>
-                                                    <input name="basements-hybrid"type="number" value="0" min="0" class="form-control" id="inputBasementsHybrid" oninput="validity.valid||(value='');">
+                                                    <input name="basements-hybrid" type="number" value="0" min="0" class="form-control" id="inputBasementsHybrid" oninput="validity.valid||(value='');">
                                                 </div>
 
                                                 <div class="col-md-2">
                                                     <label>No. of parking</label>
-                                                    <input name="parking-hybrid"type="number" value="0" min="0" class="form-control" id="inputParkingHybrid" oninput="validity.valid||(value='');">
+                                                    <input name="parking-hybrid" type="number" value="0" min="0" class="form-control" id="inputParkingHybrid" oninput="validity.valid||(value='');">
                                                 </div>
 
                                                 <div class="col-md-2">
                                                     <label>No. of occupants per floor</label>
-                                                    <input name="occupants-hybrid"type="number" value="0" min="0" class="form-control" id="inputOccupantsHybrid" oninput="validity.valid||(value='');">
+                                                    <input name="occupants-hybrid" type="number" value="0" min="0" class="form-control" id="inputOccupantsHybrid" oninput="validity.valid||(value='');">
                                                 </div>
                                                 <div class="col-md-2">
                                                     <label>No. of activity hours per day:</label>
-                                                    <input name="activity-hybrid"type="number" value="0" min="0" max="24" class="form-control" id="inputHoursHybrid" oninput="validity.valid||(value='');">
+                                                    <input name="activity-hybrid" type="number" value="0" min="0" max="24" class="form-control" id="inputHoursHybrid" oninput="validity.valid||(value='');">
                                                 </div>
                                             </div>
  
@@ -240,21 +240,21 @@
                                     <!-- ADDITIONAL INFO  -->
                                         <div class="input-group">  
                                             <div class="input-group">
-                                                <p style="font-size: 20px; color:black">Enter Your Full Name:</p>
+                                                <p style="font-size: 20px; color:black">Enter Your Full Name & Email Address:</p>
                                             </div>
-                                            <span class="input-group-addon">
+                                            <span>
                                                 <select name="titles">
                                                     <option selected="selected" value="Mr.">Mr.</option>
                                                     <option value="Mrs.">Mrs.</option>
                                                     <option value="Miss">Miss</option>
-                                                    <option value="Null">Null</option>
+                                                    <option value="NBP">NBP</option> <!-- prefix for non-binary-person -->
                                                 </select>
                                             </span>
                                         
-                                            <input type="text" name="name" class="form-control" placeholder="Full Name" minlength="5" maxlength="255" oninput="FullName.value = titles.value +' '+ Name.value">
+                                            <input type="text" name="name" class="form-control" placeholder="Full Name" minlength="5" maxlength="255" oninput="name.value = titles.value +' '+ Name.value">
                                             <input type="email" name="email" class="form-control" placeholder="Email Address" minlength="9" maxlength="50" required>
                                         </div><!-- /input-group -->
-                                        <input type="hidden" name="FullName" />
+                                        <input type="hidden" name="FullName" /> <!-- Do not delete -->
 
                                     <!-- /ADDITONAL INFO -->
 
@@ -293,9 +293,11 @@
                                     <p style="font-size: 20px; color:black">For This Project We Will Use:</p>
                                     <%# <p id="showColumns"></p>
                                     <p id="showElevators"></p> %>
-                                    <label>Columns: </label><input type="text" name="recommended-columns" readonly id="showColumns">
-																		<br>
-                                    <label>Elevators: </label><input type="text" name="recommended-elevators" readonly id="showElevators">
+                                    <label>Number of columns = </label> &nbsp;
+                                    <input type="text" size="1" name="recommended-columns" readonly id ="showColumns">
+									<br>
+                                    <label>Number of shafts = </label> &nbsp;
+                                    <input type="text" size="1" name="recommended-elevators" readonly id="showElevators">
                                 </div>
 
 
@@ -309,11 +311,15 @@
                                             <li>INSTALLATION:<label id="installation"></label></li>
                                             <li>TOTAL:<label id="total"></label></li>
                                         </ul>
-                                    </div>						
+                                    </div>			
+
+                                    <div class="heading-title" style="margin-right: 43%;">		
+                                        <input type="text" size="10" name=""  >
+                                    </div>	
                                 <!-- /COST -->
 
                                 <!--SUBMIT BUTTON -->
-                                    <button class="btn btn-outline-primary" type="submit">Click me<button>
+                                    <button class="btn btn-outline-primary" type="submit">Submit Form<button>
                                 <!--SUBMIT BUTTON -->
                             </div><!--END #fieldsCoice-->
                             </form>

@@ -15,6 +15,7 @@ class CreateQuotes < ActiveRecord::Migration[5.2]
       t.integer :num_of_floors
       t.integer :num_of_apartments
       t.integer :num_of_basements
+      t.integer :num_of_parking_spots
       t.integer :num_of_distinct_businesses
       t.integer :num_of_elevator_cages
       t.integer :num_of_occupants_per_Floor
