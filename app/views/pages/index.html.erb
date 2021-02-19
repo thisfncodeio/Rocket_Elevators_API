@@ -760,9 +760,9 @@
 				</div><!-- /Alert Mandatory -->
 
 
-				<form action="php/contact.php" method="post" id="form-contact" enctype="multipart/form-data">
+				<form  method="post" id="form-contact" enctype="multipart/form-data">
 					<fieldset>
-						<input type="hidden" name="action" value="contact_send" />
+					   <input type="hidden" name="action" value="contact_send" />
 
 						<div class="row">
 								<div class="col-md-4">
@@ -820,7 +820,12 @@
 
 					<div class="row">
 						<div class="col-md-12">
-							<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> SEND MESSAGE</button>
+							<button type="submit" class="btn btn-primary" onclick="sendingAlert()"><i class="fa fa-check" ></i> SEND MESSAGE</button>
+							<script>
+										function sendingAlert() {
+											alert("Thank you for sending us a message. We will be back to you shortly!");
+										}
+									</script>
 						</div>
 					</div>
 				</form>
