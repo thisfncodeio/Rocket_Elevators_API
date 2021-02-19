@@ -37,7 +37,7 @@
                     <div class="row">
 
                         <div class="col-md-7 col-sm-8"><!-- left text -->
-                            <h3><strong>Questions?</strong></h3>
+                            <h3><strong>Questions?</strong></h3> &nbsp; 
                             <p class="font-lato fs-35">
                                 We are here to help you!
                             </p>
@@ -71,13 +71,15 @@
                     <div class="card card-default">
                         <div class="card-block">
 
-                            <!-- /SELECTION -->
+                            
 
-                                <p style="font-size: 20px; color:black">Please select your type building</p>
+                            <!-- /SELECTION -->
+                            <form class="test" id="fieldsChoice" method="post">
+                                <p style="font-size: 20px; color:black">First Select Your Type Of Building:</p>
 
                                 <div class="fancy-form fancy-form-select">
-                                        <select class="form-control select2" id="mySelectBuilding">
-                                            <option name="typeSelectl" value="select">--- Select ---</option>
+                                        <select class="form-control select2" id="mySelectBuilding" name="buildType">
+                                            <option name="typeSelect" value="select">--- Select ---</option>
                                             <option name="typeResidential" value="residential">Residential</option>
                                             <option name="typeCommercial" value="commercial">Commercial</option>
                                             <option name="typeCorporate" value="corporate">Corporate</option>
@@ -95,8 +97,10 @@
                             <hr class="m-30" /><!-- 1px line separator -->
 
 
-                            <!-- BUILDING CHOICE FIELDS -->
-                                <form action="/quotes" class="test" id="fieldsChoice" method="post">
+                            
+                            
+                                <!-- BUILDING CHOICE FIELDS -->
+
                                     <!-- RESIDENTIAL -->
                                         <div id="residential" class="showType" style="margin-left: 30px;">
 
@@ -105,7 +109,7 @@
                                             <div class="row">
                                                 <div class="col-md-2">
                                                     <label>No. of floor</label>
-                                                    <input type="number" value="0" min="0" class="form-control" id="inputFloorResidential" oninput="validity.valid||(value='');">
+                                                    <input name="floors-residential" type="number" value="0" min="0" class="form-control" id="inputFloorResidential" oninput="validity.valid||(value='');">
                                                 </div>
                                             
                                                 <div class="col-md-2">
@@ -119,9 +123,7 @@
                                                 </div>									
                                             </div>
 
-                                            <!--SUBMIT BUTTON -->
-                                                <input type="submit" value="Submit This Form">
-                                            <!--SUBMIT BUTTON -->
+                                           <hr class="m-30" /><!-- 1px line separator -->
 
                                         </div>
                                     <!-- /RESIDENTIAL -->
@@ -157,9 +159,7 @@
                                                 </div>
                                             </div>
 
-                                            <!--SUBMIT BUTTON -->
-                                                <input type="submit" value="Submit This Form">
-                                            <!--SUBMIT BUTTON -->
+                                           <hr class="m-30" /><!-- 1px line separator -->
 
                                         </div>
                                     <!-- /COMMERCIAL -->
@@ -195,9 +195,7 @@
                                                 </div>
                                             </div>
 
-                                            <!--SUBMIT BUTTON -->
-                                                <input type="submit" value="Submit This Form">
-                                            <!--SUBMIT BUTTON -->
+                                           <hr class="m-30" /><!-- 1px line separator -->
 
                                         </div>
                                     <!-- /CORPORATE -->
@@ -236,64 +234,90 @@
                                                     <input type="number" value="0" min="0" max="24" class="form-control" id="inputHoursHybrid" oninput="validity.valid||(value='');">
                                                 </div>
                                             </div>
-                                            <!--SUBMIT BUTTON -->
-                                                <input type="submit" value="Submit This Form">
-                                            <!--SUBMIT BUTTON -->
+ 
+                                            <hr class="m-30" /><!-- 1px line separator -->
+                                            
                                         </div>
                                     <!-- /HYBRID -->
-                                </form>
-                            <!-- /BUILDING CHOICE FIELDS -->
+
+                                    <!-- ADDITIONAL INFO  -->
+                                        <div class="input-group">  
+                                            <div class="input-group">
+                                                <p style="font-size: 20px; color:black">Enter Your Full Name:</p>
+                                            </div>
+                                            <span class="input-group-addon">
+                                                <select name="sal">
+                                                    <option selected="selected" value="Mr.">Mr.</option>
+                                                    <option value="Mrs.">Mrs.</option>
+                                                    <option value="Miss">Miss</option>
+                                                    <option value="Null">Null</option>
+                                                </select>
+                                            </span>
+                                        
+                                            <input type="text" name="Name" class="form-control" placeholder="Full Name" minlength="5" maxlength="255" oninput="FullName.value = sal.value +' '+ Name.value">
+                                            <input type="email" name="Email" class="form-control" placeholder="Email Address" minlength="9" maxlength="50" required>
+                                        </div><!-- /input-group -->
+                                        <input type="hidden" name="FullName" />
+
+                                    <!-- /ADDITONAL INFO -->
+
+                                <!-- /BUILDING CHOICE FIELDS -->
+
+                                <hr class="m-30" /><!-- 1px line separator -->
+
+                                <!-- SERVICE CHOICE FIELDS -->
+                                        <p style="font-size: 20px; color:black">Please Select A Product Line</p>
+                                    <!-- STANDARD -->
+                                        <label class="typeService">
+                                            <input type="radio" name="radio-btn" value="1" checked id="standard">
+                                            <i></i> Standard (Price of each elevator: $7,565.00)
+                                        </label>
+                                    <!-- /STANDARD -->
+
+                                    <!-- PREMIUM-->
+                                        <label class="typeService">
+                                            <input type="radio" name="radio-btn" value="2" id="premium">
+                                            <i></i> Premium (Price of each elevator: $12,345.00)
+                                        </label>
+                                    <!-- /PREMIUM -->
+
+                                    <!-- EXCELIUM-->
+                                        <label class="typeService">
+                                            <input type="radio" name="radio-btn" value="3" id="excelium">
+                                            <i></i> Excelium (Price of each elevator: $15,400.00)
+                                        </label>
+                                    <!-- /EXCELIUM -->
+                                <!-- SERVICE CHOICE FIELDS -->
+
+                                <hr class="m-30" /><!-- 1px line separator -->
 
 
-                            <hr class="m-30" /><!-- 1px line separator -->
+                                <div class="col-md-6">
+                                    <p style="font-size: 20px; color:black">For This Project We Will Use:</p>
+                                    <p id="showColumns"></p>
+                                    <p id="showElevators"></p>
+                                </div>
 
 
-                            <!-- SERVICE CHOICE FIELDS -->
-                                    <p style="font-size: 20px; color:black">Please select service line</p>
-                                <!-- STANDARD -->
-                                    <label class="typeService">
-                                        <input type="radio" name="radio-btn" value="1" checked id="standard">
-                                        <i></i> Standard (Price of each elevator: $7,565.00)
-                                    </label>
-                                <!-- /STANDARD -->
-
-                                <!-- PREMIUM-->
-                                    <label class="typeService">
-                                        <input type="radio" name="radio-btn" value="2" id="premium">
-                                        <i></i> Premium (Price of each elevator: $12,345.00)
-                                    </label>
-                                <!-- /PREMIUM -->
-
-                                <!-- EXCELIUM-->
-                                    <label class="typeService">
-                                        <input type="radio" name="radio-btn" value="3" id="excelium">
-                                        <i></i> Excelium (Price of each elevator: $15,400.00)
-                                    </label>
-                                <!-- /EXCELIUM -->
-                            <!-- SERVICE CHOICE FIELDS -->
-
-                            <hr class="m-30" /><!-- 1px line separator -->
+                                <hr class="m-30" /><!-- 1px line separator -->
 
 
-                            <div class="col-md-6">
-                                <p style="font-size: 20px; color:black">For this project we will use:</p>
-                                <p id="showColumns"></p>
-                                <p id="showElevators"></p>
-                            </div>
+                                <!-- COST -->
+                                    <div class="heading-title" style="margin-right: 43%;">
+                                        <ul class="float-right m-0 list-inline mobile-block">
+                                            <li>COST:<label id="cost"></label></li>
+                                            <li>INSTALLATION:<label id="installation"></label></li>
+                                            <li>TOTAL:<label id="total"></label></li>
+                                        </ul>
+                                    </div>						
+                                <!-- /COST -->
 
+                                <!--SUBMIT BUTTON -->
+                                    <input class="btn btn-outline-primary" type="submit" value="Submit Form">
+                                <!--SUBMIT BUTTON -->
 
-                            <hr class="m-30" /><!-- 1px line separator -->
-
-
-                            <!-- COST -->
-                                <div class="heading-title" style="margin-right: 43%;">
-                                    <ul class="float-right m-0 list-inline mobile-block">
-                                        <li>COST:<label id="cost"></label></li>
-                                        <li>INSTALLATION:<label id="installation"></label></li>
-                                        <li>TOTAL:<label id="total"></label></li>
-                                    </ul>
-                                </div>						
-                            <!-- /COST -->
+                            </form>
+                            
                         </div>
                     </div>
                 <!-- /BOX SELECTION -->

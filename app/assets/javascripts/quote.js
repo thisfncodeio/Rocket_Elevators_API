@@ -47,8 +47,8 @@ jQuery(document).ready(function($){
 
     $('#mySelectBuilding').change(function () {        
         $('.showType').hide();
-        $('#'+$(this).val()).show();
-        typeBuilding= $(this).val();
+        $('#'+$(this).val()).show(); //$("#residential").show()
+        typeBuilding= $(this).val(); //typeBuilding = "residential"
         valueReset();
     })
 
@@ -179,8 +179,11 @@ jQuery(document).ready(function($){
     function valueReset(){
 
         $("#fieldsChoice").each(function () {
-            this.reset();        
+            $("input[type=number]").each(function () {
+                $(this).val(0);
+            });     
         });
+
         costTotalShafts = 0;
         costInstallation = 0;
         costTotal = 0;
