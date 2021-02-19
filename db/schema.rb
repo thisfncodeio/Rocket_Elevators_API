@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_19_022649) do
+ActiveRecord::Schema.define(version: 2021_02_19_042230) do
 
   create_table "employees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name"
@@ -43,8 +43,6 @@ ActiveRecord::Schema.define(version: 2021_02_19_022649) do
     t.integer "required_shafts"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_quotes_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -63,5 +61,4 @@ ActiveRecord::Schema.define(version: 2021_02_19_022649) do
   end
 
   add_foreign_key "employees", "users"
-  add_foreign_key "quotes", "users"
 end
