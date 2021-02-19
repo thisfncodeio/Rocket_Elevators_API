@@ -155,8 +155,8 @@ jQuery(document).ready(function($){
         if (isNaN(numTotalColums)) { numTotalColums = 0; }
         if (isNaN(numTotalShafts)) { numTotalShafts = 0; }
         
-        $("#showColumns").text("Number of columns = " + numTotalColums);	
-        $("#showElevators").text("Number of shafts = " + numTotalShafts);
+        $("#showColumns").val(numTotalColums);	
+        $("#showElevators").val(numTotalShafts);
         $("#cost").text(costTotalShafts.toLocaleString('en-us',{style:'currency', currency:'USD'}));
         $("#installation").text(costInstallation.toLocaleString('en-us',{style:'currency', currency:'USD'}));
         $("#total").text(costTotal.toLocaleString('en-us',{style:'currency', currency:'USD'}));
@@ -188,8 +188,8 @@ jQuery(document).ready(function($){
         costInstallation = 0;
         costTotal = 0;
 
-        $("#showColumns").text("Number of columns = " + 0);	
-        $("#showElevators").text("Number of shafts = " + 0);
+        $("#showColumns").val(0);	
+        $("#showElevators").val(0);
         $("#cost").text(costTotalShafts.toLocaleString('en-us',{style:'currency', currency:'USD'}));
         $("#installation").text(costInstallation.toLocaleString('en-us',{style:'currency', currency:'USD'}));
         $("#total").text(costTotal.toLocaleString('en-us',{style:'currency', currency:'USD'}));

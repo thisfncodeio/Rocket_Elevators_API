@@ -81,11 +81,11 @@ class QuotesController < ApplicationController
     @quote.email = email
 
     if product_line == "1"
-      @quote.product_line = "7565"
+      @quote.product_line = "Standard"
     elsif product_line == "2"
-      @quote.product_line = "12345"
+      @quote.product_line = "Premium"
     else
-      @quote.product_line = "15400"
+      @quote.product_line = "Excelium"
     end
 
     @quote.building_type =  building_type

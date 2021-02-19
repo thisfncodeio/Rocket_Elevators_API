@@ -408,7 +408,7 @@ label {
 section .input-group-btn .btn.btn-default,
 section .input-group-btn button.btn-default {
 	border-width:2px;
-	border-color:#ddd;
+	border-color:#ddd !important;
 }
 .form-control:focus {
 	border-color:#c6c6c6;
@@ -2528,7 +2528,8 @@ body.menu-vertical #mainMenu.sidebar-vertical .navbar-collapse>ul.nav.navbar-nav
 	}
 	#header.transparent #topMain.nav-pills>li.active>a,
 	#header.transparent #topMain.nav-pills>li>a:hover {
-		background-color:rgba(0,0,0,0.03);
+		// background-color:rgba(0,0,0,0.03);
+		background-color:rgba(0,0,0,0.08);
 	}
 	#header.transparent + section.page-header.page-header-lg,
 	#header.transparent + section.page-header {
