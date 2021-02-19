@@ -21,8 +21,11 @@ class QuotesController < ApplicationController
 
   # POST /quotes or /quotes.json
   def create
+    # if !current_user
+    #   puts "YOU ARE NOT A USER!" 
+    # end
     puts "===========START================"
-    puts "USERS ID IS: #{current_user.id}"
+    puts params
     puts "=============END=============="
     # SETUP VARIABLES
     # Building Type
@@ -94,13 +97,13 @@ class QuotesController < ApplicationController
     @quote.required_columns = 
     @quote.required_shafts = 
 
-    if @building_type == "residential" 
+    if building_type == "residential" 
       @quote.num_of_floors = residential_floors
       @quote.num_of_apartments = residential_apartments
       @quote.num_of_basements = residential_basements
     end
 
-    if @building_type == "commercial" 
+    if building_type == "commercial" 
       @quote.num_of_distinct_businesses = commerical_commerce
       @quote.num_of_floors = commerical_floors
       @quote.num_of_basements = commerical_basements
@@ -108,7 +111,7 @@ class QuotesController < ApplicationController
       @quote.num_of_elevator_cages = commerical_elevators
     end
 
-    if @building_type == "corporate"
+    if building_type == "corporate"
       @quote.num_of_distinct_businesses = corporate_commerce
       @quote.num_of_floors = corporate_floors
       @quote.num_of_basements = corporate_basements
@@ -116,7 +119,7 @@ class QuotesController < ApplicationController
       @quote.num_of_occupants_per_Floor = corporate_occupants
     end
 
-    if @building_type == "hybrid"
+    if building_type == "hybrid"
       @quote.num_of_distinct_businesses = hybrid_businesses
       @quote.num_of_floors = hybrid_floors
       @quote.num_of_basements = hybrid_basements

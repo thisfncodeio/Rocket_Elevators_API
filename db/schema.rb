@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2021_02_19_022649) do
     t.integer "sub_total"
     t.integer "total"
     t.string "building_type"
-    t.string "num_of_floors"
+    t.integer "num_of_floors"
     t.integer "num_of_apartments"
     t.integer "num_of_basements"
     t.integer "num_of_distinct_businesses"

@@ -12,7 +12,7 @@ class CreateQuotes < ActiveRecord::Migration[5.2]
       t.integer :total
 
       t.string  :building_type
-      t.string :num_of_floors
+      t.integer :num_of_floors
       t.integer :num_of_apartments
       t.integer :num_of_basements
       t.integer :num_of_distinct_businesses
@@ -24,4 +24,4 @@ class CreateQuotes < ActiveRecord::Migration[5.2]
       t.timestamps
     end
   end
-end
+end 

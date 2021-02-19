@@ -51,19 +51,36 @@ employee_list = [
   },
 ]
 
-puts "Starting Seed"
+puts "Seed Started"
 ######################################################
 
 
-# employee_list.each do |employee|
-#   user = User.create!(email: employee[:email], password: "codeboxx1")
-#   employee = Employee.create!(first_name: employee[:first_name], last_name: employee[:last_name], title: employee[:title], email: employee[:email], user: user)
-# end
-# puts "#{Employee.count} employees created"
+employee_list.each do |employee|
+  user = User.create!(
+    email: employee[:email],
+    password: "codeboxx1"
+  )
+  employee = Employee.create!(
+    first_name: employee[:first_name],
+    last_name: employee[:last_name],
+    title: employee[:title],
+    email: employee[:email],
+    user: user
+  )
+end
 
-user = User.create!(email: "a@gmail.com", password: "codeboxx11")
-Quote.create!(prefix: "Mr", full_name: "John Doe", email: "adefsdsa@aol.colm", product_line: "premium")
+puts "#{Employee.count} employees created"
+
+
+
+
+
+
+
+
+
+
 
 
 #####################################################
-puts "Seed End"
+puts "Seed Ended"
