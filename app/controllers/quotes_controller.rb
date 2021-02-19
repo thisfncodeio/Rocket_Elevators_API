@@ -1,5 +1,4 @@
 class QuotesController < ApplicationController
-  skip_before_action :verify_authenticity_token
  
   # # GET /quotes or /quotes.json
   # def index
@@ -127,8 +126,7 @@ class QuotesController < ApplicationController
       @quote.num_of_occupants_per_Floor = hybrid_occupants
       @quote.num_of_activity_hours_per_day = hybrid_activity
     end
-    
-    @quote.user = current_user
+  
     @quote.save!
 
     # respond_to do |format|
