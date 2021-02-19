@@ -25,3 +25,4 @@
 //= require plugins/owl-carousel/owl.carousel.min
 //= require plugins/jquery.nav.min
 //= require jquery_ujs
+//= require toastr
