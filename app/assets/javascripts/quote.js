@@ -43,6 +43,10 @@ jQuery(document).ready(function($){
         }
     };
 
+    // if ($(this).val() == "select"){
+    //     $("button").prop("disabled", true);   
+    // }
+
 
 
     $('#mySelectBuilding').change(function () {        
@@ -148,7 +152,7 @@ jQuery(document).ready(function($){
         costTotalShafts = service.value * numTotalShafts;
         costInstallation = (service.fee * costTotalShafts);
         costTotal = costInstallation + costTotalShafts;
-        
+        console.log(costTotal);
         if (isNaN(costTotalShafts)) { costTotalShafts = 0; }
         if (isNaN(costInstallation)) { costInstallation = 0; }
         if (isNaN(costTotal)) { costTotal = 0; }
@@ -157,9 +161,9 @@ jQuery(document).ready(function($){
         
         $("#showColumns").val(numTotalColums);	
         $("#showElevators").val(numTotalShafts);
-        $("#cost").text(costTotalShafts.toLocaleString('en-us',{style:'currency', currency:'USD'}));
-        $("#installation").text(costInstallation.toLocaleString('en-us',{style:'currency', currency:'USD'}));
-        $("#total").text(costTotal.toLocaleString('en-us',{style:'currency', currency:'USD'}));
+        $("#cost").val(costTotalShafts.toLocaleString('en-us',{style:'currency', currency:'USD'}));
+        $("#installation").val(costInstallation.toLocaleString('en-us',{style:'currency', currency:'USD'}));
+        $("#total").val(costTotal.toLocaleString('en-us',{style:'currency', currency:'USD'}));
 
         // document.getElementById("cost").innerHTML = costTotalShafts.toLocaleString('en-us',{style:'currency', currency:'USD'});
         // document.getElementById("installation").innerHTML = costInstallation.toLocaleString('en-us',{style:'currency', currency:'USD'});
@@ -188,11 +192,11 @@ jQuery(document).ready(function($){
         costInstallation = 0;
         costTotal = 0;
 
-        $("#showColumns").text("Number of columns = " + 0);	
-        $("#showElevators").text("Number of shafts = " + 0);
-        $("#cost").text(costTotalShafts.toLocaleString('en-us',{style:'currency', currency:'USD'}));
-        $("#installation").text(costInstallation.toLocaleString('en-us',{style:'currency', currency:'USD'}));
-        $("#total").text(costTotal.toLocaleString('en-us',{style:'currency', currency:'USD'}));
+        $("#showColumns").val(0);	
+        $("#showElevators").val(0);
+        $("#cost").val(costTotalShafts.toLocaleString('en-us',{style:'currency', currency:'USD'}));
+        $("#installation").val(costInstallation.toLocaleString('en-us',{style:'currency', currency:'USD'}));
+        $("#total").val(costTotal.toLocaleString('en-us',{style:'currency', currency:'USD'}));
         
 
 

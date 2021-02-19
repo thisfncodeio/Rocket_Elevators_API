@@ -15,6 +15,7 @@ class QuotesController < ApplicationController
   #   @quote = Quote.new
   # end
 
+  
   # POST /quotes or /quotes.json
   def create
 
@@ -72,9 +73,9 @@ class QuotesController < ApplicationController
     number_of_elevator_shafts = params["recommended-elevators"]
 
     # Cost
-    # cost = params[]
-    # installation = params[]
-    # total = params[]
+    cost = params["cost"]
+    installation = params["installation"]
+    total = params["total"]
 
     #Mr, Mrs, Miss, NBP
     prefix = params["titles"]
@@ -95,12 +96,12 @@ class QuotesController < ApplicationController
 
     @quote.building_type =  building_type
 
-    # @quote.installation_fee = installation
-    # @quote.sub_total = cost
-    # @quote.total = total
-
     @quote.required_columns = number_of_columns
     @quote.required_shafts = number_of_elevator_shafts
+
+    @quote.installation_fee = installation
+    @quote.sub_total = cost
+    @quote.total = total
 
 
     if building_type == "residential" 
@@ -135,11 +136,11 @@ class QuotesController < ApplicationController
     end
     
     if product_line == "1"
-      @quote.product_line = "7565"
+      @quote.product_line = "Standard"
     elsif product_line == "2"
-      @quote.product_line = "12345"
+      @quote.product_line = "Premium"
     else
-      @quote.product_line = "15400"
+      @quote.product_line = "Excelium"
     end
     
     @quote.save!
@@ -149,14 +150,14 @@ class QuotesController < ApplicationController
    # AFTER FORM SUBMISSION LOGIC (submission alert, redirecting, rendering, errors) 
    #===================================================================================================
 
-    respond_to do |format|
-      if @quote.save
-        format.html { redirect_to @quote, notice: "Your Quote was successfully created and sent!" }
-        format.json { render :show, status: :created, location: @quote }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @quote.errors, status: :unprocessable_entity }
-      end
+    
+    if @quote.save
+      redirect_back fallback_location: root_path, alert: "Your Quote was successfully created and sent!"
+      # format.html { redirect_to @quote, notice: "Your Quote was successfully created and sent!" }
+      # format.json { render :quote, status: :quotes, location: @quote }
+    else
+      # format.html { render :new, status: :unprocessable_entity }
+      # format.json { render json: @quote.errors, status: :unprocessable_entity }
     end
   end
 

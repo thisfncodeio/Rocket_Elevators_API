@@ -7,9 +7,9 @@ class CreateQuotes < ActiveRecord::Migration[5.2]
       t.string  :email 
       t.string  :product_line
 
-      t.integer :installation_fee
-      t.integer :sub_total
-      t.integer :total
+      t.string :installation_fee
+      t.string :sub_total
+      t.string :total
 
       t.string  :building_type
       t.integer :num_of_floors
