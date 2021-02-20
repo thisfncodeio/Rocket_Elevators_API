@@ -1,26 +1,39 @@
+<!-- PAGE HEADER -->
+<section class="parallax parallax-4" style="  background-image:url('<%= image_path('Rocket_Elevator_Assets/Residential_page/elavator1.jpg')  %>')">
+  <div class="overlay dark-4"><!-- dark overlay [1 to 9 opacity] --></div>
+</section>
+<!-- /PAGE HEADER -->
 
-			<!-- PAGE HEADER -->
-			<section class="parallax parallax-4" style="  background-image:url('<%= image_path('Rocket_Elevator_Assets/Residential_page/elavator1.jpg')  %>')">
-				<div class="overlay dark-4"><!-- dark overlay [1 to 9 opacity] --></div>
-			</section>
-			<!-- /PAGE HEADER -->	
+<hr class="m-20" /><!-- 1px line separator -->
 
-<div class="container col-5 mt-5 mb-5 text-center card card-signin my-5 card-body form-signin">
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2">
+      <form class="box-border-shadow p-20" method="post" action="#">
 
-  <h2 class ="text-center">Forgot your password?</h2>
+          <h2 class="fs-13 fw-600 mb-15">Forgot your password?</h2>              
+          <hr>
 
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+          <div class="row">
 
-    <div class="field form-label-group">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class: 'form-control'%>
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
+
+              <div class="field form-label-group">
+                <div class="fs-12 fw-600">
+                  <%= f.label :email %><br />
+                </div>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class: 'form-control'%>
+              </div>
+
+              <div class="actions">
+                <%= f.submit "Send me reset password instructions", class:"btn-lg btn-primary btn-block text-uppercase" %>
+              </div>
+            <% end %>
+
+            <%= render "devise/shared/links" %>          
+          </div>
+      </form>
     </div>
-
-    <div class="actions">
-      <%= f.submit "Send me reset password instructions", class:"btn-lg btn-primary btn-block text-uppercase" %>
-    </div>
-  <% end %>
-
-  <%= render "devise/shared/links" %>
+  </div>
 </div>
