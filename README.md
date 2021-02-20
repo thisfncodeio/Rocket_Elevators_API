@@ -2,9 +2,9 @@ Rocket_Elevators_Information_System
 🚀	Working with MVC (Model-View-Controller)	📈
 
 Members of this week's team
-Abdul Akeeb
-Ahsan Syed
-Cristiane Santiago
+Abdul Akeeb -
+Ahsan Syed -
+Cristiane Santiago -
 Lionel Niyongabire
  
 🎯 About
