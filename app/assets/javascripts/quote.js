@@ -43,9 +43,6 @@ jQuery(document).ready(function($){
         }
     };
 
-    // if ($(this).val() == "select"){
-    //     $("button").prop("disabled", true);   
-    // }
 
 
 
