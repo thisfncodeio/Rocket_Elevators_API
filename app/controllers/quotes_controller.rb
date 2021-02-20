@@ -151,7 +151,7 @@ class QuotesController < ApplicationController
 
     
     if @quote.save
-      redirect_back fallback_location: root_path, alert: "Your Quote was successfully created and sent!"
+      redirect_back fallback_location: root_path, notice: "Your Quote was successfully created and sent!"
       # format.html { redirect_to @quote, notice: "Your Quote was successfully created and sent!" }
       # format.json { render :quote, status: :quotes, location: @quote }
     else
