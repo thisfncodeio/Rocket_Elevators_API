@@ -14,6 +14,7 @@ Seeding data base with data NB: real address are used
  
  
 📚 Instructions to acces to the admin panel:
+
 To login as Admin:
 1. Navigation bar : My Account
 2. Login
