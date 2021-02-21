@@ -9,14 +9,12 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2 box-border-shadow p-20">
+        <h2 class="fs-13 fw-600 mb-15">Edit <%= resource_name.to_s.humanize %></h2>
 
-          <h2 class="fs-13 fw-600 mb-15">Edit:</h2>              
-          <hr>
-
-          <div class="row">
+        <div class="row">
 
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-            <%= render "devise/shared/error_messages", resource: resource %>
+              <%= render "devise/shared/error_messages", resource: resource %>
 
               <div class="field form-label-group">
                 <div class="fs-12 fw-600">
@@ -52,19 +50,21 @@
                   <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
                 </div>
                 <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control' %>
-              </div>              
-
-              <div class="actions ">
-                <%= f.submit "Update", class:"btn btn-primary" %>
               </div>
 
-              <h3>Cancel my account</h3>
+              <div class="actions">
+                <%= f.submit "Update", class:"btn btn-lg btn-primary btn-block text-uppercase"  %>
+              </div>
+            <% end %>
 
-              <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:"btn-lg btn-primary" %></p>
+            <h3>Cancel my account</h3>
 
-              <%= link_to "Back", :back %>
-            <%end%>
+            <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-primary" %></p>
+
+            <%= link_to "Back", :back %>
           </div>
+        </div>
+      <div>
     </div>
   </div>
 </div>
