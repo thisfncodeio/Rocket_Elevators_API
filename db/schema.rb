@@ -13,11 +13,30 @@
 ActiveRecord::Schema.define(version: 2021_02_22_211648) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "type_of_address"
+    t.string "status"
+    t.string "entity"
+    t.string "number_and_street"
+    t.string "suite_and_apartment"
+    t.string "city"
+    t.string "postal_code"
+    t.string "country"
+    t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "customers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.date "customers_creation_date"
+    t.string "company_name"
+    t.string "company_headquarters_address"
+    t.string "full_name_of_company_contact"
+    t.string "company_contact_phone"
+    t.string "email_of_company_contact"
+    t.text "company_description"
+    t.string "full_name_of_service_technical_authority"
+    t.string "technical_authority_phone_for_service_"
+    t.string "technical_manager_email_for_service"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -34,6 +53,15 @@ ActiveRecord::Schema.define(version: 2021_02_22_211648) do
   end
 
   create_table "leads", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "full_name_of_contact"
+    t.string "company_name"
+    t.string "email"
+    t.string "phone"
+    t.string "project_name"
+    t.text "project_description"
+    t.string "department_in_charge_of_elevators"
+    t.text "message"
+    t.date "date_of_contact"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
