@@ -8,16 +8,22 @@ Cristiane Santiago -
 Lionel Niyongabire
  
 🎯 About
-The main goal of this week is to transform the static site previously developed during the Genesis program and turn it into a web application on MVC (Model - View - Controller) foundations . The site must be in a state that allows you to create a new section that saves the Javascript form that calculates an estimate in the form of a purchase order.
+The main goal of this week is to transform the static site previously developed during the Genesis program and turn it into a web application on MVC (Model - View - Controller) foundations. The site must be in a state that allows you to create a new section that saves the Javascript form that calculates an estimate in the form of a purchase order.
 Expanding the relational database model
-Seeding data base with data NB: real adress are used
+Seeding data base with data NB: real address are used
  
-📚 Instructions to acces to th admin panel:
-To log as Admin:
+ 
+📚 Instructions to acces to the admin panel:
+
+To login as Admin:
 1. Navigation bar : My Account
 2. Login
 3. Username: admin@admin.com
 4. Password: password
+
+To login as Employee:
+1. Username: Email of any employee
+2. Password: codeboxx1
  
  
 📚 Gems used:
