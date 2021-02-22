@@ -149,7 +149,6 @@ class QuotesController < ApplicationController
    # AFTER FORM SUBMISSION LOGIC (submission alert, redirecting, rendering, errors) 
    #===================================================================================================
 
-    
     if @quote.save
       redirect_back fallback_location: root_path, alert: "Your Quote was successfully created and sent!"
       # format.html { redirect_to @quote, notice: "Your Quote was successfully created and sent!" }
