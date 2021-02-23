@@ -64,7 +64,6 @@ ActiveRecord::Schema.define(version: 2021_02_23_034222) do
     t.text "project_description"
     t.string "department_in_charge_of_elevators"
     t.text "message"
-    t.date "date_of_contact_request"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
