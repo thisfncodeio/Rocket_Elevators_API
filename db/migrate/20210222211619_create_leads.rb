@@ -9,8 +9,8 @@ class CreateLeads < ActiveRecord::Migration[5.2]
       t.text   :project_description
       t.string :department_in_charge_of_elevators
       t.text   :message
-      
-      t.date   :date_of_contact
+      #Attached file stored as a binary file
+      t.date   :date_of_contact_request
 
       t.timestamps
     end

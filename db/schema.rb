@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2021_02_22_211648) do
   end
 
   create_table "customers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "userId"
     t.date "customers_creation_date"
     t.string "company_name"
     t.string "company_headquarters_address"
@@ -61,7 +62,7 @@ ActiveRecord::Schema.define(version: 2021_02_22_211648) do
     t.text "project_description"
     t.string "department_in_charge_of_elevators"
     t.text "message"
-    t.date "date_of_contact"
+    t.date "date_of_contact_request"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
