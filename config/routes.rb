@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   
   resources :quotes
+  resources :leads
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -14,4 +15,8 @@ Rails.application.routes.draw do
 
   # /quotes is the action from the form in quote.html.erb
   post "/quotes" => "quotes#create"
+
+  # /leads is the action from the form in index.html.erb
+  post "/leads" => "leads#create"
+
 end
