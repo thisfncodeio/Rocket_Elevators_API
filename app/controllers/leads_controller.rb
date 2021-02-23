@@ -15,28 +15,28 @@ class LeadsController < ApplicationController
      #===================================================================================================
         
       # Full Name:
-      full_name = params["contact[name][required]"]
+       full_name = params["contact[name][required]"]
 
       # Email Address:
-      email_address = params["exemple@company.com"]
+    #   email_address = params["exemple@company.com"]
 
       # Phone:
-      phone = params["contact[phone]"]
+    #   phone = params["contact[phone]"]
 
       # Company Name:
-      company_name = params["contact[enterprise_name][required]"]
+    #   company_name = params["contact[enterprise_name][required]"]
 
       # Project Name:
-      project_name = params["contact[project_name][required]"]
+    #   project_name = params["contact[project_name][required]"]
 
       # Project Description:
-      project_description = params["contact[description][required]"]
+    #   project_description = params["contact[description][required]"]
 
       # Department In Charge Of Elevators:
-      department_in_charge_of_elevators = params["contact[department]"]
+    #   department_in_charge_of_elevators = params["contact[department]"]
 
       # Message:
-      message = params["contact[message]"]
+    #   message = params["contact[message]"]
 
       # Attached Binary File:
 
@@ -50,23 +50,23 @@ class LeadsController < ApplicationController
 
       @lead = Lead.new(lead_params)
 
-      @lead.full_name_of_contact = full_name
-    
-      @lead.email = email_address
-    
-      @lead.company_name = company_name
-    
-      @lead.phone = phone
+           @lead.full_name_of_contact = full_name
+        
+        #   @lead.email = email_address
+        
+        #   @lead.company_name = company_name
+        
+        #   @lead.phone = phone
 
-      @lead.project_name = project_name
+        #   @lead.project_name = project_name
 
-      @lead.project_description = project_description
+        #   @lead.project_description = project_description
 
-      @lead.department_in_charge_of_elevators = department_in_charge_of_elevators
-    
-      @lead.message = message
+        #   @lead.department_in_charge_of_elevators = department_in_charge_of_elevators
+        
+        #   @lead.message = message
 
-      @lead.save!
+        #   @lead.save!
 
      #===================================================================================================
      # AFTER FORM SUBMISSION LOGIC (submission alert, redirecting, rendering, errors) 
@@ -83,6 +83,6 @@ class LeadsController < ApplicationController
 
      # Only allow a list of trusted parameters through.
     def lead_params
-        params.fetch(:lead, {})
+        params.permit(:lead)
     end
 end
