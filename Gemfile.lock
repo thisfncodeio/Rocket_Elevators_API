@@ -109,6 +109,8 @@ GEM
       warden (~> 1.2.3)
     erubi (1.10.0)
     execjs (2.7.0)
+    faker (2.16.0)
+      i18n (>= 1.6, < 2)
     ffi (1.14.2)
     font-awesome-rails (4.7.0.7)
       railties (>= 3.2, < 7)
@@ -156,6 +158,10 @@ GEM
     mini_mime (1.0.2)
     minitest (5.14.3)
     msgpack (1.4.2)
+    multiverse (0.2.2)
+      activerecord (>= 4.2)
+      activesupport (>= 4.2)
+      railties (>= 4.2)
     mysql2 (0.5.3)
     nested_form (0.3.2)
     net-scp (3.0.0)
@@ -165,6 +171,7 @@ GEM
     nokogiri (1.11.1-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pg (1.2.3)
     popper_js (1.16.0)
     public_suffix (4.0.6)
     puma (3.12.6)
@@ -205,6 +212,8 @@ GEM
       rails (>= 5.0, < 7)
       remotipart (~> 1.3)
       sassc-rails (>= 1.3, < 3)
+    rails_admin_rollincode (1.3)
+      rails (>= 4.0, < 7)
     railties (5.2.4.5)
       actionpack (= 5.2.4.5)
       activesupport (= 5.2.4.5)
@@ -303,14 +312,18 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
+  faker
   font-awesome-rails
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
+  multiverse
   mysql2 (>= 0.4.4, < 0.6.0)
+  pg (>= 0.18, < 2.0)
   puma (~> 3.11)
   rails (~> 5.2.4, >= 5.2.4.5)
   rails_admin (~> 2.0)
+  rails_admin_rollincode (~> 1.0)
   rvm1-capistrano3
   sass-rails (~> 5.0)
   selenium-webdriver

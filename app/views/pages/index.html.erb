@@ -796,50 +796,50 @@
 				</div><!-- /Alert Mandatory -->
 
 
-				<form  method="post" id="form-contact" enctype="multipart/form-data">
+				<form action="/leads" method="post" id="form-contact" enctype="multipart/form-data">
 					<fieldset>
 					   <input type="hidden" name="action" value="contact_send" />
 
 						<div class="row">
 								<div class="col-md-4">
 									<label for="contact:name">Full Name *</label>
-									<input required type="text" value="" class="form-control" name="contact[name][required]" id="contact:name">
+									<input required type="text" value="" class="form-control" name="leads[full_name_of_contact]" id="contact:name">
 								</div>
 								<div class="col-md-4">
 									<label for="contact:email">E-mail Address *</label>
-									<input required type="email" value="" required placeholder="exemple@company.com" class="form-control" name="contact[email][required]" id="contact:email">
+									<input required type="email" value="" required placeholder="exemple@company.com" class="form-control" name="leads[email]" id="contact:email">
 								</div>
 								<div class="col-md-4">
 									<label for="contact:phone">Phone *</label>
-									<input type="tel" value="" required placeholder="(555)555-5555" class="form-control" name="contact[phone]" id="contact:phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{3} [0-9]{3} [0-9]{4}|[0-9]{3}[0-9]{3}[0-9]{4}">
+									<input type="tel" value="" required placeholder="(555)555-5555" class="form-control" name="leads[phone]" id="contact:phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{3} [0-9]{3} [0-9]{4}|[0-9]{3}[0-9]{3}[0-9]{4}">
 								</div>
 								<div class="col-md-4">
 									<label for="contact:enterprise_name">Enterprise Name *</label>
-									<input required type="text" value="" class="form-control" name="contact[enterprise_name][required]" id="contact:enterprise_name">
+									<input required type="text" value="" class="form-control" name="leads[company_name]" id="contact:enterprise_name">
 								</div>
 								<div class="col-md-4">
 									<label for="contact:project_name">Project Name *</label>
-									<input required type="text" value="" class="form-control" name="contact[project_name][required]" id="contact:project_name">
+									<input required type="text" value="" class="form-control" name="leads[project_name]" id="contact:project_name">
 								</div>
 						</div>
 						<div class="row">
 								<div class="col-md-8">
 									<label for="contact:description">Project Description *</label>
-									<input required type="text" value="" class="form-control" name="contact[description][required]" id="contact:description">
+									<input required type="text" value="" class="form-control" name="leads[project_description]" id="contact:description">
 								</div>
 								<div class="col-md-4">
 									<label for="contact_department">Department</label>
-									<select class="form-control pointer" name="contact[department]">
-										<option value="">--- Select ---</option>
-										<option value="Residential">Residential</option>
-										<option value="Commercial">Commercial</option>
+									<select class="form-control pointer" name="leads[department_in_charge_of_elevators]">
+										<option value="Sales">Sales</option>
+										<option value="Support">Support</option>
+										<option value="Administration">Administration</option>
 									</select>
 								</div>
 						</div>
 						<div class="row">
 								<div class="col-md-12">
 									<label for="contact:message">Message *</label>
-									<textarea required maxlength="10000" rows="8" class="form-control" name="contact[message]" id="contact:message"></textarea>
+									<textarea required maxlength="5000" rows="8" class="form-control" name="leads[message]" id="contact:message"></textarea>
 								</div>
 						</div>
 						<div class="row" id="aFile_upload">
@@ -856,12 +856,12 @@
 
 					<div class="row">
 						<div class="col-md-12">
-							<button type="submit" class="btn btn-primary" onclick="sendingAlert()"><i class="fa fa-check" ></i> SEND MESSAGE</button>
-							<script>
-										function sendingAlert() {
-											alert("Thank you for sending us a message. We will be back to you shortly!");
-										}
-									</script>
+							<button type="submit" class="btn btn-primary"><i class="fa fa-check" ></i> SEND MESSAGE</button>
+							<%# <script>
+								function sendingAlert(onclick="sendingAlert()") {
+									alert("Thank you for sending us a message. We will be back to you shortly!");
+								}
+							</script> %>
 						</div>
 					</div>
 				</form>

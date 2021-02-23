@@ -19,6 +19,17 @@ ActiveRecord::Schema.define(version: 2021_02_23_212340) do
     t.date "date_of_last_inspection"
     t.string "certificate_of_operations"
     t.string "information"
+ActiveRecord::Schema.define(version: 2021_02_23_034222) do
+
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "type_of_address"
+    t.string "status"
+    t.string "entity"
+    t.string "number_and_street"
+    t.string "suite_and_apartment"
+    t.string "city"
+    t.string "postal_code"
+    t.string "country"
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -71,6 +82,24 @@ ActiveRecord::Schema.define(version: 2021_02_23_212340) do
     t.bigint "column_id"
     t.index ["column_id"], name: "index_elevators_on_column_id"
   end
+  
+  create_table "customers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.date "customers_creation_date"
+    t.string "company_name"
+    t.string "full_name_of_company_contact"
+    t.string "company_contact_phone"
+    t.string "email_of_company_contact"
+    t.text "company_description"
+    t.string "full_name_of_service_technical_authority"
+    t.string "technical_authority_phone_for_service_"
+    t.string "technical_manager_email_for_service"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "address_id"
+    t.index ["address_id"], name: "index_customers_on_address_id"
+    t.index ["user_id"], name: "index_customers_on_user_id"
+  end
 
   create_table "employees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name"
@@ -81,6 +110,19 @@ ActiveRecord::Schema.define(version: 2021_02_23_212340) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_employees_on_user_id"
+  end
+
+  create_table "leads", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "full_name_of_contact"
+    t.string "company_name"
+    t.string "email"
+    t.string "phone"
+    t.string "project_name"
+    t.text "project_description"
+    t.string "department_in_charge_of_elevators"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "quotes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -124,5 +166,7 @@ ActiveRecord::Schema.define(version: 2021_02_23_212340) do
   add_foreign_key "building_details", "buildings"
   add_foreign_key "columns", "batteries"
   add_foreign_key "elevators", "columns"
+  add_foreign_key "customers", "addresses"
+  add_foreign_key "customers", "users"
   add_foreign_key "employees", "users"
 end

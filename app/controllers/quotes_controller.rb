@@ -17,11 +17,6 @@ class QuotesController < ApplicationController
   
   # POST /quotes or /quotes.json
   def create
-
-    # if !current_user
-    #   puts "YOU ARE NOT A USER!" 
-    # end
-
     #===================================================================================================
     # PRINTS PARAMS INTO TERMINAL WINDOW
     #===================================================================================================
@@ -84,7 +79,7 @@ class QuotesController < ApplicationController
     email = params["email"]
     
    #===================================================================================================
-   #SETUP OF LOGIC 
+   # SETUP OF LOGIC 
    #===================================================================================================
   
    @quote = Quote.new(quote_params)
@@ -149,7 +144,6 @@ class QuotesController < ApplicationController
    # AFTER FORM SUBMISSION LOGIC (submission alert, redirecting, rendering, errors) 
    #===================================================================================================
 
-    
     if @quote.save
       redirect_back fallback_location: root_path, notice: "Your Quote was successfully created and sent!"
       # format.html { redirect_to @quote, notice: "Your Quote was successfully created and sent!" }
@@ -161,7 +155,7 @@ class QuotesController < ApplicationController
   end
 
    #===================================================================================================
-   # WHITELISTING SPECIFIC PARAMS BELOW
+   # DEFINING @quote = Quote.new(quote_params) BELOW:
    #===================================================================================================
 
    # Only allow a list of trusted parameters through.
