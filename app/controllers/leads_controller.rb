@@ -6,36 +6,36 @@ class LeadsController < ApplicationController
      # PRINTS PARAMS INTO TERMINAL WINDOW
      #===================================================================================================
    
-      puts "===========START================"
-      puts params
-      puts "=============END================"
+        puts "===========START================"
+        puts params
+        puts "=============END================"
 
      #===================================================================================================
      # SETUP VARIABLES BELOW
      #===================================================================================================
         
       # Full Name:
-       full_name = params["contact[name][required]"]
+    #   full_name = params["lead[full_name]"]
 
-      # Email Address:
-    #   email_address = params["exemple@company.com"]
+    #   # Email Address:
+    #   email_address = params["contact[email][required]"]
 
       # Phone:
-    #   phone = params["contact[phone]"]
+      phone = params["contact[phone]"]
 
-      # Company Name:
+    #   # Company Name:
     #   company_name = params["contact[enterprise_name][required]"]
 
-      # Project Name:
+    #   # Project Name:
     #   project_name = params["contact[project_name][required]"]
 
-      # Project Description:
+    #   # Project Description:
     #   project_description = params["contact[description][required]"]
 
-      # Department In Charge Of Elevators:
+    #   # Department In Charge Of Elevators:
     #   department_in_charge_of_elevators = params["contact[department]"]
 
-      # Message:
+    #   # Message:
     #   message = params["contact[message]"]
 
       # Attached Binary File:
@@ -50,23 +50,24 @@ class LeadsController < ApplicationController
 
       @lead = Lead.new(lead_params)
 
-           @lead.full_name_of_contact = full_name
-        
-        #   @lead.email = email_address
-        
-        #   @lead.company_name = company_name
-        
-        #   @lead.phone = phone
+    #   @lead.full_name_of_contact = full_name
 
-        #   @lead.project_name = project_name
+    #   @lead.email = email_address
 
-        #   @lead.project_description = project_description
+    #   @lead.company_name = company_name
 
-        #   @lead.department_in_charge_of_elevators = department_in_charge_of_elevators
-        
-        #   @lead.message = message
+      @lead.phone = phone 
+      #Dont uncomment otherwise the form will bug you since it's html input tag has a required attribute
 
-        #   @lead.save!
+    #   @lead.project_name = project_name
+
+    #   @lead.project_description = project_description
+
+    #   @lead.department_in_charge_of_elevators = department_in_charge_of_elevators
+
+    #   @lead.message = message
+
+      @lead.save!
 
      #===================================================================================================
      # AFTER FORM SUBMISSION LOGIC (submission alert, redirecting, rendering, errors) 
@@ -83,6 +84,6 @@ class LeadsController < ApplicationController
 
      # Only allow a list of trusted parameters through.
     def lead_params
-        params.permit(:lead)
+        params.permit(:full_name_of_contact, :email, :phone, :company_name, :project_name, :project_description, :department_in_charge_of_elevators, :message)
     end
 end
