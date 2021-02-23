@@ -807,29 +807,29 @@
 								</div>
 								<div class="col-md-4">
 									<label for="contact:email">E-mail Address *</label>
-									<input required type="email" value="" required placeholder="exemple@company.com" class="form-control" name="contact[email][required]" id="contact:email">
+									<input required type="email" value="" required placeholder="exemple@company.com" class="form-control" name="leads[email]" id="contact:email">
 								</div>
 								<div class="col-md-4">
 									<label for="contact:phone">Phone *</label>
-									<input type="tel" value="" required placeholder="(555)555-5555" class="form-control" name="contact[phone]" id="contact:phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{3} [0-9]{3} [0-9]{4}|[0-9]{3}[0-9]{3}[0-9]{4}">
+									<input type="tel" value="" required placeholder="(555)555-5555" class="form-control" name="leads[phone]" id="contact:phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{3} [0-9]{3} [0-9]{4}|[0-9]{3}[0-9]{3}[0-9]{4}">
 								</div>
 								<div class="col-md-4">
 									<label for="contact:enterprise_name">Enterprise Name *</label>
-									<input required type="text" value="" class="form-control" name="contact[enterprise_name][required]" id="contact:enterprise_name">
+									<input required type="text" value="" class="form-control" name="leads[company_name]" id="contact:enterprise_name">
 								</div>
 								<div class="col-md-4">
 									<label for="contact:project_name">Project Name *</label>
-									<input required type="text" value="" class="form-control" name="contact[project_name][required]" id="contact:project_name">
+									<input required type="text" value="" class="form-control" name="leads[project_name]" id="contact:project_name">
 								</div>
 						</div>
 						<div class="row">
 								<div class="col-md-8">
 									<label for="contact:description">Project Description *</label>
-									<input required type="text" value="" class="form-control" name="contact[description][required]" id="contact:description">
+									<input required type="text" value="" class="form-control" name="leads[project_description]" id="contact:description">
 								</div>
 								<div class="col-md-4">
 									<label for="contact_department">Department</label>
-									<select class="form-control pointer" name="contact[department]">
+									<select class="form-control pointer" name="leads[department_in_charge_of_elevators]">
 										<option value="Sales">Sales</option>
 										<option value="Support">Support</option>
 										<option value="Administration">Administration</option>
@@ -839,7 +839,7 @@
 						<div class="row">
 								<div class="col-md-12">
 									<label for="contact:message">Message *</label>
-									<textarea required maxlength="5000" rows="8" class="form-control" name="contact[message]" id="contact:message"></textarea>
+									<textarea required maxlength="5000" rows="8" class="form-control" name="leads[message]" id="contact:message"></textarea>
 								</div>
 						</div>
 						<div class="row" id="aFile_upload">
