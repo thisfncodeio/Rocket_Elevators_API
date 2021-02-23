@@ -17,6 +17,13 @@ default: &default
   password: Codeboxx1*
   socket: /var/run/mysqld/mysqld.sock
 
+default: &postgresql
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
 development:
   <<: *default
   database: RailsApp_development
@@ -52,3 +59,15 @@ production:
   database: RailsApp_production
   username: RailsApp
   password: <%= ENV['RAILSAPP_DATABASE_PASSWORD'] %>
+
+warehouse_development:
+  <<: *postgresql
+  database: warehouse_development
+
+warehouse_test:
+  <<: *postgresql
+  database: warehouse_test
+
+warehouse_production:
+  <<: *postgresql
+  url: <%= ENV['WAREHOUSE_DATABASE_URL'] %>

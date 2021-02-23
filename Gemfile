@@ -3,18 +3,38 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
 
-gem 'bootstrap', '~> 5.0.0.beta1'
+# For JS
 gem 'jquery-rails'
+gem 'bootstrap', '~> 5.0.0.beta1'
+
+# Fonts
 gem "font-awesome-rails"
+
+# Authentication
 gem 'devise'
-gem 'rails_admin', '~> 2.0'
+
+# Message Alert
 gem 'toastr-rails'
+
+# Authorization
 gem 'cancancan'
+
+# Multiverse
+gem 'multiverse'
+
+#This gem is a library that generates fake data
+gem 'faker'
+
+# ADMIN SECTION
+gem 'rails_admin', '~> 2.0'
+gem 'rails_admin_rollincode', '~> 1.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.5'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
+# Use postgresql as the database for Active Record
+gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
