@@ -4,7 +4,7 @@ class LeadsController < ApplicationController
     def create
         
         @lead = Lead.new(lead_params)
-        @lead.files.attach(params[file:[]])
+        @lead.files.attach(params[:files)
         @lead.save!
         
      #===================================================================================================
