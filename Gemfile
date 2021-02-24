@@ -25,9 +25,6 @@ gem 'multiverse'
 #This gem is a library that generates fake data
 gem 'faker'
 
-#This gem is for the s3 amazon services to allow users to upload file attachments in contact us form
-gem "aws-sdk-s3", require: false
-
 # ADMIN SECTION
 gem 'rails_admin', '~> 2.0'
 gem 'rails_admin_rollincode', '~> 1.0'
