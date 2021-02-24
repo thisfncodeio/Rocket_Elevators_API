@@ -4,6 +4,7 @@ class LeadsController < ApplicationController
     def create
         
         @lead = Lead.new(lead_params)
+        @lead.files.attach(params[file:[]])
         @lead.save!
         
      #===================================================================================================
@@ -28,7 +29,7 @@ class LeadsController < ApplicationController
 
      # Only allow a list of trusted parameters through.
     def lead_params
-        params.required(:leads).permit(:full_name_of_contact, :company_name, :email, :phone, :project_name, :project_description, :department_in_charge_of_elevators, :message)
+        params.required(:leads).permit(:full_name_of_contact, :company_name, :email, :phone, :project_name, :project_description, :department_in_charge_of_elevators, :message, files: [])
     end
 
 end
