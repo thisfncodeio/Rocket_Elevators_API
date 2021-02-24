@@ -132,6 +132,7 @@ ActiveRecord::Schema.define(version: 2021_02_23_223213) do
     t.text "project_description"
     t.string "department_in_charge_of_elevators"
     t.text "message"
+    t.binary "files"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
