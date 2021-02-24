@@ -1,8 +1,10 @@
 class CreateCustomers < ActiveRecord::Migration[5.2]
   def change
     create_table :customers do |t|
+      #UserId association is linked
       t.date   :customers_creation_date
       t.string :company_name
+      #Company address association is linked
       t.string :full_name_of_company_contact
       t.string :company_contact_phone
       t.string :email_of_company_contact
