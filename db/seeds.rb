@@ -124,8 +124,8 @@ puts "Seed Quote"
 #---------------------------### Residential ###---------------------------
 75.times do 
   Quote.create!({
-    prefix: Faker::Name.prefix,
-    full_name: Faker::Name.name,
+    company_name: Faker::Company.name,
+    contact_name: Faker::Name.name_with_middle,
     email: Faker::Internet.email,
     product_line: [:Standard, :Premium, :Excelium].sample,
     installation_fee: Faker::Commerce.price(range: 5000..50000.0),
@@ -147,8 +147,8 @@ end
 #---------------------------### Commercial ###---------------------------
 75.times do
   Quote.create!({
-      prefix: Faker::Name.prefix,
-      full_name: Faker::Name.name,
+      company_name: Faker::Company.name,
+      contact_name: Faker::Name.name_with_middle,
       email: Faker::Internet.email,
       product_line: [:Standard, :Premium, :Excelium].sample,
       installation_fee: Faker::Commerce.price(range: 5000..50000.0),
@@ -170,8 +170,8 @@ end
 #---------------------------### Corporate/Hybrid ###---------------------------
 150.times do
   Quote.create!({
-      prefix: Faker::Name.prefix,
-      full_name: Faker::Name.name,
+      company_name: Faker::Company.name,
+      contact_name: Faker::Name.name_with_middle,
       email: Faker::Internet.email,
       product_line: [:Standard, :Premium, :Excelium].sample,
       installation_fee: Faker::Commerce.price(range: 5000..50000.0),

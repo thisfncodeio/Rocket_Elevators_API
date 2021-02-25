@@ -3,6 +3,7 @@ class CreateQuotes < ActiveRecord::Migration[5.2]
     create_table :quotes do |t|
 
       t.string  :company_name
+      t.string  :contact_name
       t.string  :email 
       t.string  :product_line
 
