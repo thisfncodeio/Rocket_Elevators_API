@@ -138,8 +138,7 @@ ActiveRecord::Schema.define(version: 2021_02_23_223213) do
   end
 
   create_table "quotes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "prefix"
-    t.string "full_name"
+    t.string "company_name"
     t.string "email"
     t.string "product_line"
     t.string "installation_fee"
