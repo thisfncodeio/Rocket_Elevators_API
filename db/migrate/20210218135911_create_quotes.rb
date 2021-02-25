@@ -2,8 +2,7 @@ class CreateQuotes < ActiveRecord::Migration[5.2]
   def change
     create_table :quotes do |t|
 
-      t.string  :prefix
-      t.string  :full_name
+      t.string  :company_name
       t.string  :email 
       t.string  :product_line
 

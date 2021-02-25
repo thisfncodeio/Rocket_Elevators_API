@@ -54,7 +54,8 @@ employee_list = [
 puts "Seed Started"
 ######################################################
 
-
+#-----------------------------------------------### Seed Employee ###-------------------------------------------------
+puts "Seed Employee"
 employee_list.each do |employee|
   user = User.create!(
     email: employee[:email],
@@ -71,12 +72,228 @@ employee_list.each do |employee|
   )
 end
 
-puts "#{Employee.count} employees created"
-
 ### Seeding Users for presentation ###
 User.create!(email: 'admin@admin.com', password: 'password', superadmin_role: 1, employee_role: 0, user_role: 0)
 User.create!(email: 'employee@employee.com', password: 'password', superadmin_role: 0, employee_role: 1, user_role: 0)
 User.create!(email: 'user@user.com', password: 'password', superadmin_role: 0, employee_role: 0, user_role: 1)
+
+
+
+#-----------------------------------------------### Seed Address ###-------------------------------------------------
+puts "Seed Addresses"
+
+#Auxiliary Address variables
+type_of_address = ["Billing", "Shipping", "Home", "Business"]
+status_type = ["Active", "Inactive"]
+entity_type = ["Building", "Customer"]
+
+
+CSV.foreach(Rails.root.join('db', 'Address.csv'), headers: true) do |row|
+    Address.create!(
+      type_of_address: type_of_address.sample, 
+      status: status_type.sample, 
+      entity: entity_type.sample, 
+      number_and_street: row['number_and_street'], 
+      suite_and_apartment: nil, 
+      city: row['city'],
+      postal_code: row['postal_code'], 
+      country: row['country'], 
+      notes: nil)
+end
+
+
+# Select addresses according to the entity
+addressListBuilding = []
+addressListCustomer = []
+
+Address.all.each do |address|
+
+  if address.entity == "Building"
+    addressListBuilding << (address.id)
+  end
+  if address.entity == "Customer"
+    addressListCustomer << (address.id)
+  end
+
+end
+
+
+#-----------------------------------------------### Seed Quote ###-------------------------------------------------
+puts "Seed Quote"
+
+#---------------------------### Residential ###---------------------------
+75.times do 
+  Quote.create!({
+    prefix: Faker::Name.prefix,
+    full_name: Faker::Name.name,
+    email: Faker::Internet.email,
+    product_line: [:Standard, :Premium, :Excelium].sample,
+    installation_fee: Faker::Commerce.price(range: 5000..50000.0),
+    sub_total: Faker::Commerce.price(range: 100000..1000000.0),
+    total: Faker::Commerce.price(range: 100000..1500000.0),
+    building_type: "Residential",
+    num_of_floors: Faker::Number.between(from: 5, to: 100),
+    num_of_apartments: Faker::Number.between(from: 10, to: 150),
+    num_of_basements: Faker::Number.between(from: 3, to: 6),
+    num_of_parking_spots: 0,
+    num_of_distinct_businesses: 0,
+    num_of_elevator_cages: 0,
+    num_of_occupants_per_Floor: 0,
+    num_of_activity_hours_per_day: 0,
+    required_columns: Faker::Number.between(from: 1, to: 5),
+    required_shafts: Faker::Number.between(from: 1, to: 10)
+  })
+end
+#---------------------------### Commercial ###---------------------------
+75.times do
+  Quote.create!({
+      prefix: Faker::Name.prefix,
+      full_name: Faker::Name.name,
+      email: Faker::Internet.email,
+      product_line: [:Standard, :Premium, :Excelium].sample,
+      installation_fee: Faker::Commerce.price(range: 5000..50000.0),
+      sub_total: Faker::Commerce.price(range: 100000..1000000.0),
+      total: Faker::Commerce.price(range: 100000..1500000.0),
+      building_type: "Commercial",
+      num_of_floors: Faker::Number.between(from: 5, to: 100),
+      num_of_apartments: 0,
+      num_of_basements: Faker::Number.between(from: 3, to: 6),
+      num_of_parking_spots: Faker::Number.between(from: 50, to: 250),
+      num_of_distinct_businesses: Faker::Number.between(from: 1, to: 10),
+      num_of_elevator_cages: Faker::Number.between(from: 4, to: 20),
+      num_of_occupants_per_Floor: 0,
+      num_of_activity_hours_per_day: 0,
+      required_columns: Faker::Number.between(from: 1, to: 5),
+      required_shafts: Faker::Number.between(from: 1, to: 10)
+    })
+end
+#---------------------------### Corporate/Hybrid ###---------------------------
+150.times do
+  Quote.create!({
+      prefix: Faker::Name.prefix,
+      full_name: Faker::Name.name,
+      email: Faker::Internet.email,
+      product_line: [:Standard, :Premium, :Excelium].sample,
+      installation_fee: Faker::Commerce.price(range: 5000..50000.0),
+      sub_total: Faker::Commerce.price(range: 100000..1000000.0),
+      total: Faker::Commerce.price(range: 100000..1500000.0),
+      building_type: [:Corporate, :Hybrid].sample,
+      num_of_floors: Faker::Number.between(from: 5, to: 100),
+      num_of_apartments: 0,
+      num_of_basements: Faker::Number.between(from: 3, to: 6),
+      num_of_parking_spots: Faker::Number.between(from: 50, to: 250),
+      num_of_distinct_businesses: Faker::Number.between(from: 1, to: 10),
+      num_of_elevator_cages: 0,
+      num_of_occupants_per_Floor: Faker::Number.between(from: 20, to: 150),
+      num_of_activity_hours_per_day: Faker::Number.between(from: 8, to: 24),
+      required_columns: Faker::Number.between(from: 1, to: 5),
+      required_shafts: Faker::Number.between(from: 1, to: 10)
+    })
+end
+#-----------------------------------------------### END Seed Quote ###-------------------------------------------------
+
+
+puts "Seed User, Lead, Customer, Building, BuildingDetail, Battery, Column and Elevator"
+
+#Auxiliary BuildingDetail variables
+typeList = ["Residential", "Commercial", "Corporate", "Hybrid"]
+typeArchitecture = ["Neoclassical", "Victorian", "Modern", "Neofuturist"]
+
+
+50.times do 
+#-----------------------------------------------### Seed User ###-------------------------------------------------
+    current_user = User.create!({
+      email: Faker::Internet.unique.email, 
+      password: 'password'
+    })
+
+#-----------------------------------------------### Seed Lead ###-------------------------------------------------
+    Lead.create!({
+      full_name_of_contact: Faker::Name.name,
+      company_name: Faker::Company.name,
+      email: Faker::Internet.email,
+      phone: Faker::PhoneNumber.unique.cell_phone,
+      project_name: Faker::Lorem.sentence(word_count: 2),
+      project_description: Faker::Lorem.unique.sentence,
+      department_in_charge_of_elevators: [:Sales, :Support, :Administration].sample,
+      message: Faker::Lorem.unique.paragraph
+    })
+
+#-----------------------------------------------### Seed Customer ###-------------------------------------------------
+    current_customer = Customer.create!({
+      user_id: current_user.id,
+      address_id: addressListCustomer.sample,
+      customers_creation_date: Faker::Date.between(from: '1976-02-23', to: '2021-02-23'),
+      company_name: Faker::Company.unique.name,
+      full_name_of_company_contact: Faker::Name.unique.name,
+      company_contact_phone: Faker::PhoneNumber.unique.cell_phone,
+      email_of_company_contact: Faker::Internet.unique.email,
+      company_description: Faker::Lorem.unique.paragraph,
+      full_name_of_service_technical_authority: Faker::Name.unique.name,
+      technical_authority_phone_for_service_: Faker::PhoneNumber.unique.cell_phone,
+      technical_manager_email_for_service: Faker::Internet.unique.email
+    })
+
+#-----------------------------------------------### Seed Building ###-------------------------------------------------
+    current_building = Building.create!({
+      customer_id: current_customer.id,
+      address_id: addressListBuilding.sample,
+      full_name_of_the_building_administrator: Faker::Name.unique.name,
+      email_of_the_administrator_of_the_building: Faker::Internet.unique.email,
+      phone_number_of_the_building_administrator: Faker::PhoneNumber.unique.cell_phone,
+      full_name_of_the_technical_contact_for_the_building: Faker::Name.unique.name,
+      technical_contact_email_for_the_building: Faker::Internet.unique.email,
+      technical_contact_phone_for_the_building: Faker::PhoneNumber.unique.cell_phone,
+    })
+
+#-----------------------------------------------### Seed BuildingDetail ###-------------------------------------------------
+    BuildingDetail.create!(
+        information_key: ["Type, Construction Year, Architecture , Last Renovation Year, Number of Floors"],
+        value: [typeList.sample, Faker::Date.between(from: '1950-01-01', to: '2020-02-25'), typeArchitecture.sample, Faker::Date.between(from: '1991-09-23', to: '2010-09-25'), Faker::Number.between(from: 1, to: 6)],
+        building_id: current_building.id,
+    )
+
+#-----------------------------------------------### Seed Battery ###-------------------------------------------------
+    current_battery = Battery.create!({
+      building_id: current_building.id,
+      building_type: [:Residential, :Commercial, :Corporate, :Hybrid].sample,
+      status: [:Active, :intervation, :Inactive].sample,
+      employee_id: Employee.order('rand()').limit(1).first.id,
+      date_of_commissioning: Faker::Date.between(from: '2018-02-23', to: '2021-02-23'),
+      date_of_last_inspection: Faker::Date.between(from: '2018-02-23', to: '2021-02-23'),
+      certificate_of_operations: Faker::Alphanumeric.unique.alphanumeric(number: 10),
+      information: Faker::Lorem.sentence(word_count: 3),
+      notes: Faker::Lorem.unique.paragraph
+    })
+
+#-----------------------------------------------### Seed Column ###-------------------------------------------------
+    2.times do 
+      current_column = Column.create!({
+        battery_id: current_battery.id,
+        building_type: current_battery.building_type,
+        number_of_floors_served: Faker::Number.between(from: 2, to: 60),
+        status: [:Active, :Intervention, :Inactive].sample,
+        information: Faker::Lorem.sentence(word_count: 3),
+        notes: Faker::Lorem.unique.paragraph
+      })
+
+#-----------------------------------------------### Seed Elevator ###-------------------------------------------------
+        3.times do
+          Elevator.create!({
+            column_id: current_column.id,
+            serial_number: Faker::Alphanumeric.unique.alphanumeric(number: 15),
+            model: [:Standard, :Premium, :Excelium].sample,
+            building_type: current_battery.building_type,
+            status: [:Active, :Intervention, :Inactive].sample,
+            date_of_commissioning: Faker::Date.between(from: '2018-02-23', to: '2021-02-23'),
+            date_of_last_inspection: Faker::Date.between(from: '2018-02-23', to: '2021-02-23'),
+            certificate_of_inspection: Faker::Alphanumeric.unique.alphanumeric(number: 15),
+            information: Faker::Lorem.sentence(word_count: 3),
+            notes: Faker::Lorem.unique.paragraph
+          })
+        end
+    end    
+end
 
 
 #####################################################

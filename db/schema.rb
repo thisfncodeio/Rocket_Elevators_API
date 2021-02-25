@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 2021_02_23_223213) do
   end
 
   create_table "elevators", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "serial_number"
+    t.string "serial_number"
     t.string "model"
     t.string "building_type"
     t.string "status"
@@ -132,14 +132,13 @@ ActiveRecord::Schema.define(version: 2021_02_23_223213) do
     t.text "project_description"
     t.string "department_in_charge_of_elevators"
     t.text "message"
-    t.binary "files"
+    t.binary "file_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "quotes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "prefix"
-    t.string "full_name"
+    t.string "company_name"
     t.string "email"
     t.string "product_line"
     t.string "installation_fee"

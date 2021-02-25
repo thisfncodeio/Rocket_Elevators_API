@@ -189,6 +189,10 @@
                                                         <label>No. of occupants per floor</label>
                                                         <input name="occupants-corporate" type="number" value="0" min="0" class="form-control" id="inputOccupantsCorporate" oninput="validity.valid||(value='');">
                                                     </div>
+                                                    <div class="col-md-2">
+                                                        <label>No. of activity hours per day:</label>
+                                                        <input name="activity-corporate" type="number" value="0" min="0" max="24" class="form-control" id="inputHoursHybrid" oninput="validity.valid||(value='');">
+                                                    </div>
                                                 </div>
 
                                             <hr class="m-30" /><!-- 1px line separator -->
@@ -241,16 +245,8 @@
                                                 <div class="input-group">
                                                     <p style="font-size: 20px; color:black">*Enter Your Contact Information:</p>
                                                 </div>
-                                                <span>
-                                                    <select required name="titles">
-                                                        <option selected="selected" value="Mr.">Mr.</option>
-                                                        <option value="Mrs.">Mrs.</option>
-                                                        <option value="Miss">Miss</option>
-                                                        <option value="NBP">NBP</option> <!-- prefix for non-binary-person -->
-                                                    </select>
-                                                </span>
-                                            
-                                                <input type="text" name="name" class="form-control" placeholder="*Full Name" minlength="5" maxlength="255" oninput="name.value = titles.value +' '+ Name.value" required>
+
+                                                <input type="text" name="company_name" class="form-control" placeholder="*Company Name" minlength="5" maxlength="255" oninput="name.value = titles.value +' '+ Name.value" required>
                                                 <input type="email" name="email" class="form-control" placeholder="*Email Address" minlength="9" maxlength="50" required>
                                             </div><!-- /input-group -->
                                             <input type="hidden" name="FullName" /> <!-- Do not delete -->

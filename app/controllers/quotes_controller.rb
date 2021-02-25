@@ -50,7 +50,8 @@ class QuotesController < ApplicationController
     corporate_basements = params["basements-corporate"]
     corporate_parking = params["parking-corporate"]
     corporate_occupants = params["occupants-corporate"]
-    
+    corporate_activity = params["activity-corporate"]
+
     # Hybrid
     hybrid_businesses = params["businesses-hybrid"]
     hybrid_floors = params["floors-hybrid"]
@@ -71,11 +72,10 @@ class QuotesController < ApplicationController
     installation = params["installation"]
     total = params["total"]
 
-    #Mr, Mrs, Miss, NBP
-    prefix = params["titles"]
-    #Name
-    full_name = params["name"]
-    #Email Address
+   
+    # Company Name
+    company_name = params["company_name"]
+    # Email Address
     email = params["email"]
     
    #===================================================================================================
@@ -84,8 +84,7 @@ class QuotesController < ApplicationController
   
    @quote = Quote.new(quote_params)
 
-    @quote.prefix = prefix
-    @quote.full_name = full_name
+    @quote.company_name = company_name
     @quote.email = email
 
     @quote.building_type =  building_type
@@ -118,6 +117,7 @@ class QuotesController < ApplicationController
       @quote.num_of_basements = corporate_basements
       @quote.num_of_parking_spots = corporate_parking
       @quote.num_of_occupants_per_Floor = corporate_occupants
+      @quote.num_of_activity_hours_per_day = corporate_activity
     end
 
     if building_type == "hybrid"
