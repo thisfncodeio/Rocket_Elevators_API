@@ -167,7 +167,7 @@ end
       required_shafts: Faker::Number.between(from: 1, to: 10)
     })
 end
-#---------------------------### Corporate ###---------------------------
+#---------------------------### Corporate/Hybrid ###---------------------------
 150.times do
   Quote.create!({
       prefix: Faker::Name.prefix,
@@ -190,8 +190,6 @@ end
       required_shafts: Faker::Number.between(from: 1, to: 10)
     })
 end
-#---------------------------### Hybrid ###---------------------------
-
 #-----------------------------------------------### END Seed Quote ###-------------------------------------------------
 
 
