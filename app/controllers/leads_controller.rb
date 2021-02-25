@@ -5,9 +5,6 @@ class LeadsController < ApplicationController
         
         @lead = Lead.new(lead_params)
         
-        # encoded_files = Base64.encode64(params[:lead][:files].read)
-        # @lead.files = encoded_files
-
      #===================================================================================================
      # DECLARING VARIABLES  
      #===================================================================================================
@@ -27,11 +24,13 @@ class LeadsController < ApplicationController
         puts "=============END================"
 
      #===================================================================================================
-     # AFTER FORM SUBMISSION LOGIC (submission alert, redirecting, rendering, errors) 
+     # FORM SUBMISSION & FILE ATTACHMENT LOGIC (converts into binary code, submission alert, redirecting, rendering, errors) 
      #===================================================================================================
         if attachment == nil
+            #If var attachment held no value then it would print below into terminal:
             puts "this is nil, tough luck"
-        
+            
+            #Otherwise if it does hold some sort of value then it will do below instead:
             if not nil 
                 @lead.file = attachment.read
                 @lead.file_name = attachment.original_filename
