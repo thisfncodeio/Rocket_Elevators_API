@@ -146,13 +146,12 @@ class QuotesController < ApplicationController
 
     if @quote.save
       redirect_back fallback_location: root_path, notice: "Your Quote was successfully created and sent!"
-      # format.html { redirect_to @quote, notice: "Your Quote was successfully created and sent!" }
-      # format.json { render :quote, status: :quotes, location: @quote }
-    else
-      # format.html { render :new, status: :unprocessable_entity }
-      # format.json { render json: @quote.errors, status: :unprocessable_entity }
     end
-  end
+
+  end # End for def Create
+
+
+
 
    #===================================================================================================
    # DEFINING @quote = Quote.new(quote_params) BELOW:
@@ -163,4 +162,4 @@ class QuotesController < ApplicationController
     params.fetch(:quote, {})
   end
 
-end
+end # End of class Quote

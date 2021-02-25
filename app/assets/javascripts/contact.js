@@ -15,11 +15,10 @@ jQuery( "#form-contact" ).submit(function( event ) {
 	// For clean the form
 	jQuery("#form-contact").trigger("reset");
 	//For Pop
-	window.alert("Thank You, your message was successfully sent!");
+	// window.alert("Thank You, your message was successfully sent!");
 	//Not open the php page
 	event.preventDefault();
   });
-
 
   const input = document.getElementById('input')
 
