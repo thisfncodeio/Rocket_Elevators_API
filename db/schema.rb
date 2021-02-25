@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 2021_02_23_223213) do
   end
 
   create_table "elevators", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "serial_number"
+    t.string "serial_number"
     t.string "model"
     t.string "building_type"
     t.string "status"
