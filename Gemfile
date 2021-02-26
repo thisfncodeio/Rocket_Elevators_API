@@ -25,6 +25,9 @@ gem 'multiverse'
 #This gem is a library that generates fake data
 gem 'faker'
 
+# Chartkick
+gem 'chartkick'
+
 # ADMIN SECTION
 gem 'rails_admin', '~> 2.0'
 gem 'rails_admin_rollincode', '~> 1.0'
