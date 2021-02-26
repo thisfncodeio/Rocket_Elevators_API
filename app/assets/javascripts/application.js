@@ -28,4 +28,6 @@
   //= require plugins/jquery.nav.min
   //= require jquery_ujs
   //= require toastr
+  //= require chartkick
+  //= require Chart.bundle
 // })

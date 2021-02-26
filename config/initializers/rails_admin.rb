@@ -12,6 +12,13 @@ RailsAdmin.config do |config|
   # == CancanCan ==
   config.authorize_with :cancancan
 
+  config.navigation_static_label = "Charts"
+  config.navigation_static_links = {
+    # 'Contact Requests' => 'charts',
+    # 'Bid Solicitation' => 'charts',
+    # 'Elevators Per Customer' => 'charts', #ASK DAVID ABOUT THE ROUTING ISSUE AND ASK HIM HOW TO GET IT TO DISPLAY THE GRAPH WHILE STILL IN THE BACK OFFICE
+    'Google' => 'http://www.google.com'
+  }
   ## == Pundit ==
   # config.authorize_with :pundit
 
