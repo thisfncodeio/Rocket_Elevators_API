@@ -9,7 +9,7 @@ class LeadsController < ApplicationController
      # DECLARING VARIABLES  
      #===================================================================================================
         attachment = params["attachment"]
-        @lead.file_name = attachment
+        #@lead.file_name = attachment
      
      #===================================================================================================
      # SAVER  
@@ -26,15 +26,9 @@ class LeadsController < ApplicationController
      #===================================================================================================
      # FORM SUBMISSION & FILE ATTACHMENT LOGIC (converts into binary code, submission alert, redirecting, rendering, errors) 
      #===================================================================================================
-        if attachment == nil
-            #If var attachment held no value then it would print below into terminal:
-            puts "this is nil, tough luck"
-            
-            #Otherwise if it does hold some sort of value then it will do below instead:
-            if not nil 
-                @lead.file = attachment.read
-                @lead.file_name = attachment.original_filename
-            end
+        if attachment != nil
+            @lead.attachment = attachment.read
+            @lead.file_name = attachment.original_filename
         end  
         
         if @lead.save!
@@ -47,16 +41,6 @@ class LeadsController < ApplicationController
 
      # Only allow a list of trusted parameters through.
     def lead_params
-        params.required(:leads).permit(
-            :full_name_of_contact, 
-            :company_name, 
-            :email, 
-            :phone, 
-            :project_name, 
-            :project_description, 
-            :department_in_charge_of_elevators, 
-            :message, 
-            :attachment
-        )
+        params.required(:leads).permit!
     end
 end

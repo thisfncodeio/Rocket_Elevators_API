@@ -31,4 +31,6 @@
   //= require chartkick
   //= require Chart.bundle
   //= require contact
+  //= require chartkick
+  //= require Chart.bundle
 // })
