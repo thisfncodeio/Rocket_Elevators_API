@@ -91,4 +91,11 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Blazer 
+  ENV["BLAZER_USERNAME"] = "andrew"
+  ENV["BLAZER_PASSWORD"] = "secret"
+  # Uncomment Line Below When You Deploy!
+  # ENV["BLAZER_DATABASE_URL"] = "postgres://codeboxx:Codeboxx1*@localhost:5432/warehouse_development"
+
 end

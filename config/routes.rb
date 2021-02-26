@@ -4,9 +4,14 @@ Rails.application.routes.draw do
   resources :quotes
   resources :leads
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  mount Blazer::Engine, at: "blazer"
-  #During Production
-  # ENV["BLAZER_DATABASE_URL"] = "postgres://user:password@hostname:5432/database"
+
+  # Authenticates Blazer Using Devise
+  authenticate :user, ->(user) { user.superadmin_role? } do
+    mount Blazer::Engine, at: "blazer"
+  end
+
+  # # If Above Doesn't Work Then Uncomment Below:
+  # mount Blazer::Engine, at: "blazer"
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -23,7 +28,4 @@ Rails.application.routes.draw do
   # /leads is the action from the form in index.html.erb
   post "/leads" => "leads#create"
 
-  get "charts" => "pages#quotes_back_office" 
-  get "charts" => "pages#elevator_back_office" 
-  get "charts" => "pages#contact_back_office" 
 end
