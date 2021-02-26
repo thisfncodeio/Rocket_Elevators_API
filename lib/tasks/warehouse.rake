@@ -10,7 +10,7 @@ namespace :warehouse do
             FactQuote.create!(
                 quote_id: quote.id,
                 creation_date: quote.created_at,
-                company_name: quote.full_name,
+                company_name: quote.company_name,
                 email: quote.email,
                 num_elevators: quote.required_shafts
             )
