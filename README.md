@@ -5,7 +5,8 @@ Members of this week's team
 Abdul Akeeb -
 Ahsan Syed -
 Cristiane Santiago -
-Lionel Niyongabire
+Lionel Niyongabire -
+Eric Moran
  
 🎯 About
 The main goal of this week is to transform the static site previously developed during the Genesis program and turn it into a web application on MVC (Model - View - Controller) foundations. The site must be in a state that allows you to create a new section that saves the Javascript form that calculates an estimate in the form of a purchase order.

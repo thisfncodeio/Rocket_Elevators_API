@@ -78,6 +78,25 @@ User.create!(email: 'employee@employee.com', password: 'password', superadmin_ro
 User.create!(email: 'user@user.com', password: 'password', superadmin_role: 0, employee_role: 0, user_role: 1)
 
 
+#-----------------------------------------------### Seed Lead ###-------------------------------------------------
+puts "Seed Lead"
+
+ext = ['zip', 'pdf', 'jpg', 'png', 'txt']
+
+300.times do
+  Lead.create!({
+    full_name_of_contact: Faker::Name.name,
+    company_name: Faker::Company.name,
+    email: Faker::Internet.email,
+    phone: Faker::PhoneNumber.unique.cell_phone,
+    project_name: Faker::Lorem.sentence(word_count: 2),
+    project_description: Faker::Lorem.unique.sentence,
+    department_in_charge_of_elevators: [:Sales, :Support, :Administration].sample,
+    message: Faker::Lorem.unique.paragraph,
+    file_name: Faker::File.file_name(dir: 'foo/bar', name: 'contact', ext: ext.sample),
+    created_at: Faker::Date.between(from: '2018-02-23', to: '2021-02-23')
+  })
+end
 
 #-----------------------------------------------### Seed Address ###-------------------------------------------------
 puts "Seed Addresses"
@@ -123,72 +142,150 @@ puts "Seed Quote"
 
 #---------------------------### Residential ###---------------------------
 75.times do 
+
+  num_of_floors = Faker::Number.between(from: 2, to: 60)
+  num_of_apartments = Faker::Number.between(from: 5, to: 150)
+  product_line = ['Standard', 'Premium', 'Excelium'].sample
+
+  numShaftsRes = ((num_of_apartments / num_of_floors.to_f) / 6).ceil
+  numColumnsRes = (num_of_floors / 20.to_f).ceil
+  numTotalShaftsRes = (numShaftsRes * numColumnsRes)
+  
+  if product_line == 'Standard'
+    value = 7565
+    fee = 0.10
+  elsif product_line == 'Premium'
+    value = 12345
+    fee = 0.13
+  elsif product_line == 'Excelium'
+    value = 15400
+    fee = 0.16   
+  end
+  
+  costTotalShafts = (value * numTotalShaftsRes)
+  costInstallation = (fee * costTotalShafts).round(2)
+  costTotal = (costTotalShafts + costInstallation)
+
   Quote.create!({
-    company_name: Faker::Company.name,
-    contact_name: Faker::Name.name_with_middle,
-    email: Faker::Internet.email,
-    product_line: [:Standard, :Premium, :Excelium].sample,
-    installation_fee: Faker::Commerce.price(range: 5000..50000.0),
-    sub_total: Faker::Commerce.price(range: 100000..1000000.0),
-    total: Faker::Commerce.price(range: 100000..1500000.0),
+    company_name: Faker::Company.unique.name,
+    contact_name: Faker::Name.unique.name,
+    email: Faker::Internet.unique.email,
+    product_line: product_line,
+    installation_fee: costInstallation,
+    sub_total: costTotalShafts,
+    total: costTotal,
     building_type: "Residential",
-    num_of_floors: Faker::Number.between(from: 5, to: 100),
-    num_of_apartments: Faker::Number.between(from: 10, to: 150),
-    num_of_basements: Faker::Number.between(from: 3, to: 6),
+    num_of_floors: num_of_floors,
+    num_of_apartments: num_of_apartments,
+    num_of_basements: Faker::Number.between(from: 1, to: 6),
     num_of_parking_spots: 0,
     num_of_distinct_businesses: 0,
     num_of_elevator_cages: 0,
     num_of_occupants_per_Floor: 0,
     num_of_activity_hours_per_day: 0,
-    required_columns: Faker::Number.between(from: 1, to: 5),
-    required_shafts: Faker::Number.between(from: 1, to: 10)
+    required_columns: numColumnsRes,
+    required_shafts: numTotalShaftsRes,
+    created_at: Faker::Date.between(from: '2018-02-23', to: '2021-02-23')
   })
 end
 #---------------------------### Commercial ###---------------------------
 75.times do
+
+  num_of_floors = Faker::Number.between(from: 2, to: 60)
+  num_of_elevator_cages = Faker::Number.between(from: 1, to: 20)
+  product_line = ['Standard', 'Premium', 'Excelium'].sample
+
+  numColumns = (num_of_floors / 20.to_f).ceil
+  
+  if product_line == 'Standard'
+    value = 7565
+    fee = 0.10
+  elsif product_line == 'Premium'
+    value = 12345
+    fee = 0.13
+  elsif product_line == 'Excelium'
+    value = 15400
+    fee = 0.16   
+  end
+  
+  costTotalShafts = (value * num_of_elevator_cages)
+  costInstallation = (fee * costTotalShafts).round(2)
+  costTotal = (costTotalShafts + costInstallation)
+
   Quote.create!({
-      company_name: Faker::Company.name,
-      contact_name: Faker::Name.name_with_middle,
-      email: Faker::Internet.email,
-      product_line: [:Standard, :Premium, :Excelium].sample,
-      installation_fee: Faker::Commerce.price(range: 5000..50000.0),
-      sub_total: Faker::Commerce.price(range: 100000..1000000.0),
-      total: Faker::Commerce.price(range: 100000..1500000.0),
-      building_type: "Commercial",
-      num_of_floors: Faker::Number.between(from: 5, to: 100),
-      num_of_apartments: 0,
-      num_of_basements: Faker::Number.between(from: 3, to: 6),
-      num_of_parking_spots: Faker::Number.between(from: 50, to: 250),
-      num_of_distinct_businesses: Faker::Number.between(from: 1, to: 10),
-      num_of_elevator_cages: Faker::Number.between(from: 4, to: 20),
-      num_of_occupants_per_Floor: 0,
-      num_of_activity_hours_per_day: 0,
-      required_columns: Faker::Number.between(from: 1, to: 5),
-      required_shafts: Faker::Number.between(from: 1, to: 10)
-    })
+    company_name: Faker::Company.unique.name,
+    contact_name: Faker::Name.unique.name,
+    email: Faker::Internet.unique.email,
+    product_line: product_line,
+    installation_fee: costInstallation,
+    sub_total: costTotalShafts,
+    total: costTotal,
+    building_type: "Commercial",
+    num_of_floors: num_of_floors,
+    num_of_apartments: 0,
+    num_of_basements: Faker::Number.between(from: 3, to: 6),
+    num_of_parking_spots: Faker::Number.between(from: 10, to: 250),
+    num_of_distinct_businesses: Faker::Number.between(from: 1, to: 10),
+    num_of_elevator_cages: num_of_elevator_cages,
+    num_of_occupants_per_Floor: 0,
+    num_of_activity_hours_per_day: 0,
+    required_columns: numColumns,
+    required_shafts: num_of_elevator_cages,
+    created_at: Faker::Date.between(from: '2018-02-23', to: '2021-02-23')
+  })
 end
 #---------------------------### Corporate/Hybrid ###---------------------------
 150.times do
+
+  num_of_floors = Faker::Number.between(from: 2, to: 60)
+  num_of_basements = Faker::Number.between(from: 2, to: 6)
+  num_of_occupants_per_Floor = Faker::Number.between(from: 10, to: 150)
+  product_line = ['Standard', 'Premium', 'Excelium'].sample
+
+
+  totalOccupantsCorHybr= (num_of_occupants_per_Floor * (num_of_floors + num_of_basements))
+  numShaftsRequired= (totalOccupantsCorHybr / 1000.to_f).ceil
+  numColumnsCorHybr= ((num_of_floors + num_of_basements) / 20.to_f).ceil
+  numShaftsColumm= (numShaftsRequired / numColumnsCorHybr.to_f).ceil
+  numTotalShaftsCorHybr= (numShaftsColumm * numColumnsCorHybr)
+
+  
+  if product_line == 'Standard'
+    value = 7565
+    fee = 0.10
+  elsif product_line == 'Premium'
+    value = 12345
+    fee = 0.13
+  elsif product_line == 'Excelium'
+    value = 15400
+    fee = 0.16   
+  end
+  
+  costTotalShafts = (value * numTotalShaftsCorHybr)
+  costInstallation = (fee * costTotalShafts).round(2)
+  costTotal = (costTotalShafts + costInstallation)
+
   Quote.create!({
-      company_name: Faker::Company.name,
-      contact_name: Faker::Name.name_with_middle,
-      email: Faker::Internet.email,
-      product_line: [:Standard, :Premium, :Excelium].sample,
-      installation_fee: Faker::Commerce.price(range: 5000..50000.0),
-      sub_total: Faker::Commerce.price(range: 100000..1000000.0),
-      total: Faker::Commerce.price(range: 100000..1500000.0),
-      building_type: [:Corporate, :Hybrid].sample,
-      num_of_floors: Faker::Number.between(from: 5, to: 100),
-      num_of_apartments: 0,
-      num_of_basements: Faker::Number.between(from: 3, to: 6),
-      num_of_parking_spots: Faker::Number.between(from: 50, to: 250),
-      num_of_distinct_businesses: Faker::Number.between(from: 1, to: 10),
-      num_of_elevator_cages: 0,
-      num_of_occupants_per_Floor: Faker::Number.between(from: 20, to: 150),
-      num_of_activity_hours_per_day: Faker::Number.between(from: 8, to: 24),
-      required_columns: Faker::Number.between(from: 1, to: 5),
-      required_shafts: Faker::Number.between(from: 1, to: 10)
-    })
+    company_name: Faker::Company.unique.name,
+    contact_name: Faker::Name.unique.name,
+    email: Faker::Internet.unique.email,
+    product_line: product_line,
+    installation_fee: costInstallation,
+    sub_total: costTotalShafts,
+    total: costTotal,
+    building_type: [:Corporate, :Hybrid].sample,
+    num_of_floors: num_of_floors,
+    num_of_apartments: 0,
+    num_of_basements: num_of_basements,
+    num_of_parking_spots: Faker::Number.between(from: 10, to: 250),
+    num_of_distinct_businesses: Faker::Number.between(from: 1, to: 10),
+    num_of_elevator_cages: 0,
+    num_of_occupants_per_Floor: num_of_occupants_per_Floor,
+    num_of_activity_hours_per_day: Faker::Number.between(from: 8, to: 24),
+    required_columns: numColumnsCorHybr,
+    required_shafts: numTotalShaftsCorHybr,
+    created_at: Faker::Date.between(from: '2018-02-23', to: '2021-02-23')
+  })
 end
 #-----------------------------------------------### END Seed Quote ###-------------------------------------------------
 
@@ -206,19 +303,7 @@ typeArchitecture = ["Neoclassical", "Victorian", "Modern", "Neofuturist"]
       email: Faker::Internet.unique.email, 
       password: 'password'
     })
-
-#-----------------------------------------------### Seed Lead ###-------------------------------------------------
-    Lead.create!({
-      full_name_of_contact: Faker::Name.name,
-      company_name: Faker::Company.name,
-      email: Faker::Internet.email,
-      phone: Faker::PhoneNumber.unique.cell_phone,
-      project_name: Faker::Lorem.sentence(word_count: 2),
-      project_description: Faker::Lorem.unique.sentence,
-      department_in_charge_of_elevators: [:Sales, :Support, :Administration].sample,
-      message: Faker::Lorem.unique.paragraph
-    })
-
+    
 #-----------------------------------------------### Seed Customer ###-------------------------------------------------
     current_customer = Customer.create!({
       user_id: current_user.id,
@@ -248,9 +333,29 @@ typeArchitecture = ["Neoclassical", "Victorian", "Modern", "Neofuturist"]
 
 #-----------------------------------------------### Seed BuildingDetail ###-------------------------------------------------
     BuildingDetail.create!(
-        information_key: ["Type, Construction Year, Architecture , Last Renovation Year, Number of Floors"],
-        value: [typeList.sample, Faker::Date.between(from: '1950-01-01', to: '2020-02-25'), typeArchitecture.sample, Faker::Date.between(from: '1991-09-23', to: '2010-09-25'), Faker::Number.between(from: 1, to: 6)],
-        building_id: current_building.id,
+        information_key: "Type",
+        value: typeList.sample,
+        building_id: current_building.id
+    )
+    BuildingDetail.create!(
+        information_key: "Construction Year",
+        value: Faker::Date.between(from: '1950-01-01', to: '2020-02-25'),
+        building_id: current_building.id
+    )
+    BuildingDetail.create!(
+        information_key: "Architecture",
+        value: typeArchitecture.sample,
+        building_id: current_building.id
+    )
+    BuildingDetail.create!(
+        information_key: "Last Renovation Year",
+        value: Faker::Date.between(from: '1991-09-23', to: '2010-09-25'),
+        building_id: current_building.id
+    )
+    BuildingDetail.create!(
+        information_key: "Number of Floors",
+        value: Faker::Number.between(from: 1, to: 6),
+        building_id: current_building.id
     )
 
 #-----------------------------------------------### Seed Battery ###-------------------------------------------------
@@ -267,7 +372,8 @@ typeArchitecture = ["Neoclassical", "Victorian", "Modern", "Neofuturist"]
     })
 
 #-----------------------------------------------### Seed Column ###-------------------------------------------------
-    2.times do 
+    numRand = rand(1..3)
+    numRand.times do 
       current_column = Column.create!({
         battery_id: current_battery.id,
         building_type: current_battery.building_type,
@@ -278,7 +384,7 @@ typeArchitecture = ["Neoclassical", "Victorian", "Modern", "Neofuturist"]
       })
 
 #-----------------------------------------------### Seed Elevator ###-------------------------------------------------
-        3.times do
+        rand(1..3).times do
           Elevator.create!({
             column_id: current_column.id,
             serial_number: Faker::Alphanumeric.unique.alphanumeric(number: 15),

@@ -30,4 +30,5 @@
   //= require toastr
   //= require chartkick
   //= require Chart.bundle
+  //= require contact
 // })
