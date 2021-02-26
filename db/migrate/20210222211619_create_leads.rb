@@ -9,7 +9,8 @@ class CreateLeads < ActiveRecord::Migration[5.2]
       t.text   :project_description
       t.string :department_in_charge_of_elevators
       t.text   :message
-      t.binary :file_name
+      t.binary :attachment
+      t.string :file_name
       t.timestamps
     end
   end

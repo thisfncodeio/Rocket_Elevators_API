@@ -29,4 +29,6 @@
   //= require jquery_ujs
   //= require toastr
   //= require contact
+  //= require chartkick
+  //= require Chart.bundle
 // })
