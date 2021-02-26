@@ -67,8 +67,6 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-# Back-Office Charts
-gem "chartkick"
 # Using Queries & Info From DB To Create The Charts
 gem 'blazer'
 
