@@ -147,8 +147,8 @@ puts "Seed Quote"
   num_of_apartments = Faker::Number.between(from: 5, to: 150)
   product_line = ['Standard', 'Premium', 'Excelium'].sample
 
-  numShaftsRes = ((num_of_apartments / num_of_floors.to_f) / 6).ceil()
-  numColumnsRes = (num_of_floors / 20.to_f).ceil()
+  numShaftsRes = ((num_of_apartments / num_of_floors.to_f) / 6).ceil
+  numColumnsRes = (num_of_floors / 20.to_f).ceil
   numTotalShaftsRes = (numShaftsRes * numColumnsRes)
   
   if product_line == 'Standard'
@@ -190,51 +190,102 @@ puts "Seed Quote"
 end
 #---------------------------### Commercial ###---------------------------
 75.times do
+
+  num_of_floors = Faker::Number.between(from: 2, to: 60)
+  num_of_elevator_cages = Faker::Number.between(from: 1, to: 20)
+  product_line = ['Standard', 'Premium', 'Excelium'].sample
+
+  numColumns = (num_of_floors / 20.to_f).ceil
+  
+  if product_line == 'Standard'
+    value = 7565
+    fee = 0.10
+  elsif product_line == 'Premium'
+    value = 12345
+    fee = 0.13
+  elsif product_line == 'Excelium'
+    value = 15400
+    fee = 0.16   
+  end
+  
+  costTotalShafts = (value * num_of_elevator_cages)
+  costInstallation = (fee * costTotalShafts).round(2)
+  costTotal = (costTotalShafts + costInstallation)
+
   Quote.create!({
-      company_name: Faker::Company.unique.name,
-      contact_name: Faker::Name.unique.name,
-      email: Faker::Internet.unique.email,
-      product_line: [:Standard, :Premium, :Excelium].sample,
-      installation_fee: Faker::Commerce.price(range: 5000..50000.0),
-      sub_total: Faker::Commerce.price(range: 100000..1000000.0),
-      total: Faker::Commerce.price(range: 100000..1500000.0),
-      building_type: "Commercial",
-      num_of_floors: Faker::Number.between(from: 5, to: 100),
-      num_of_apartments: 0,
-      num_of_basements: Faker::Number.between(from: 3, to: 6),
-      num_of_parking_spots: Faker::Number.between(from: 50, to: 250),
-      num_of_distinct_businesses: Faker::Number.between(from: 1, to: 10),
-      num_of_elevator_cages: Faker::Number.between(from: 4, to: 20),
-      num_of_occupants_per_Floor: 0,
-      num_of_activity_hours_per_day: 0,
-      required_columns: Faker::Number.between(from: 1, to: 5),
-      required_shafts: Faker::Number.between(from: 1, to: 10),
-      created_at: Faker::Date.between(from: '2018-02-23', to: '2021-02-23')
-    })
+    company_name: Faker::Company.unique.name,
+    contact_name: Faker::Name.unique.name,
+    email: Faker::Internet.unique.email,
+    product_line: product_line,
+    installation_fee: costInstallation,
+    sub_total: costTotalShafts,
+    total: costTotal,
+    building_type: "Commercial",
+    num_of_floors: num_of_floors,
+    num_of_apartments: 0,
+    num_of_basements: Faker::Number.between(from: 3, to: 6),
+    num_of_parking_spots: Faker::Number.between(from: 10, to: 250),
+    num_of_distinct_businesses: Faker::Number.between(from: 1, to: 10),
+    num_of_elevator_cages: num_of_elevator_cages,
+    num_of_occupants_per_Floor: 0,
+    num_of_activity_hours_per_day: 0,
+    required_columns: numColumns,
+    required_shafts: num_of_elevator_cages,
+    created_at: Faker::Date.between(from: '2018-02-23', to: '2021-02-23')
+  })
 end
 #---------------------------### Corporate/Hybrid ###---------------------------
 150.times do
+
+  num_of_floors = Faker::Number.between(from: 2, to: 60)
+  num_of_basements = Faker::Number.between(from: 2, to: 6)
+  num_of_occupants_per_Floor = Faker::Number.between(from: 10, to: 150)
+  product_line = ['Standard', 'Premium', 'Excelium'].sample
+
+
+  totalOccupantsCorHybr= (num_of_occupants_per_Floor * (num_of_floors + num_of_basements))
+  numShaftsRequired= (totalOccupantsCorHybr / 1000.to_f).ceil
+  numColumnsCorHybr= ((num_of_floors + num_of_basements) / 20.to_f).ceil
+  numShaftsColumm= (numShaftsRequired / numColumnsCorHybr.to_f).ceil
+  numTotalShaftsCorHybr= (numShaftsColumm * numColumnsCorHybr)
+
+  
+  if product_line == 'Standard'
+    value = 7565
+    fee = 0.10
+  elsif product_line == 'Premium'
+    value = 12345
+    fee = 0.13
+  elsif product_line == 'Excelium'
+    value = 15400
+    fee = 0.16   
+  end
+  
+  costTotalShafts = (value * numTotalShaftsCorHybr)
+  costInstallation = (fee * costTotalShafts).round(2)
+  costTotal = (costTotalShafts + costInstallation)
+
   Quote.create!({
-      company_name: Faker::Company.unique.name,
-      contact_name: Faker::Name.unique.name,
-      email: Faker::Internet.unique.email,
-      product_line: [:Standard, :Premium, :Excelium].sample,
-      installation_fee: Faker::Commerce.price(range: 5000..50000.0),
-      sub_total: Faker::Commerce.price(range: 100000..1000000.0),
-      total: Faker::Commerce.price(range: 100000..1500000.0),
-      building_type: [:Corporate, :Hybrid].sample,
-      num_of_floors: Faker::Number.between(from: 5, to: 100),
-      num_of_apartments: 0,
-      num_of_basements: Faker::Number.between(from: 3, to: 6),
-      num_of_parking_spots: Faker::Number.between(from: 50, to: 250),
-      num_of_distinct_businesses: Faker::Number.between(from: 1, to: 10),
-      num_of_elevator_cages: 0,
-      num_of_occupants_per_Floor: Faker::Number.between(from: 20, to: 150),
-      num_of_activity_hours_per_day: Faker::Number.between(from: 8, to: 24),
-      required_columns: Faker::Number.between(from: 1, to: 5),
-      required_shafts: Faker::Number.between(from: 1, to: 10),
-      created_at: Faker::Date.between(from: '2018-02-23', to: '2021-02-23')
-    })
+    company_name: Faker::Company.unique.name,
+    contact_name: Faker::Name.unique.name,
+    email: Faker::Internet.unique.email,
+    product_line: product_line,
+    installation_fee: costInstallation,
+    sub_total: costTotalShafts,
+    total: costTotal,
+    building_type: [:Corporate, :Hybrid].sample,
+    num_of_floors: num_of_floors,
+    num_of_apartments: 0,
+    num_of_basements: num_of_basements,
+    num_of_parking_spots: Faker::Number.between(from: 10, to: 250),
+    num_of_distinct_businesses: Faker::Number.between(from: 1, to: 10),
+    num_of_elevator_cages: 0,
+    num_of_occupants_per_Floor: num_of_occupants_per_Floor,
+    num_of_activity_hours_per_day: Faker::Number.between(from: 8, to: 24),
+    required_columns: numColumnsCorHybr,
+    required_shafts: numTotalShaftsCorHybr,
+    created_at: Faker::Date.between(from: '2018-02-23', to: '2021-02-23')
+  })
 end
 #-----------------------------------------------### END Seed Quote ###-------------------------------------------------
 
