@@ -12,6 +12,12 @@ RailsAdmin.config do |config|
   # == CancanCan ==
   config.authorize_with :cancancan
 
+  # Charts Tab in nav-bar
+  config.navigation_static_label = "Graphs"
+  config.navigation_static_links = {
+    'Charts' => '/blazer',
+  }
+
   ## == Pundit ==
   # config.authorize_with :pundit
 

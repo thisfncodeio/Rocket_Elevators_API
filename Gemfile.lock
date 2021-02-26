@@ -57,6 +57,10 @@ GEM
       execjs
     bcrypt (3.1.16)
     bindex (0.8.1)
+    blazer (2.4.2)
+      activerecord (>= 5)
+      railties (>= 5)
+      safely_block (>= 0.1.1)
     bootsnap (1.7.2)
       msgpack (~> 1.0)
     bootstrap (5.0.0.beta1)
@@ -108,6 +112,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    errbase (0.2.1)
     erubi (1.10.0)
     execjs (2.7.0)
     faker (2.16.0)
@@ -235,6 +240,8 @@ GEM
     rvm1-capistrano3 (1.4.0)
       capistrano (~> 3.0)
       sshkit (>= 1.2)
+    safely_block (0.3.0)
+      errbase (>= 0.1.1)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -301,6 +308,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  blazer
   bootsnap (>= 1.1.0)
   bootstrap (~> 5.0.0.beta1)
   byebug
