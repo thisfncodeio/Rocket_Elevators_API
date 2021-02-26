@@ -168,6 +168,7 @@ end
 75.times do
   Quote.create!({
       company_name: Faker::Company.unique.name,
+      contact_name: Faker::Name.unique.name,
       email: Faker::Internet.unique.email,
       product_line: [:Standard, :Premium, :Excelium].sample,
       installation_fee: Faker::Commerce.price(range: 5000..50000.0),
@@ -191,6 +192,7 @@ end
 150.times do
   Quote.create!({
       company_name: Faker::Company.unique.name,
+      contact_name: Faker::Name.unique.name,
       email: Faker::Internet.unique.email,
       product_line: [:Standard, :Premium, :Excelium].sample,
       installation_fee: Faker::Commerce.price(range: 5000..50000.0),

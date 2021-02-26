@@ -75,6 +75,8 @@ class QuotesController < ApplicationController
    
     # Company Name
     company_name = params["company_name"]
+    # Contact Of Company name
+    contact_name = params["contact_name"]
     # Email Address
     email = params["email"]
     
@@ -85,6 +87,7 @@ class QuotesController < ApplicationController
    @quote = Quote.new(quote_params)
 
     @quote.company_name = company_name
+    @quote.contact_name = contact_name
     @quote.email = email
 
     @quote.building_type =  building_type
