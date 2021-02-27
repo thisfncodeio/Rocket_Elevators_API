@@ -95,7 +95,7 @@ Rails.application.configure do
   # Blazer 
   ENV["BLAZER_USERNAME"] = "andrew"
   ENV["BLAZER_PASSWORD"] = "secret"
-  # Uncomment Line Below When You Deploy!
-  # ENV["BLAZER_DATABASE_URL"] = "postgres://codeboxx:Codeboxx1*@localhost:5432/warehouse_development"
 
+  # Blazer for development environment
+  ENV["BLAZER_DATABASE_URL"] = "postgres://codeboxx:Codeboxx1*@localhost:5432/warehouse_development"
 end
