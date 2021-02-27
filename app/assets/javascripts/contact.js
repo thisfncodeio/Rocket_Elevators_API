@@ -11,7 +11,7 @@ var _hash = window.location.hash;
 **/	jQuery(_hash).show();
 
   $(function(){
-		const input = document.getElementById('input')
+		const input = document.getElementById('contact:attachment')
 
 		input.addEventListener('change', (event) => {
 			const target = event.target
