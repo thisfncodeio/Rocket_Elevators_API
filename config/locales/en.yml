@@ -30,4 +30,21 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  admin:
+    actions:
+      tools:
+        menu: "Message"
+        title: "Message"
+        breadcrumb: "Message"
+      map:
+        menu: "Map"
+        title: "Map"
+        breadcrumb: "Map"
+      graph:
+        menu: "Graph"
+        title: "Graph"
+        breadcrumb: "Graph"
+      watson:
+        menu: "Watson" #This is what gets shown in the Menu Bar and Tab
+        title: "Watson" #This is the Page Title and the Sub Menu
+        breadcrumb: "Watson" #This is for breadcrumbs
