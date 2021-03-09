@@ -96,7 +96,7 @@ module RailsAdmin
           #     $amount_columns = 0
           #     $amount_elevators = 0
 
-          #     options = { units: "metric", APPID: 'AIzaSyAagW2cTP-dlhZCWQGxXewepc6geXWsVoc' }
+          #     options = { units: "metric", APPID: ENV['GOOGLE_MAPS_API_KEY'] }
           #     weather = OpenWeather::Current.geocode(data[:lat], data[:lng] , options)
 
           #     temp = weather.dig("main", "temp")
