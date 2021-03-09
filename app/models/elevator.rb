@@ -10,9 +10,9 @@ class Elevator < ApplicationRecord
         auth_token = "#{ENV["auth_token"]}"
         @client = Twilio::REST::Client.new account_sid, auth_token
   
-        if (self.status_was != self.status) and self.status == "Intervention"
+        if self.status_changed?
           @client.api.account.messages.create(
-            from: "+19164725749",
+            from: "+17276108703",
             to: self.column.battery.building.technical_contact_phone_for_the_building,
             body: "Elevator #{self.id} with Serial Number #{self.serial_number} require maintenance.")
         end
