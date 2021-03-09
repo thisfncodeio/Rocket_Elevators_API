@@ -1,5 +1,5 @@
 class QuotesController < ApplicationController
- 
+  require 'zendesk_api'
   # # GET /quotes or /quotes.json
   # def index
   #   @quotes = Quote.all
@@ -150,6 +150,32 @@ class QuotesController < ApplicationController
     if @quote.save
       redirect_back fallback_location: root_path, notice: "Your Quote was successfully created and sent!"
     end
+
+   #===================================================================================================
+   # CREATING THE TICKETS FOR THE ZENDESK API
+   #===================================================================================================
+
+   client = ZendeskAPI::Client.new do |config|
+              config.url = ENV['ZENDESK_URL']
+              config.username = ENV['ZENDESK_USERNAME']
+              config.token = ENV['ZENDESK_TOKEN']
+          end
+          ZendeskAPI::Ticket.create!(client, 
+              :subject => "#{@quote.company_name}", 
+              :comment => { 
+                  :value => "The company name #{@quote.company_name} 
+                      can be reached at email #{@quote.email}. 
+                      Building type selected is #{@quote.building_type} with product line #{@quote.product_line}. 
+                      Number of suggested elevator is #{@quote.sub_total} and total price is #{@quote.total}. \n
+                      For More Information, refers to Quote ##{@quote.id}."
+              }, 
+              :requester => { 
+                  "name": @quote.company_name, 
+                  "email": @quote.email
+                },
+              :priority => "normal",
+              :type => "task"
+              )
 
   end # End for def Create
 
