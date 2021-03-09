@@ -32,18 +32,18 @@
 en:
   admin:
     actions:
-      tools:
-        menu: "Message"
-        title: "Message"
-        breadcrumb: "Message"
+      # tools:
+      #   menu: "Message"
+      #   title: "Message"
+      #   breadcrumb: "Message"
       map:
         menu: "Map"
         title: "Map"
         breadcrumb: "Map"
-      graph:
-        menu: "Graph"
-        title: "Graph"
-        breadcrumb: "Graph"
+      # graph:
+      #   menu: "Graph"
+      #   title: "Graph"
+      #   breadcrumb: "Graph"
       watson:
         menu: "Watson" #This is what gets shown in the Menu Bar and Tab
         title: "Watson" #This is the Page Title and the Sub Menu
