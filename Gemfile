@@ -3,6 +3,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
 
+# Environment Variables
+gem 'figaro'
+
+# For the GoogleMaps API
+gem 'geocoder'
+gem 'gmaps4rails'
+
 # For JS
 gem 'jquery-rails'
 gem 'bootstrap', '~> 5.0.0.beta1'
@@ -100,3 +107,10 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Using twilio API
+gem 'twilio-ruby'
+# Using slack
+gem 'slack-notifier'
+# Using figaro
+gem 'figaro'
