@@ -12,25 +12,26 @@
 //
 
 //= require jquery
-// $(document).ready(() => {
-  //= require popper
-  //= require rails-ujs
-  //= require activestorage
-  //= require plugins/jquery/jquery-3.3.1.min
-  //= require scripts
-  //= require plugins/slider.revolution/js/jquery.themepunch.tools.min
-  //= require plugins/slider.revolution/js/jquery.themepunch.revolution.min
-  //= require view/demo.revolution_slider
-  //= require plugins/bootstrap/js/bootstrap.min
-  //= require plugins/bootstrap/js/bootstrap.min.js
-  //= require plugins/smoothscroll
-  //= require plugins/owl-carousel/owl.carousel.min
-  //= require plugins/jquery.nav.min
-  //= require jquery_ujs
-  //= require toastr
-  //= require chartkick
-  //= require Chart.bundle
-  //= require contact
-  //= require chartkick
-  //= require Chart.bundle
-// })
+//= require popper
+//= require rails-ujs
+//= require activestorage
+//= require plugins/jquery/jquery-3.3.1.min
+//= require scripts
+//= require plugins/slider.revolution/js/jquery.themepunch.tools.min
+//= require plugins/slider.revolution/js/jquery.themepunch.revolution.min
+//= require view/demo.revolution_slider
+//= require plugins/bootstrap/js/bootstrap.min
+//= require plugins/bootstrap/js/bootstrap.min.js
+//= require plugins/smoothscroll
+//= require plugins/owl-carousel/owl.carousel.min
+//= require plugins/jquery.nav.min
+//= require jquery_ujs
+//= require toastr
+//= require chartkick
+//= require Chart.bundle
+//= require contact
+//= require chartkick
+//= require Chart.bundle
+
+// require underscore
+//= require gmaps/google

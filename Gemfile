@@ -3,6 +3,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
 
+# Environment Variables
+gem 'figaro'
+
+# For the GoogleMaps API
+gem 'geocoder'
+gem 'gmaps4rails'
+
 # For JS
 gem 'jquery-rails'
 gem 'bootstrap', '~> 5.0.0.beta1'
