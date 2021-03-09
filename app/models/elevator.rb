@@ -23,7 +23,7 @@ class Elevator < ApplicationRecord
         if self.status_changed?
         require 'date'
         current_time = DateTime.now.strftime("%d-%m-%Y %H:%M")
-        notifier = Slack::Notifier.new "https://hooks.slack.com/services/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"
+        notifier = Slack::Notifier.new ENV["Slack_API"]
         notifier.ping "The Elevator #{self.id} with Serial Number #{self.serial_number} changed status from #{self.status_was} to #{self.status} at #{current_time}."
         end
     end
