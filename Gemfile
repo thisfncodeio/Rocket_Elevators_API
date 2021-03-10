@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
 
-# Environment Variables
+# Figaro
 gem 'figaro'
 
 # For the GoogleMaps API
@@ -83,7 +83,6 @@ gem 'blazer'
 
 #facilitates the communication  with Dropbox API v2.
 gem 'dropbox_api'
-
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
