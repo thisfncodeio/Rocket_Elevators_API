@@ -1,5 +1,11 @@
-class LeadsController < ApplicationController
+require 'sendgrid-ruby'
+include SendGrid
         
+
+class LeadsController < ApplicationController
+# using SendGrid's Ruby Library
+# https://github.com/sendgrid/sendgrid-ruby
+
     # POST /quotes or /quotes.json
     def create
         
@@ -33,7 +39,36 @@ class LeadsController < ApplicationController
         
         if @lead.save!
             redirect_back fallback_location: root_path, notice: "Your Request was successfully created and sent!"
-        end    
+        end 
+        #email = :email 
+        #full_name = :full_name_of_contact 
+        #project_name = :project_name
+
+        from = Email.new(email: 'jaytdot2k@gmail.com')
+        to = Email.new(email: @lead.email)
+        subject = 'Sending with SendGrid is Fun'
+        content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
+        #mail = Mail.new(from, subject, to, content)
+        mail = SendGrid::Mail.new(from,subject,to,content)
+        
+        personalization = Personalization.new
+       # personalization.add_dynamic_template_data({
+         #   "FullName" => @lead.full_name_of_contact ,
+          #  "ProjectName" => @lead.project_name
+          #})
+        personalization.add_to(Email.new(email: @lead.email))
+        personalization.add_dynamic_template_data("FullName" => @lead.full_name_of_contact());
+        personalization.add_dynamic_template_data("ProjectName"=> @lead.project_name());
+        
+        mail.add_personalization(personalization)
+        mail.template_id = 'd-ab22bc2be7e44ad9bdbc5531c9b59f21'
+
+        sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+
+        response = sg.client.mail._('send').post(request_body: mail.to_json)
+        puts response.status_code
+        puts response.body
+        puts response.headers 
     end    
      #===================================================================================================
      # DEFINING @lead = Lead.new(lead_params) BELOW:
@@ -43,23 +78,23 @@ class LeadsController < ApplicationController
     def lead_params
         params.required(:leads).permit!
     end
-    # using SendGrid's Ruby Library
-# https://github.com/sendgrid/sendgrid-ruby
-require 'sendgrid-ruby'
-include SendGrid
 
-@lead = Lead.new(lead_params)
-email = params["email"]
-from = Email.new(email: 'jay-t-dot-2k@gmail.com')
-to = Email.new(email: email)
+
+
+
+from = Email.new(email: 'jaytdot2k@gmail.com')
+to = Email.new(email: 'jay-t-dot-2k@hotmail.com')
 subject = 'Sending with SendGrid is Fun'
 content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
 mail = Mail.new(from, subject, to, content)
+
 personalization = Personalization.new
 personalization.add_to(Email.new(email: 'jay-t-dot-2k@hotmail.com'))
 mail.add_personalization(personalization)
 mail.template_id = 'd-8f34084713894cdfa0ddfb0625bb19fb'
+
 sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+
 response = sg.client.mail._('send').post(request_body: mail.to_json)
 puts response.status_code
 puts response.body
