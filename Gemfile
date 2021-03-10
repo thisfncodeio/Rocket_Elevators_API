@@ -113,3 +113,5 @@ gem 'twilio-ruby'
 gem 'slack-notifier'
 # Using figaro
 gem 'figaro'
+# Using Ibm_watson
+gem 'ibm_watson'
