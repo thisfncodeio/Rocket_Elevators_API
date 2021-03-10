@@ -72,7 +72,6 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'sendgrid-ruby'
 
-gem "figaro"
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
@@ -87,11 +86,6 @@ gem 'blazer'
 
 #facilitates the communication  with Dropbox API v2.
 gem 'dropbox_api'
-
-gem "figaro"
-
-
-
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -127,5 +121,3 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'twilio-ruby'
 # Using slack
 gem 'slack-notifier'
-# Using figaro
-gem 'figaro'
