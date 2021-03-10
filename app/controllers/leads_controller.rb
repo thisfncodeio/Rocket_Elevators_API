@@ -38,9 +38,15 @@ class LeadsController < ApplicationController
      #===================================================================================================
      # DEFINING @lead = Lead.new(lead_params) BELOW:
      #===================================================================================================
-
+     
+     
      # Only allow a list of trusted parameters through.
     def lead_params
+       
         params.required(:leads).permit!
+        #sendToDropbox = DropboxApiController.new
+        #sendToDropbox.send(:callbackAuth)
+
+        
     end
 end
