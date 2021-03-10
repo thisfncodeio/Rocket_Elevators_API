@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 require 'sendgrid-ruby'
 include SendGrid
         
@@ -6,6 +7,10 @@ class LeadsController < ApplicationController
 # using SendGrid's Ruby Library
 # https://github.com/sendgrid/sendgrid-ruby
 
+=======
+class LeadsController < ApplicationController
+    require 'zendesk_api'
+>>>>>>> 9c3f692c8e6f9da8d934cbaad8f94fa43cc39153
     # POST /quotes or /quotes.json
     def create
         
@@ -39,6 +44,7 @@ class LeadsController < ApplicationController
         
         if @lead.save!
             redirect_back fallback_location: root_path, notice: "Your Request was successfully created and sent!"
+<<<<<<< HEAD
         end 
         #email = :email 
         #full_name = :full_name_of_contact 
@@ -70,13 +76,55 @@ class LeadsController < ApplicationController
         puts response.body
         puts response.headers 
     end    
+=======
+        end
+
+>>>>>>> 9c3f692c8e6f9da8d934cbaad8f94fa43cc39153
+     #===================================================================================================
+     # CREATING THE TICKETS FOR THE ZENDESK API
+     #===================================================================================================
+        
+        client = ZendeskAPI::Client.new do |config|
+            config.url = ENV['ZENDESK_URL']
+            config.username = ENV['ZENDESK_USERNAME']
+            config.token = ENV['ZENDESK_TOKEN']
+        end
+        
+        ZendeskAPI::Ticket.create!(client, 
+            :subject => "#{@lead.full_name_of_contact} from #{@lead.company_name}", 
+            :comment => { 
+                :value => "The contact #{@lead.full_name_of_contact} 
+                    from company #{@lead.company_name} 
+                    can be reached at email  #{@lead.email} 
+                    and at phone number #{@lead.phone}. 
+                    #{@lead.department_in_charge_of_elevators} has a project named #{@lead.project_name} which would require contribution from Rocket Elevators.
+                    \n\n
+                    Project Description
+                    #{@lead.project_description}\n\n
+                    Attached Message: #{@lead.message}"
+            }, 
+            :requester => { 
+                "name": @lead.full_name_of_contact, 
+                "email": @lead.email 
+            },
+            :priority => "normal",
+            :type => "question"
+            )
+
+    end    # End for def Create
      #===================================================================================================
      # DEFINING @lead = Lead.new(lead_params) BELOW:
      #===================================================================================================
-
+     
+     
      # Only allow a list of trusted parameters through.
     def lead_params
+       
         params.required(:leads).permit!
+        #sendToDropbox = DropboxApiController.new
+        #sendToDropbox.send(:callbackAuth)
+
+        
     end
 
 

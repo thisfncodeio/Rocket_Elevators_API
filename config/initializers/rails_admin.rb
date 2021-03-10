@@ -1,3 +1,6 @@
+require Rails.root.join('lib', 'rails_admin', 'map.rb')
+require Rails.root.join('lib', 'rails_admin', 'watson.rb')
+
 RailsAdmin.config do |config|
   config.main_app_name = ["Rocket Elevators", "BackOffice"]
 
@@ -15,7 +18,7 @@ RailsAdmin.config do |config|
   # Charts Tab in nav-bar
   config.navigation_static_label = "Graphs"
   config.navigation_static_links = {
-    'Charts' => '/blazer',
+    'Charts' => '/blazer'
   }
 
   ## == Pundit ==
@@ -40,6 +43,9 @@ RailsAdmin.config do |config|
     edit
     delete
     #show_in_app
+
+    map
+    watson
 
     ## With an audit adapter, you can add:
     # history_index

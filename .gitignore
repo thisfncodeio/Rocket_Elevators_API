@@ -25,7 +25,18 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore application configuration
+/config/application.yml
+
+# Ignore database.yml file
+/config/database.yml
+
 sendgrid.env
 
 # Ignore application configuration
 /config/application.yml
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9c3f692c8e6f9da8d934cbaad8f94fa43cc39153

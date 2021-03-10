@@ -1,6 +1,4 @@
-<p align='center'><img src="https://raw.githubusercontent.com/thisfncodeio/Rocket_Elevators_API/readmeTemplate/public/apiteam1logo.jpg"></p>
-
----
+## <p align='center'><img src="https://raw.githubusercontent.com/thisfncodeio/Rocket_Elevators_API/ZenDeskTJW/public/apiteamlogo.jpg"></p>
 
 # Project Description
 To collaborate and take advantage of 7 different API's which will include:
@@ -13,21 +11,6 @@ To collaborate and take advantage of 7 different API's which will include:
       <li>IBM Watsom</li>
       <li>ZenDesk</li>
    </ul>
-   
----
-
-Gems used:
-
-```
-gem 'figaro'
-gem 'geocoder'
-gem 'gmaps4rails'
-gem 'sendgrid-ruby'
-gem 'dropbox_api'
-gem 'zendesk_api'
-
-```
-
 ---
 
 # Google Maps
@@ -35,7 +18,7 @@ gem 'zendesk_api'
 <p>
 The Google Maps API is known for its great maturity, performance and geospatial rendering capabilities. It can therefore be used as an extension within our secure back office (reserved for Rocket Elevators employees) in order to geolocate our customers on a map and display statistics on a location:
 </p>
-<ol>
+<ul>
    <li>Location of the Building</li>
    <li>Number of floors in the Building</li>
    <li>Client Name</li>
@@ -43,13 +26,12 @@ The Google Maps API is known for its great maturity, performance and geospatial 
    <li>Number of Columns</li>
    <li>Number of Elevators</li>
    <li>Full name of technical contacy</li>
-</ol>
+</ul>
 
 <p>
 The geolocation page must be a page in the Admin section of the website, available only to authenticated members.
 The addresses table of the database, if it is not already the case, must now include real addresses, geolocalizable by Google Maps.
 </p>
-
 ---
 
 # Twilio
@@ -60,7 +42,6 @@ For Rocket Elevators, Twilio can be used to allow the platform to get in touch w
 If the status of an Elevator in the database changes to "Intervention" status, the building's technical contact must be identified and an SMS must be sent to the telephone number associated with this contact.
 In this case, the designated contact must be the coach assigned to each team, and he must receive the alerts on his mobile phone.
 </p>
-
 ---
 
 # Slack
@@ -71,7 +52,6 @@ In the current use case, when a controller changes the status of an elevator, th
 The written message must have the following format:
 The Elevator [Elevator’s ID] with Serial Number [Serial Number] changed status from [Old Status] to [New Status]
 </p>
-
 ---
 
 # DropBox
@@ -87,7 +67,6 @@ When a contact becomes a customer, that is to say when the “Customers” table
    <li>If the document is successfully downloaded to Dropbox, the controller deletes the content of the binary field from the database to avoid duplication</li>
 </ol>
 </p>
-
 ---
 
 # Sendgrid
@@ -103,7 +82,6 @@ We’ll Talk soon
 The Rocket Team
 The email must also contain the logo and overall design of Rocket Elevators.
 </p>
-
 ---
 
 # IBM Watsom
@@ -121,7 +99,6 @@ The type of information that speech synthesis allows are the following:
    <li>XXX Batteries are deployed across XXX cities</li>
 </ol>
 </p>
-
 ---
 
 # ZenDesk
@@ -143,100 +120,4 @@ Comment: The contact [Full Name] from company [Company Name] can be reached at e
 Attached Message: [Message]
 The Contact uploaded an attachment
 </p>
-
 ---
-
-Rocket_Elevators_Information_System
-🚀	Working with MVC (Model-View-Controller)	📈
-
-Members of this week's team
-Abdul Akeeb -
-Ahsan Syed -
-Cristiane Santiago -
-Lionel Niyongabire -
-Eric Moran
- 
-🎯 About
-Week 4 - The main goal of this week is to transform the static site previously developed during the Genesis program and turn it into a web application on MVC (Model - View - Controller) foundations. The site must be in a state that allows you to create a new section that saves the Javascript form that calculates an estimate in the form of a purchase order.
-Expanding the relational database model
-Seeding data base with data NB: real address are used
-
-Week 5 - During this week, participants are exposed to a more elaborate data model and must perform basic query exercises. They will be asked to create tables, alter them and extend the concepts managed by their information system.
-Two types of databases will be requested for this exercise
-a- A relational database
-b- A data warehouse for decision-making
- 
- 
-📌 Instructions to acces to the admin panel:
-
-To login as Admin:
-1. Navigation bar : My Account
-2. Login
-3. Username: admin@admin.com
-4. Password: password
-
-To login as Employee:
-1. Username: Email of any employee
-2. Password: codeboxx1
- 
- 
-📌 Gems used:
-1. gem 'bootstrap', '~> 5.0.0.beta1'
-2. gem 'jquery-rails'
-3. gem "font-awesome-rails"
-4. gem 'devise'
-5. gem 'rails_admin', '~> 2.0'
-6. gem 'toastr-rails'
-7. gem 'cancancan'
-8. gem 'rails_admin_rollincode', '~> 1.0'
-9. gem 'chartkick'
-10. gem 'faker'
-11. gem 'multiverse'
-12. gem 'blazer'
-
-
-📌 The queries in mysql:
-1. Employee
-2. Users
-3. Quote
-4. Address
-5. Battery
-6. Building
-7. Building Details (Extention Building)
-8. Column
-9. Customer
-10. Elevator
-11. Lead
-
-📌 The queries in postgres:
-1. Fact Quote
-2. Fact Contact
-3. Fact Elevator
-4. Dim Customer
-
-
-📚 The three queries:
-
---How many contact requests are made per month?
-
-SELECT to_char(creation_date, 'YYYY-MM') as "Month"
-      ,count(contact_id) as ContactPerMonth
-  FROM public.fact_contacts
- group by "Month"
- order by "Month" desc;
-
---How many bid solicitations are made per month?
-
-SELECT to_char(creation_date, 'YYYY-MM') as "Month"
-      ,count(quote_id) as QuotePerMonth
-  FROM public.fact_quotes
- group by "Month"
- order by "Month" desc;
-
---How many elevators per customer do we have?
-
- SELECT customer_id as "Customer", count(id) as ElevPerCustomers
-  FROM public.fact_elevators
- group by "Customer";
-
-

@@ -3,6 +3,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
 
+# Environment Variables
+gem 'figaro'
+
+# For the GoogleMaps API
+gem 'geocoder'
+gem 'gmaps4rails'
+
 # For JS
 gem 'jquery-rails'
 gem 'bootstrap', '~> 5.0.0.beta1'
@@ -31,6 +38,12 @@ gem 'chartkick'
 # ADMIN SECTION
 gem 'rails_admin', '~> 2.0'
 gem 'rails_admin_rollincode', '~> 1.0'
+
+# Zendesk API
+gem 'zendesk_api'
+
+# Figaro
+gem 'figaro'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.5'
@@ -72,6 +85,14 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Using Queries & Info From DB To Create The Charts
 gem 'blazer'
 
+#facilitates the communication  with Dropbox API v2.
+gem 'dropbox_api'
+
+gem "figaro"
+
+
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -101,3 +122,10 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Using twilio API
+gem 'twilio-ruby'
+# Using slack
+gem 'slack-notifier'
+# Using figaro
+gem 'figaro'
