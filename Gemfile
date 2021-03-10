@@ -39,6 +39,12 @@ gem 'chartkick'
 gem 'rails_admin', '~> 2.0'
 gem 'rails_admin_rollincode', '~> 1.0'
 
+# Zendesk API
+gem 'zendesk_api'
+
+# Figaro
+gem 'figaro'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.5'
 # Use mysql as the database for Active Record
@@ -64,6 +70,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'sendgrid-ruby'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -76,6 +83,14 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # Using Queries & Info From DB To Create The Charts
 gem 'blazer'
+
+#facilitates the communication  with Dropbox API v2.
+gem 'dropbox_api'
+
+gem "figaro"
+
+
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -114,4 +129,4 @@ gem 'slack-notifier'
 # Using figaro
 gem 'figaro'
 # Using Ibm_watson
-gem 'ibm_watson'
+# gem 'ibm_watson'
