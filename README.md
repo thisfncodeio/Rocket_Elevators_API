@@ -16,6 +16,20 @@ To collaborate and take advantage of 7 different API's which will include:
    
 ---
 
+Gems used:
+
+```
+gem 'figaro'
+gem 'geocoder'
+gem 'gmaps4rails'
+gem 'sendgrid-ruby'
+gem 'dropbox_api'
+gem 'zendesk_api'
+
+```
+
+---
+
 # Google Maps
 
 <p>
@@ -129,9 +143,6 @@ Comment: The contact [Full Name] from company [Company Name] can be reached at e
 Attached Message: [Message]
 The Contact uploaded an attachment
 </p>
-
----
-
 
 ---
 
