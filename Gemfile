@@ -3,7 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
 
-
+# Figaro
+gem 'figaro'
 
 # For the GoogleMaps API
 gem 'geocoder'
@@ -40,8 +41,6 @@ gem 'rails_admin_rollincode', '~> 1.0'
 
 # Zendesk API
 gem 'zendesk_api'
-
-
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.5'
