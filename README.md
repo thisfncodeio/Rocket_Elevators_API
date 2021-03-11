@@ -18,7 +18,7 @@ To collaborate and take advantage of 7 different API's which will include:
 
 Gems used:
 
-```
+```ruby
 gem 'figaro'
 gem 'geocoder'
 gem 'gmaps4rails'
