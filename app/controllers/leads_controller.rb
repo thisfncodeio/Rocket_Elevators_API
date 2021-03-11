@@ -81,6 +81,12 @@ class LeadsController < ApplicationController
         # CREATING THE TICKETS FOR THE ZENDESK API
         #===================================================================================================
         
+        client = ZendeskAPI::Client.new do |config|
+            config.url = ENV['ZENDESK_URL']
+            config.username = ENV['ZENDESK_USERNAME']
+            config.token = ENV['ZENDESK_TOKEN']
+        end
+
         ZendeskAPI::Ticket.create!(client, 
             :subject => "#{@lead.full_name_of_contact} from #{@lead.company_name}", 
             :comment => { 
