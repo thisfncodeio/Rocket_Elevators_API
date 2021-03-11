@@ -76,7 +76,7 @@ The Elevator [Elevator’s ID] with Serial Number [Serial Number] changed status
 
 ---
 
-# DropBox
+# Dropbox
 
 <p>
 Rocket Elevators must be able to archive their documents in the cloud and the Dropbox API and its online storage allows this to be done in a simple and flexible way while allowing access to the file from anywhere thanks to the multiple interfaces provided by Dropbox.
@@ -88,6 +88,53 @@ When a contact becomes a customer, that is to say when the “Customers” table
    <li>Copy this file to the client DropBox directory</li>
    <li>If the document is successfully downloaded to Dropbox, the controller deletes the content of the binary field from the database to avoid duplication</li>
 </ol>
+</p>
+
+<h2>How to test it:</h2>
+<ol>
+<li>Create a lead by filling the Contact form with an attached file</li>
+<li>Go to the admin panel, using <admin@admin.com> and password as username and password respectively</li>
+<li>Add a new customer or edit an existing one with the same email used to create the lead</li>
+<li>Go to [https://www.dropbox.com/home/Apps/Roc_elevators]  to check out your newly created folder . open it and see the attached file. Voila </li>
+</ol>
+
+<h2>Explanation:</h2>
+<p> 
+First I created a console app on Dropbox. Then Put the following code in the customer model, <code>customer.rb</code> file:
+
+ ```ruby
+    after_create :migrate_to_dropbox # call migrate_to_dropbox after creating a customer
+    after_update :migrate_to_dropbox  # call migrate_to_dropbox after updating a customer
+
+    
+    # The funstion below migrates attachement to dropbox,
+    def migrate_to_dropbox   
+        puts self.id
+        dropbox_client = DropboxApi::Client.new
+ 
+        puts self.email_of_company_contact    
+        Lead.where(email: self.email_of_company_contact).each do |lead| # for each lead has this email_of_company_contact  
+          unless lead.attachment.nil?   #check if the lead has an attachment  
+            path = "/" + self.full_name_of_company_contact   #create a variable path that has the full name of the company contact
+            begin           
+                dropbox_client.create_folder path   #Create a directory in DropBox on behalf of the customer if the customer does not already exist
+
+            rescue DropboxApi::Errors::FolderConflictError => err
+              puts "The folder is not created since it already exists. just carry on with uploading the file"
+            end  
+            begin
+              dropbox_client.upload(path + "/" + lead.file_name, lead.attachment)   # Copy this file to the client DropBox directory
+            rescue DropboxApi::Errors::FileConflictError => err
+              puts "File already exists in the folder.do not upload anything."
+            end  
+  
+            lead.attachment = nil; #delete  the attachement from the lead table to avoid duplication
+            lead.save!
+          end
+      end 
+    end
+   ```
+
 </p>
 
 ---
