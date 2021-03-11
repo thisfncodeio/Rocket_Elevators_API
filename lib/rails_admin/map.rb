@@ -1,6 +1,3 @@
-# require 'open_weather'
-require 'geocoder'
-
 module RailsAdmin
   module Config
     module Actions
@@ -38,25 +35,27 @@ module RailsAdmin
             @all_coords = []
 
             Building.all.each do |building|
-              coord = {}
+              coord = []
 
-              coord["lat"] = building.address.lat
-              coord["lng"] = building.address.lng
+              coord[0] = building.address.lat
+              coord[1] = building.address.lng
 
-              # address = [
-              #   building.address.number_and_street, 
-              #   building.address.city, 
-              #   building.address.postal_code, 
-              #   building.address.country
-              # ].compact.join(', ')
               address = "#{building.address.number_and_street}, #{building.address.city}, #{building.address.postal_code}, #{building.address.country}"
+              
+              info = "<h5 style='color: #CF3636; margin-top: 0;'>#{building.customer.company_name}</h5>"	
+              info += "<h6 style='color: #0B64A0;'>#{address}</h6>"
+
+              building.building_details.each do |building_detail|
+                if building_detail.information_key == "Number of Floors"
+                  info += "<b>Number of Floors:</b> #{building_detail.value}"
+                end
+              end
+
+              info += "<br><b>Number of Batteries:</b> #{building.batteries.count}"
+
               amount_columns = 0
               amount_elevators = 0
 
-              info = "<h5 style='color: #CF3636; margin-top: 0;'>#{building.customer.company_name}</h5>"	
-              info += "<h6 style='color: #0B64A0;'>#{address}</h6>"		
-              info += "<b>Number of Batteries:</b> #{building.batteries.count}"
-              
               building.batteries.each do |battery|
                 amount_columns += battery.columns.count      
                 battery.columns.each do |column|
@@ -66,54 +65,11 @@ module RailsAdmin
               
               info += "<br><b>Number of Columns:</b> #{amount_columns}"   
               info += "<br><b>Number of Elevators:</b> #{amount_elevators}"   
-              info += "<br><b>Technical contact:</b> #{building.full_name_of_the_technical_contact_for_the_building}"
+              info += "<br><b>Technical Contact:</b> #{building.full_name_of_the_technical_contact_for_the_building}"
 
-              coord["infowindow"] = info
+              coord[2] = info
               @all_coords << coord
-            end
-            
-            # Building.all.each do |building|
-            #   coord = {}
-
-            #   address = [
-            #     building.address.number_and_street, 
-            #     building.address.city, 
-            #     building.address.postal_code, 
-            #     building.address.country
-            #   ].compact.join(', ')
-
-            #   if Geocoder.search(address).length > 0
-            #     coordinates = Geocoder.search(address)
-                
-            #     if coordinates.first.coordinates.length > 0
-            #       coord["lat"] =  coordinates.first.coordinates[0]
-            #       coord["lng"] =  coordinates.first.coordinates[1]
-            #     end
-                
-            #     amount_columns = 0
-            #     amount_elevators = 0
-
-            #     info = "<h5 style='color: #CF3636; margin-top: 0;'>#{building.customer.company_name}</h5>"	
-            #     info += "<h6 color='#0B64A0'>#{address}</h6>"		
-            #     info += "<b>Number of Batteries:</b> #{building.batteries.count}"
-                
-            #     building.batteries.each do |battery|
-            #       $amount_columns += battery.columns.count      
-            #       battery.columns.each do |column|
-            #         $amount_elevators += column.elevators.count      
-            #       end
-            #     end
-                
-            #     info += "<br><b>Number of Columns:</b> #{amount_columns}"   
-            #     info += "<br><b>Number of Elevators:</b> #{amount_elevators}"   
-            #     info += "<br><b>Technical contact:</b> #{building.full_name_of_the_technical_contact_for_the_building}"
-            #     info += "<br><b>Current weather:</b> #{temp}°C, feels like #{feels_like}°C"
-
-            #     coord["info"] = info
-            #     @all_coords << coord
-            #   end
-
-            # end
+            end # end Building.all.each
 
             #######################################################################################################
             # This portion of code came with the action template by default
@@ -136,11 +92,11 @@ module RailsAdmin
             end
             render @action.template_name, status: @status_code || :ok
             #######################################################################################################
-          end
-        end
+          
+          end# end proc
+        end # end :controller
 
-
-      end
+      end 
     end
   end
 end

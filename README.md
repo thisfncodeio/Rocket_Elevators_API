@@ -21,7 +21,6 @@ Gems used:
 ```ruby
 gem 'figaro'
 gem 'geocoder'
-gem 'gmaps4rails'
 gem 'sendgrid-ruby'
 gem 'twilio-ruby'
 gem 'slack-notifier'
