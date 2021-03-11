@@ -106,7 +106,7 @@ The Rocket Team
 The email must also contain the logo and overall design of Rocket Elevators.
 </p>
 
----
+
 
 # IBM Watsom
 
@@ -123,8 +123,37 @@ The type of information that speech synthesis allows are the following:
    <li>XXX Batteries are deployed across XXX cities</li>
 </ol>
 </p>
+<h2>Explanation:</h2>
+<p> 
+Incorporate the API code into the lead <code> create </code> function <code> in the lead_controller.rb </code> with th code below. Add the <code> @lead.params </code> to the dynamic template.
 
----
+ ```ruby
+        from = Email.new(email: 'jaytdot2k@gmail.com')
+        to = Email.new(email: @lead.email)
+        subject = 'Sending with SendGrid is Fun'
+        content = Content.new(type: 'text/html', value: 'and easy to do anywhere, even with Ruby')
+        
+        mail = SendGrid::Mail.new(from,subject,to,content)
+        
+        personalization = Personalization.new
+       
+        personalization.add_to(Email.new(email: @lead.email))
+        personalization.add_dynamic_template_data("FullName" => @lead.full_name_of_contact());
+        personalization.add_dynamic_template_data("ProjectName"=> @lead.project_name());
+        
+        mail.template_id = 'd-ab22bc2be7e44ad9bdbc5531c9b59f21'
+        mail.add_personalization(personalization)
+
+        sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+
+        response = sg.client.mail._('send').post(request_body: mail.to_json)
+        puts response.status_code
+        puts response.body
+        puts response.headers 
+   ```
+
+</p>
+
 
 # ZenDesk
 
