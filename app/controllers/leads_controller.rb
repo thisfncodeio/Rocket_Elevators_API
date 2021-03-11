@@ -6,6 +6,7 @@ require 'sendgrid-ruby'
 include SendGrid
 
 class LeadsController < ApplicationController
+
     # POST /quotes or /quotes.json
     def create
         @lead = Lead.new(lead_params)
@@ -53,7 +54,9 @@ class LeadsController < ApplicationController
         # puts response.body
         # puts response.headers
         
-
+#===================================================================================================
+# Sending email from Sendgrid API
+#===================================================================================================
 
         #email = :email 
         #full_name = :full_name_of_contact 
@@ -62,7 +65,7 @@ class LeadsController < ApplicationController
         from = Email.new(email: 'jaytdot2k@gmail.com')
         to = Email.new(email: @lead.email)
         subject = 'Sending with SendGrid is Fun'
-        content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
+        content = Content.new(type: 'text/html', value: 'and easy to do anywhere, even with Ruby')
         #mail = Mail.new(from, subject, to, content)
         mail = SendGrid::Mail.new(from,subject,to,content)
         
@@ -75,8 +78,10 @@ class LeadsController < ApplicationController
         personalization.add_dynamic_template_data("FullName" => @lead.full_name_of_contact());
         personalization.add_dynamic_template_data("ProjectName"=> @lead.project_name());
         
-        mail.add_personalization(personalization)
         mail.template_id = 'd-ab22bc2be7e44ad9bdbc5531c9b59f21'
+        mail.add_personalization(personalization)
+        
+        
 
         sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
 
@@ -93,32 +98,7 @@ class LeadsController < ApplicationController
      # CREATING THE TICKETS FOR THE ZENDESK API
      #===================================================================================================
         
-        client = ZendeskAPI::Client.new do |config|
-            config.url = ENV['ZENDESK_URL']
-            config.username = ENV['ZENDESK_USERNAME']
-            config.token = ENV['ZENDESK_TOKEN']
-        end
         
-        ZendeskAPI::Ticket.create!(client, 
-            :subject => "#{@lead.full_name_of_contact} from #{@lead.company_name}", 
-            :comment => { 
-                :value => "The contact #{@lead.full_name_of_contact} 
-                    from company #{@lead.company_name} 
-                    can be reached at email  #{@lead.email} 
-                    and at phone number #{@lead.phone}. 
-                    #{@lead.department_in_charge_of_elevators} has a project named #{@lead.project_name} which would require contribution from Rocket Elevators.
-                    \n\n
-                    Project Description
-                    #{@lead.project_description}\n\n
-                    Attached Message: #{@lead.message}"
-            }, 
-            :requester => { 
-                "name": @lead.full_name_of_contact, 
-                "email": @lead.email 
-            },
-            :priority => "normal",
-            :type => "question"
-            )
 
         # using SendGrid's Ruby Library
         # https://github.com/sendgrid/sendgrid-ruby
@@ -134,5 +114,26 @@ class LeadsController < ApplicationController
     def lead_params
         params.required(:leads).permit!
     end
+
+
+
+
+#from = Email.new(email: 'jaytdot2k@gmail.com')
+#to = Email.new(email: 'jay-t-dot-2k@hotmail.com')
+#subject = 'Sending with SendGrid is Fun'
+#content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
+#mail = Mail.new(from, subject, to, content)
+
+#personalization = Personalization.new
+#personalization.add_to(Email.new(email: 'jay-t-dot-2k@hotmail.com'))
+#mail.add_personalization(personalization)
+#mail.template_id = 'd-8f34084713894cdfa0ddfb0625bb19fb'
+
+#sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+
+#response = sg.client.mail._('send').post(request_body: mail.to_json)
+#puts response.status_code
+#puts response.body
+#puts response.headers
 
 end
