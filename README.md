@@ -91,7 +91,7 @@ When a contact becomes a customer, that is to say when the “Customers” table
 <h2>How to test it:</h2>
 <ol>
 <li>Create a lead by filling the Contact form with an attached file</li>
-<li>Go to the admin panel, using <admin@admin.com> and password as username and password respectively</li>
+<li>Go to the admin panel</li>
 <li>Add a new customer or edit an existing one with the same email used to create the lead</li>
 <li>Go to [https://www.dropbox.com/home/Apps/Roc_elevators]  to check out your newly created folder . open it and see the attached file. Voila </li>
 </ol>
