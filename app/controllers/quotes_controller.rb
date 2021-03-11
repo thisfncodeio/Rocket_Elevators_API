@@ -163,11 +163,12 @@ class QuotesController < ApplicationController
           ZendeskAPI::Ticket.create!(client, 
               :subject => "#{@quote.company_name}", 
               :comment => { 
-                  :value => "The company name #{@quote.company_name} 
-                      can be reached at email #{@quote.email}. 
-                      Building type selected is #{@quote.building_type} with product line #{@quote.product_line}. 
-                      Number of suggested elevator is #{@quote.required_shafts} and total price is #{@quote.total}. \n
-                      For More Information, refers to Quote ##{@quote.id}."
+                  :value => "The company name #{@quote.company_name} can be reached at email #{@quote.email}. 
+                  Building type selected is #{@quote.building_type}. The Product line and quality is #{@quote.product_line}. 
+                  Number of columns suggested for this project is #{@quote.required_columns}, and the amount of elevator shafts is #{@quote.required_shafts}. 
+                  Sub total for the elevator shafts and Product line is #{@quote.sub_total}.
+                  Installation fees will be #{@quote.installation_fee}
+                  Total price is #{@quote.total}"
               }, 
               :requester => { 
                   "name": @quote.company_name, 
