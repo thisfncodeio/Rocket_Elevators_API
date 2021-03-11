@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get "residential" => "pages#residential"
   get "commercial" => "pages#commercial"
   get "quotes" => "pages#quote"
+  
 
   get "/index" => "pages#index"
 
