@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
 
-# Environment Variables
+# Figaro
 gem 'figaro'
 
 # For the GoogleMaps API
@@ -42,9 +42,6 @@ gem 'rails_admin_rollincode', '~> 1.0'
 # Zendesk API
 gem 'zendesk_api'
 
-# Figaro
-gem 'figaro'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.5'
 # Use mysql as the database for Active Record
@@ -72,7 +69,6 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'sendgrid-ruby'
 
-gem "figaro"
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
@@ -87,11 +83,6 @@ gem 'blazer'
 
 #facilitates the communication  with Dropbox API v2.
 gem 'dropbox_api'
-
-gem "figaro"
-
-
-
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -127,5 +118,3 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'twilio-ruby'
 # Using slack
 gem 'slack-notifier'
-# Using figaro
-gem 'figaro'

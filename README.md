@@ -18,11 +18,13 @@ To collaborate and take advantage of 7 different API's which will include:
 
 Gems used:
 
-```
+```ruby
 gem 'figaro'
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'sendgrid-ruby'
+gem 'twilio-ruby'
+gem 'slack-notifier'
 gem 'dropbox_api'
 gem 'zendesk_api'
 
@@ -142,6 +144,30 @@ Comment: The contact [Full Name] from company [Company Name] can be reached at e
 [Project Description]
 Attached Message: [Message]
 The Contact uploaded an attachment
+</p>
+
+<h2>Explanation:</h2>
+<p>
+   The ZenDesk API is what we'll be communicating with when a user fills out a contact or quote form.  Not only will that information be sent to our Admin/Backoffice page, but it'll also be sent to the admin page of zendesk.com, where you can view, edit and respond to users who filled out the form on the Rocket Elevators page.  After making an account with zendesk, it was just a matter of finding the 'zendesk_api' gem and implementing that in our code:
+   
+   ```ruby
+   client = ZendeskAPI::Client.new do |config|
+      config.url = ENV['ZENDESK_URL']
+      config.username = ENV['ZENDESK_USERNAME']
+      config.token = ENV['ZENDESK_TOKEN']
+   end
+   ```
+   
+All we're doing above is 'speaking' between Zendesk and our own code with some enviornment variables we set up in our application.yml file with the help of the 'figaro' gem.  Then, we simply create a ticket when our forms are filled out.  A Question ticket for Leads, and a Task ticket for Quotes:
+
+```ruby
+ZendeskAPI::Ticket.create!(client,
+   :subject => " Our header or #{subject} line here."
+   :comment => { :value => "And the body or #{message} here."}
+```
+
+In order to see the tickets on zendesk.com, you'll use the url of rocketelevatorscs.zendesk.com when signing in and type in the user name and password provided.
+
 </p>
 
 ---
