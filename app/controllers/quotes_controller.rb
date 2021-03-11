@@ -1,5 +1,5 @@
+require 'zendesk_api'
 class QuotesController < ApplicationController
-  require 'zendesk_api'
   # # GET /quotes or /quotes.json
   # def index
   #   @quotes = Quote.all
@@ -166,7 +166,7 @@ class QuotesController < ApplicationController
                   :value => "The company name #{@quote.company_name} 
                       can be reached at email #{@quote.email}. 
                       Building type selected is #{@quote.building_type} with product line #{@quote.product_line}. 
-                      Number of suggested elevator is #{@quote.sub_total} and total price is #{@quote.total}. \n
+                      Number of suggested elevator is #{@quote.required_shafts} and total price is #{@quote.total}. \n
                       For More Information, refers to Quote ##{@quote.id}."
               }, 
               :requester => { 
