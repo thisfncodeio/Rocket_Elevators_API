@@ -1,33 +1,38 @@
-
-require 'net/http'
-require 'uri'
+# frozen_string_literal: false
 require 'json'
+require "ibm_watson/authenticators"
+require "ibm_watson/text_to_speech_v1"
+include IBMWatson
 
-class WatsonController < ApplicationController
+class WatsonController < ActionController::Base
+    skip_before_action :verify_authenticity_token
 
-    def watson 
-
-
-      uri = URI.parse("https://gateway-wdc.watsonplatform.net/text-to-speech/api/v1/synthesize?voice=en-US_AllisonVoice")
-      request = Net::HTTP::Post.new(uri)
-      request.basic_auth("apikey", ENV['watsonAPI'])
-      request.content_type = "application/json"
-      request["Accept"] = "audio/wav"
-      request.body = JSON.dump({
-        "text" => "Hi #{current_user.first_name}, there are currently #{Elevator.all.size} elevators deployed in the #{Building.all.size} buildings of your #{Customer.all.size} customers and #{Battery.all.size} batteries are deployed across #{Address.all.distinct.count('city')} cities. Currently, #{Elevator.all.where(status: 'Intervention').count} elevators are not in running status and are being serviced. You have #{Quote.all.size} quotes awaiting processing and you have #{Lead.all.size} leads in your contact requests. " 
-      })
-
-      req_options = {
-        use_ssl: uri.scheme == "https",
-      }
-
-       response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-        http.request(request)
-       
-      end
-
-      send_data response.body
   
+    def speak
   
-  end
+        authenticator = Authenticators::IamAuthenticator.new(
+            apikey: ENV["TEXT_TO_SPEECH_IAM_APIKEY"]
+        )
+        text_to_speech = TextToSpeechV1.new(
+            authenticator: authenticator
+        )
+        text_to_speech.service_url = ENV["TEXT_TO_SPEECH_URL"]
+            
+        message = "Greeting user #{current_user.id}. There is #{Elevator::count} elevators in #{Building::count} buildings of your 
+                    #{Customer::count} customers. Currently, #{Elevator.where(status: 'Intervention').count} elevators are not in 
+                    Running Status and are being serviced. You currently have #{Quote::count} quotes awaiting processing.
+                    You currently have #{Lead::count} leads in your contact requests. 
+                    #{Battery::count} Batteries are deployed across 
+                    #{Address.where(id: Building.select(:address_id).distinct).select(:city).distinct.count} cities"
+
+        response = text_to_speech.synthesize(
+            text: message,
+            accept: "audio/mp3",
+            voice: "en-GB_KateV3Voice"
+        ).result
+
+        File.open("#{Rails.root}/app/assets/audios/audio.mp3", "wb") do |audio_file|
+                        audio_file.write(response)
+        end    
+    end
 end

@@ -3,8 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
 
-# Environment Variables
-gem 'figaro'
 
 # For the GoogleMaps API
 gem 'geocoder'
@@ -87,7 +85,6 @@ gem 'blazer'
 #facilitates the communication  with Dropbox API v2.
 gem 'dropbox_api'
 
-gem "figaro"
 
 
 
@@ -126,7 +123,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'twilio-ruby'
 # Using slack
 gem 'slack-notifier'
-# Using figaro
-gem 'figaro'
+
 # Using Ibm_watson
-# gem 'ibm_watson'
+gem 'ibm_watson'
+
