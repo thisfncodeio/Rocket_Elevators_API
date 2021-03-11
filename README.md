@@ -21,7 +21,6 @@ Gems used:
 ```
 gem 'figaro'
 gem 'geocoder'
-gem 'gmaps4rails'
 gem 'sendgrid-ruby'
 gem 'dropbox_api'
 gem 'zendesk_api'

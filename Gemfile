@@ -6,9 +6,8 @@ ruby '2.6.6'
 # Figaro
 gem 'figaro'
 
-# For the GoogleMaps API
+# For converting addresses to long/lat coords for the GoogleMaps API
 gem 'geocoder'
-gem 'gmaps4rails'
 
 # For JS
 gem 'jquery-rails'
@@ -116,5 +115,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Using twilio API
 gem 'twilio-ruby'
+
 # Using slack
 gem 'slack-notifier'
