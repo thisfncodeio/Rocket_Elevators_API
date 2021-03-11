@@ -5,7 +5,7 @@ require 'zendesk_api'
 require 'sendgrid-ruby'
 include SendGrid
 
-
+class LeadsController < ApplicationController
 
     # POST /quotes or /quotes.json
     def create
@@ -54,12 +54,10 @@ include SendGrid
         # puts response.body
         # puts response.headers
         
-        if @lead.save!
-            redirect_back fallback_location: root_path, notice: "Your Request was successfully created and sent!"
-        end 
 #===================================================================================================
 # Sending email from Sendgrid API
 #===================================================================================================
+
         #email = :email 
         #full_name = :full_name_of_contact 
         #project_name = :project_name
@@ -91,7 +89,11 @@ include SendGrid
         puts response.status_code
         puts response.body
         puts response.headers 
-        
+    
+        if @lead.save!
+            redirect_back fallback_location: root_path, notice: "Your Request was successfully created and sent!"
+        end 
+
      #===================================================================================================
      # CREATING THE TICKETS FOR THE ZENDESK API
      #===================================================================================================
@@ -110,14 +112,7 @@ include SendGrid
      
      # Only allow a list of trusted parameters through.
     def lead_params
-       
         params.required(:leads).permit!
-        #sendToDropbox = DropboxApiController.new
-        #sendToDropbox.send(:callbackAuth)
-        
-        if @lead.save!
-            redirect_back fallback_location: root_path, notice: "Your Request was successfully created and sent!"
-        end    
     end
 
 
