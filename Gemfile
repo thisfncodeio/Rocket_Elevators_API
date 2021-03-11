@@ -83,6 +83,10 @@ gem 'blazer'
 #facilitates the communication  with Dropbox API v2.
 gem 'dropbox_api'
 
+
+
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -118,3 +122,7 @@ gem 'twilio-ruby'
 
 # Using slack
 gem 'slack-notifier'
+
+# Using Ibm_watson
+gem 'ibm_watson'
+

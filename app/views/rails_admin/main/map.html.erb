@@ -1,9 +1,7 @@
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap&libraries=&v=weekly" defer></script>
 
-
 <div id="map" style='width: 800px; height: 400px;'></div>  
-
 
 <script type="text/javascript">
   let map;
@@ -51,45 +49,3 @@
   }
 
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-    // handler = Gmaps.build('Google');
-    // handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-    //   markers = handler.addMarkers([
-    //     {
-    //       "lat": 43.214403000000004,
-    //       "lng": -77.72415339201031,
-    //       "picture": {
-    //         "url": "http://people.mozilla.com/~faaborg/files/shiretoko/firefoxIcon/firefox-32.png",
-    //         "width":  32,
-    //         "height": 32
-    //       },
-    //       "infowindow": "hello!"
-    //     }
-    //   ]);
-    //   handler.bounds.extendWith(markers);
-    //   handler.fitMapToBounds();
-    // });
--->

@@ -18,10 +18,12 @@ To collaborate and take advantage of 7 different API's which will include:
 
 Gems used:
 
-```
+```ruby
 gem 'figaro'
 gem 'geocoder'
 gem 'sendgrid-ruby'
+gem 'twilio-ruby'
+gem 'slack-notifier'
 gem 'dropbox_api'
 gem 'zendesk_api'
 
@@ -73,7 +75,7 @@ The Elevator [Elevator’s ID] with Serial Number [Serial Number] changed status
 
 ---
 
-# DropBox
+# Dropbox
 
 <p>
 Rocket Elevators must be able to archive their documents in the cloud and the Dropbox API and its online storage allows this to be done in a simple and flexible way while allowing access to the file from anywhere thanks to the multiple interfaces provided by Dropbox.
@@ -85,6 +87,53 @@ When a contact becomes a customer, that is to say when the “Customers” table
    <li>Copy this file to the client DropBox directory</li>
    <li>If the document is successfully downloaded to Dropbox, the controller deletes the content of the binary field from the database to avoid duplication</li>
 </ol>
+</p>
+
+<h2>How to test it:</h2>
+<ol>
+<li>Create a lead by filling the Contact form with an attached file</li>
+<li>Go to the admin panel</li>
+<li>Add a new customer or edit an existing one with the same email used to create the lead</li>
+<li>Go to [https://www.dropbox.com/home/Apps/Roc_elevators]  to check out your newly created folder . open it and see the attached file. Voila </li>
+</ol>
+
+<h2>Explanation:</h2>
+<p> 
+First I created a console app on Dropbox. Then Put the following code in the customer model, <code>customer.rb</code> file:
+
+ ```ruby
+    after_create :migrate_to_dropbox # call migrate_to_dropbox after creating a customer
+    after_update :migrate_to_dropbox  # call migrate_to_dropbox after updating a customer
+
+    
+    # The funstion below migrates attachement to dropbox,
+    def migrate_to_dropbox   
+        puts self.id
+        dropbox_client = DropboxApi::Client.new
+ 
+        puts self.email_of_company_contact    
+        Lead.where(email: self.email_of_company_contact).each do |lead| # for each lead has this email_of_company_contact  
+          unless lead.attachment.nil?   #check if the lead has an attachment  
+            path = "/" + self.full_name_of_company_contact   #create a variable path that has the full name of the company contact
+            begin           
+                dropbox_client.create_folder path   #Create a directory in DropBox on behalf of the customer if the customer does not already exist
+
+            rescue DropboxApi::Errors::FolderConflictError => err
+              puts "The folder is not created since it already exists. just carry on with uploading the file"
+            end  
+            begin
+              dropbox_client.upload(path + "/" + lead.file_name, lead.attachment)   # Copy this file to the client DropBox directory
+            rescue DropboxApi::Errors::FileConflictError => err
+              puts "File already exists in the folder.do not upload anything."
+            end  
+  
+            lead.attachment = nil; #delete  the attachement from the lead table to avoid duplication
+            lead.save!
+          end
+      end 
+    end
+   ```
+
 </p>
 
 ---
@@ -101,6 +150,37 @@ A representative from our team will be in touch with you very soon. We look forw
 We’ll Talk soon
 The Rocket Team
 The email must also contain the logo and overall design of Rocket Elevators.
+</p>
+
+<h2>Explanation:</h2>
+<p> 
+Incorporate the API code into the lead <code> create </code> function <code> in the lead_controller.rb </code> with th code below. Add the <code> @lead.params </code> to the dynamic template.
+
+ ```ruby
+        from = Email.new(email: 'jaytdot2k@gmail.com')
+        to = Email.new(email: @lead.email)
+        subject = 'Sending with SendGrid is Fun'
+        content = Content.new(type: 'text/html', value: 'and easy to do anywhere, even with Ruby')
+        
+        mail = SendGrid::Mail.new(from,subject,to,content)
+        
+        personalization = Personalization.new
+       
+        personalization.add_to(Email.new(email: @lead.email))
+        personalization.add_dynamic_template_data("FullName" => @lead.full_name_of_contact());
+        personalization.add_dynamic_template_data("ProjectName"=> @lead.project_name());
+        
+        mail.template_id = 'd-ab22bc2be7e44ad9bdbc5531c9b59f21'
+        mail.add_personalization(personalization)
+
+        sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+
+        response = sg.client.mail._('send').post(request_body: mail.to_json)
+        puts response.status_code
+        puts response.body
+        puts response.headers 
+   ```
+
 </p>
 
 ---
@@ -141,6 +221,30 @@ Comment: The contact [Full Name] from company [Company Name] can be reached at e
 [Project Description]
 Attached Message: [Message]
 The Contact uploaded an attachment
+</p>
+
+<h2>Explanation:</h2>
+<p>
+   The ZenDesk API is what we'll be communicating with when a user fills out a contact or quote form.  Not only will that information be sent to our Admin/Backoffice page, but it'll also be sent to the admin page of zendesk.com, where you can view, edit and respond to users who filled out the form on the Rocket Elevators page.  After making an account with zendesk, it was just a matter of finding the 'zendesk_api' gem and implementing that in our code:
+   
+   ```ruby
+   client = ZendeskAPI::Client.new do |config|
+      config.url = ENV['ZENDESK_URL']
+      config.username = ENV['ZENDESK_USERNAME']
+      config.token = ENV['ZENDESK_TOKEN']
+   end
+   ```
+   
+All we're doing above is 'speaking' between Zendesk and our own code with some enviornment variables we set up in our application.yml file with the help of the 'figaro' gem.  Then, we simply create a ticket when our forms are filled out.  A Question ticket for Leads, and a Task ticket for Quotes:
+
+```ruby
+ZendeskAPI::Ticket.create!(client,
+   :subject => " Our header or #{subject} line here."
+   :comment => { :value => "And the body or #{message} here."}
+```
+
+In order to see the tickets on zendesk.com, you'll use the url of rocketelevatorscs.zendesk.com when signing in and type in the user name and password provided.
+
 </p>
 
 ---

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get "residential" => "pages#residential"
   get "commercial" => "pages#commercial"
   get "quotes" => "pages#quote"
+  
 
   get "/index" => "pages#index"
 
@@ -28,4 +29,8 @@ Rails.application.routes.draw do
   # /leads is the action from the form in index.html.erb
   post "/leads" => "leads#create"
 
+  match '/watson'     => 'watson#speak', via: :get
+  
+ 
+   
 end
