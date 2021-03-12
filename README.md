@@ -64,7 +64,7 @@ In this case, the designated contact must be the coach assigned to each team, an
 
 <h2> Gem Used </h2>
 
-```
+```ruby
 gem 'twilio-ruby'
 ```
 
@@ -98,7 +98,8 @@ The Elevator [Elevator’s ID] with Serial Number [Serial Number] changed status
 </p>
 
 <h2> Gems Used </h2>
-   ```
+
+   ```ruby
    gem 'slack-notifier'
    ```
    
@@ -244,7 +245,8 @@ The type of information that speech synthesis allows are the following:
 </ol>
 
 <h2> Gem Used </h2> 
----
+
+```ruby
 gem 'ibm_watson', git: 'https://github.com/watson-developer-cloud/ruby-sdk', branch: 'master'
 ```
 <h2> Explanations </h2>
@@ -252,24 +254,24 @@ gem 'ibm_watson', git: 'https://github.com/watson-developer-cloud/ruby-sdk', bra
 First, we make an xmlHTTP get request to the watson controller when the watson tab is loaded:
 
 ```javascript
- $(document).ready(function(){
-  			let xmlHttpRequest = new XMLHttpRequest(); 
-             xmlHttpRequest.open("GET", "/watson"+ "?cb=" + new Date().getTime(), true);
-             xmlHttpRequest.responseType = "blob"; 
-             xmlHttpRequest.setRequestHeader("Accept", "application/json");
-             xmlHttpRequest.setRequestHeader("Content-Type", "application/json"); 
-             xmlHttpRequest.setRequestHeader("Cache-Control", "no-cache");
-             xmlHttpRequest.onreadystatechange = function() {
-               if (this.readyState == 4 && this.status == 200) {
-                 var url = window.URL.createObjectURL(this.response);
-                 var audio = $('#audio-player') || new Audio();
-                 audio.src = url;
+$(document).ready(function(){
+   let xmlHttpRequest = new XMLHttpRequest(); 
+   xmlHttpRequest.open("GET", "/watson"+ "?cb=" + new Date().getTime(), true);
+   xmlHttpRequest.responseType = "blob"; 
+   xmlHttpRequest.setRequestHeader("Accept", "application/json");
+   xmlHttpRequest.setRequestHeader("Content-Type", "application/json"); 
+   xmlHttpRequest.setRequestHeader("Cache-Control", "no-cache");
+   xmlHttpRequest.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+         var url = window.URL.createObjectURL(this.response);
+         var audio = $('#audio-player') || new Audio();
+         audio.src = url;
 
-               }
-             };
+      }
+   };
   
-             xmlHttpRequest.send();   
-  });
+   xmlHttpRequest.send();   
+});
 ```
 The end point will be the method call, which make make a call to the API with the approriate message. We then save the response as an mp3 file in the lib folder :
 
@@ -355,6 +357,8 @@ In order to see the tickets on zendesk.com, you'll use the url of rocketelevator
 </p>
 
 ---
+
+<h1 align='center'>Week 4 and 5</h1>
 
 Rocket_Elevators_Information_System
 🚀	Working with MVC (Model-View-Controller)	📈
