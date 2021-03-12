@@ -106,23 +106,6 @@ The Rocket Team
 The email must also contain the logo and overall design of Rocket Elevators.
 </p>
 
-
-
-# IBM Watsom
-
-<p>
-IBM through its Artificial Intelligence Watson provides application developers with many services. Among the most used, there is a Text-to-Speech functionality which can be used on a multitude of platforms.
-Rocket Elevators wants to add text-to-speech functionality to their Home Dashboard (/ admin). We must have the option to start the briefing every time the Admin Dashboard page appears.
-The type of information that speech synthesis allows are the following:
-<ol>
-   <li>Greetings to the logged users</li>
-   <li>There are currently XXX elevators deployed in the XXX buildings of your XXX customers</li>
-   <li>Currently, XXX elevators are not in Running Status and are being serviced</li>
-   <li>You currently have XXX quotes awaiting processing</li>
-   <li>You currently have XXX leads in your contact requests</li>
-   <li>XXX Batteries are deployed across XXX cities</li>
-</ol>
-</p>
 <h2>Explanation:</h2>
 <p> 
 Incorporate the API code into the lead <code> create </code> function <code> in the lead_controller.rb </code> with th code below. Add the <code> @lead.params </code> to the dynamic template.
@@ -153,6 +136,24 @@ Incorporate the API code into the lead <code> create </code> function <code> in 
    ```
 
 </p>
+
+
+# IBM Watsom
+
+<p>
+IBM through its Artificial Intelligence Watson provides application developers with many services. Among the most used, there is a Text-to-Speech functionality which can be used on a multitude of platforms.
+Rocket Elevators wants to add text-to-speech functionality to their Home Dashboard (/ admin). We must have the option to start the briefing every time the Admin Dashboard page appears.
+The type of information that speech synthesis allows are the following:
+<ol>
+   <li>Greetings to the logged users</li>
+   <li>There are currently XXX elevators deployed in the XXX buildings of your XXX customers</li>
+   <li>Currently, XXX elevators are not in Running Status and are being serviced</li>
+   <li>You currently have XXX quotes awaiting processing</li>
+   <li>You currently have XXX leads in your contact requests</li>
+   <li>XXX Batteries are deployed across XXX cities</li>
+</ol>
+</p>
+
 
 
 # ZenDesk
