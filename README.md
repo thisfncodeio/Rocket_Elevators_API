@@ -62,6 +62,30 @@ If the status of an Elevator in the database changes to "Intervention" status, t
 In this case, the designated contact must be the coach assigned to each team, and he must receive the alerts on his mobile phone.
 </p>
 
+<h2> Gem Used </h2>
+
+```
+gem 'twilio-ruby'
+```
+
+<h2> Explanations </h2>
+
+The speak method in the Twilio model make a call from a Twilio-generated number to a given number with a specified message : 
+
+```ruby
+    def twilio_notifier
+      if self.status_changed?
+        account_sid = "#{ENV["account_sid"]}"
+        auth_token = "#{ENV["auth_token"]}"
+        @client = Twilio::REST::Client.new account_sid, auth_token
+  
+        if self.status_changed?
+          @client.api.account.messages.create(
+            from: "+17276108703",
+            to: self.column.battery.building.technical_contact_phone_for_the_building,
+            body: "Elevator #{self.id} with Serial Number #{self.serial_number} require maintenance.")
+        end
+```
 ---
 
 # Slack
@@ -73,6 +97,25 @@ The written message must have the following format:
 The Elevator [Elevator’s ID] with Serial Number [Serial Number] changed status from [Old Status] to [New Status]
 </p>
 
+<h2> Gems Used </h2>
+   ```
+   gem 'slack-notifier'
+   ```
+   
+<h2> Explanations: </h2>
+
+   ```ruby
+   	 around_update :notify_system_if_name_is_changed
+    
+    def slack_notifier
+        if self.status_changed?
+        require 'date'
+        current_time = DateTime.now.strftime("%d-%m-%Y %H:%M")
+        notifier = Slack::Notifier.new ENV["Slack_API"]
+        notifier.ping "The Elevator #{self.id} with Serial Number #{self.serial_number} changed status from #{self.status_was} to #{self.status} at #{current_time}."
+        end
+    end
+   ```
 ---
 
 # Dropbox
@@ -199,7 +242,71 @@ The type of information that speech synthesis allows are the following:
    <li>You currently have XXX leads in your contact requests</li>
    <li>XXX Batteries are deployed across XXX cities</li>
 </ol>
-</p>
+
+<h2> Gem Used </h2> 
+---
+gem 'ibm_watson', git: 'https://github.com/watson-developer-cloud/ruby-sdk', branch: 'master'
+```
+<h2> Explanations </h2>
+
+First, we make an xmlHTTP get request to the watson controller when the watson tab is loaded:
+
+```javascript
+ $(document).ready(function(){
+  			let xmlHttpRequest = new XMLHttpRequest(); 
+             xmlHttpRequest.open("GET", "/watson"+ "?cb=" + new Date().getTime(), true);
+             xmlHttpRequest.responseType = "blob"; 
+             xmlHttpRequest.setRequestHeader("Accept", "application/json");
+             xmlHttpRequest.setRequestHeader("Content-Type", "application/json"); 
+             xmlHttpRequest.setRequestHeader("Cache-Control", "no-cache");
+             xmlHttpRequest.onreadystatechange = function() {
+               if (this.readyState == 4 && this.status == 200) {
+                 var url = window.URL.createObjectURL(this.response);
+                 var audio = $('#audio-player') || new Audio();
+                 audio.src = url;
+
+               }
+             };
+  
+             xmlHttpRequest.send();   
+  });
+```
+The end point will be the method call, which make make a call to the API with the approriate message. We then save the response as an mp3 file in the lib folder :
+
+```ruby
+ def speak
+  
+        authenticator = Authenticators::IamAuthenticator.new(
+            apikey: ENV["TEXT_TO_SPEECH_IAM_APIKEY"]
+        )
+        text_to_speech = TextToSpeechV1.new(
+            authenticator: authenticator
+        )
+        text_to_speech.service_url = ENV["TEXT_TO_SPEECH_URL"]
+            
+        message = "Greeting user #{current_user.id}. There is #{Elevator::count} elevators in #{Building::count} buildings of your 
+                    #{Customer::count} customers. Currently, #{Elevator.where(status: 'Intervention').count} elevators are not in 
+                    Running Status and are being serviced. You currently have #{Quote::count} quotes awaiting processing.
+                    You currently have #{Lead::count} leads in your contact requests. 
+                    #{Battery::count} Batteries are deployed across 
+                    #{Address.where(id: Building.select(:address_id).distinct).select(:city).distinct.count} cities"
+
+        response = text_to_speech.synthesize(
+            text: message,
+            accept: "audio/mp3",
+            voice: "en-GB_KateV3Voice"
+        ).result
+
+        File.open("#{Rails.root}/public/outputs.mp3", "wb") do |audio_file|
+                        audio_file.write(response)
+        end    
+    end
+```
+
+The source of the audio player will be this file, which is why we make the http request before the page loads. Note since we have to make to calls, one to the back-end and
+one to the API, if there's any change in the values related to the message, the updated audio will take some time to load. For example, if you delete a customer,
+it should take a minute before the message update with the new value. 
+
 
 ---
 
