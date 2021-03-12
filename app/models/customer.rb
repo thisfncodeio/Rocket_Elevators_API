@@ -14,10 +14,10 @@ class Customer < ApplicationRecord
     # 4. Copy this file to the client DropBox directory
     # 5. If the document is successfully downloaded to Dropbox, the controller deletes the content of the binary field from the database to avoid duplication
     def migrate_to_dropbox   
-        puts self.id
+        # puts self.id
         dropbox_client = DropboxApi::Client.new
  
-        puts self.email_of_company_contact    
+        # puts self.email_of_company_contact    
         Lead.where(email: self.email_of_company_contact).each do |lead| # for each lead has this email_of_company_contact  
           unless lead.attachment.nil?   #check if the lead has an attachment  
             path = "/" + self.full_name_of_company_contact   #create a variable path that has the full name of the company contact

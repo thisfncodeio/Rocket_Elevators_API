@@ -6,7 +6,7 @@ id,number_and_street,city,postal_code,country
 5,66-4 Parkhurst Rd,Chelmsford,01824,US
 6,591 Memorial Dr,Chicopee,01020,US
 7,55 Brooksby Village Way,Danvers,01923,US
-8,137 Teaticket Hwy,East Falmouth,02536,US
+8,137 Teaticket Hwy,Teaticket,02536,US
 9,42 Fairhaven Commons Way,Fairhaven,02719,US
 10,374 William S Canning Blvd,Fall River,02721,US
 11,121 Worcester Rd,Framingham,01701,US
@@ -36,7 +36,7 @@ id,number_and_street,city,postal_code,country
 35,100 Charlton Road,Sturbridge,01566,US
 36,262 Swansea Mall Dr,Swansea,02777,US
 37,352 Palmer Road,Ware,01082,US
-38,250 Rt 59,Airmont,10901,US
+38,250 NY-59,Suffern,10901,US
 39,141 Washington Ave Extension,Albany,12205,US
 40,2055 Niagara Falls Blvd,Amherst,14228,US
 41,297 Grant Avenue,Auburn,13021,US
@@ -48,127 +48,119 @@ id,number_and_street,city,postal_code,country
 47,3018 East Ave,Central Square,13036,US
 48,100 Thruway Plaza,Cheektowaga,14225,US
 49,8064 Brewerton Rd,Cicero,13039,US
-50,3949 Route 31,Clay,13041,US
+50,3949 NY-31,Liverpool,13041,US
 51,139 Merchant Place,Cobleskill,12043,US
 52,85 Crooked Hill Road,Commack,11725,US
 53,279 Troy Road,East Greenbush,12061,US
-54,2465 Hempstead Turnpike,East Meadow,11554,US
-55,6438 Basile Rowe,East Syracuse,13057,US
-56,25737 US Rt 11,Evans Mills,13637,US
-57,2400 Route 9,Fishkill,12524,US
-58,10401 Bennett Road,Fredonia,14063,US
-59,1818 State Route 3,Fulton,13069,US
-60,4300 Lakeville Road,Geneseo,14454,US
-61,311 RT 9W,Glenmont,12077,US
-62,200 Dutch Meadows Ln,Glenville,12302,US
-63,100 Elm Ridge Center Dr,Greece,14626,US
-64,1549 Rt 9,Halfmoon,12065,US
-65,5360 Southwestern Blvd,Hamburg,14075,US
-66,103 North Caroline St,Herkimer,13350,US
-67,1400 County Rd 64,Horseheads,14845,US
-68,2 Gannett Dr,Johnson City,13790,US
-69,233 5th Ave Ext,Johnstown,12095,US
-70,350 E Fairmount Ave,Lakewood,14750,US
-71,4975 Transit Rd,Lancaster,14086,US
-72,579 Troy-Schenectady Road,Latham,12110,US
-73,425 Route 31,Macedon,14502,US
-74,3222 State Rt 11,Malone,12953,US
-75,43 Stephenville St,Massena,13662,US
-76,750 Middle Country Road,Middle Island,11953,US
-77,470 Route 211 East,Middletown,10940,US
-78,3133 E Main St,Mohegan Lake,10547,US
-79,4765 Commercial Drive,New Hartford,13413,US
-80,1201 Rt 300,Newburgh,12550,US
-81,255 W Main St,Avon,6001,US
-82,120 Commercial Parkway,Branford,6405,US
-83,1400 Farmington Ave,Bristol,6010,US
-84,161 Berlin Road,Cromwell,6416,US
-85,656 New Haven Ave,Derby,6418,US
-86,69 Prospect Hill Road,East Windsor,6088,US
-87,150 Gold Star Hwy,Groton,6340,US
-88,900 Boston Post Road,Guilford,6437,US
-89,2300 Dixwell Ave,Hamden,6514,US
-90,495 Flatbush Ave,Hartford,6106,US
-91,180 River Rd,Lisbon,6351,US
-92,420 Buckland Hills Dr,Manchester,6040,US
-93,1365 Boston Post Road,Milford,6460,US
-94,1100 New Haven Road,Naugatuck,6770,US
-95,315 Foxon Blvd,New Haven,6513,US
-96,164 Danbury Rd,New Milford,6776,US
-97,3164 Berlin Turnpike,Newington,6111,US
-98,474 Boston Post Road,North Windham,6256,US
-99,650 Main Ave,Norwalk,6851,US
-100,680 Connecticut Avenue,Norwalk,6854,US
-101,220 Salem Turnpike,Norwich,6360,US
-102,655 Boston Post Rd,Old Saybrook,6475,US
-103,625 School Street,Putnam,6260,US
-104,80 Town Line Rd,Rocky Hill,6067,US
-105,465 Bridgeport Avenue,Shelton,6484,US
-106,150 Barnum Avenue Cutoff,Stratford,6614,US
-107,970 Torringford Street,Torrington,6790,US
-108,910 Wolcott St,Waterbury,6705,US
-109,515 Sawmill Road,West Haven,6516,US
-110,2473 Hackworth Road,Adamsville,35005,US
-111,5560 Mcclellan Blvd,Anniston,36206,US
-112,1011 US Hwy 72 East,Athens,35611,US
-113,973 Gilbert Ferry Road Se,Attalla,35954,US
-114,1717 South College Street,Auburn,36830,US
-115,750 Academy Drive,Bessemer,35022,US
-116,312 Palisades Blvd,Birmingham,35209,US
-117,1600 Montclair Rd,Birmingham,35210,US
-118,5919 Trussville Crossings Pkwy,Birmingham,35235,US
-119,9248 Parkway East,Birmingham,35206,US
-120,10675 Hwy 5,Brent,35034,US
-121,2041 Douglas Avenue,Brewton,36426,US
-122,1916 Center Point Rd,Center Point,35215,US
-123,1950 W Main St,Centre,35960,US
-124,16077 Highway 280,Chelsea,35043,US
-125,1415 7Th Street South,Clanton,35045,US
-126,626 Olive Street Sw,Cullman,35055,US
-127,3300 South Oates Street,Dothan,36301,US
-128,4310 Montgomery Hwy,Dothan,36303,US
-129,600 Boll Weevil Circle,Enterprise,36330,US
-130,3176 South Eufaula Avenue,Eufaula,36027,US
-131,7100 Aaron Aronov Drive,Fairfield,35064,US
-132,3100 Hough Rd,Florence,35630,US
-133,2200 South Mckenzie St,Foley,36535,US
-134,340 East Meighan Blvd,Gadsden,35903,US
-135,890 Odum Road,Gardendale,35071,US
-136,1608 W Magnolia Ave,Geneva,36340,US
-137,501 Willow Lane,Greenville,36037,US
-138,170 Fort Morgan Road,Gulf Shores,36542,US
-139,1706 Military Street South,Hamilton,35570,US
-140,209 Lakeshore Parkway,Homewood,35209,US
-141,2780 John Hawkins Pkwy,Hoover,35244,US
-142,5335 Hwy 280 South,Hoover,35242,US
-143,1007 Red Farmer Drive,Hueytown,35023,US
-144,330 Sutton Rd,Huntsville,35763,US
-145,4206 N College Ave,Jackson,36545,US
-146,8551 Whitfield Ave,Leeds,35094,US
-147,8650 Madison Blvd,Madison,35758,US
-148,145 Kelley Blvd,Millbrook,36054,US
-149,1970 S University Blvd,Mobile,36609,US
-150,6350 Cottage Hill Road,Mobile,36609,US
-151,2500 Dawes Road,Mobile,36695,US
-152,5245 Rangeline Service Rd,Mobile,36619,US
-153,685 Schillinger Rd,Mobile,36695,US
-154,3371 S Alabama Ave,Monroeville,36460,US
-155,10710 Chantilly Pkwy,Montgomery,36117,US
-156,3801 Eastern Blvd,Montgomery,36116,US
-157,6495 Atlanta Hwy,Montgomery,36117,US
-158,851 Ann St,Montgomery,36107,US
-159,517 West Avalon Ave,Muscle Shoals,35661,US
-160,5710 Mcfarland Blvd,Northport,35476,US
-161,92 Plaza Lane,Oxford,36203,US
-162,2181 Pelham Pkwy,Pelham,35124,US
-163,165 Vaughan Ln,Pell City,35125,US
-164,1903 Cobbs Ford Rd,Prattville,36066,US
-165,1095 Industrial Pkwy,Saraland,36571,US
-166,7855 Moffett Rd,Semmes,36575,US
-167,150 Springville Station Blvd,Springville,35146,US
-168,214 Haynes Street,Talladega,35160,US
-169,1300 Gilmer Ave,Tallassee,36078,US
-170,1420 Us 231 South,Troy,36081,US
-171,1501 Skyland Blvd E,Tuscaloosa,35405,US
-172,3501 20th Av,Valley,36854,US
-173,1300 Montgomery Highway,Vestavia Hills,35216,US
+54,6438 Basile Rowe,East Syracuse,13057,US
+55,25737 US-11,Evans Mills,13637,US
+56,10401 Bennett Road,Fredonia,14063,US
+57,1818 State Route 3,Fulton,13069,US
+58,4300 Lakeville Road,Geneseo,14454,US
+59,311 RT 9W,Glenmont,12077,US
+60,200 Dutch Meadows Ln,Glenville,12302,US
+61,100 Elm Ridge Center Dr,Greece,14626,US
+62,5360 Southwestern Blvd,Hamburg,14075,US
+63,103 North Caroline St,Herkimer,13350,US
+64,1400 County Rd 64,Horseheads,14845,US
+65,2 Gannett Dr,Johnson City,13790,US
+66,350 E Fairmount Ave,Lakewood,14750,US
+67,4975 Transit Rd,Lancaster,14086,US
+68,579 Troy-Schenectady Road,Latham,12110,US
+69,425 NY-31,Macedon,14502,US
+70,3222 US-11,Malone,12953,US
+71,43 Stephenville St,Massena,13662,US
+72,750 Middle Country Road,Middle Island,11953,US
+73,470 Route 211 East,Middletown,10940,US
+74,1201 Rt 300,Newburgh,12550,US
+75,255 W Main St,Avon,6001,US
+76,120 Commercial Parkway,Branford,6405,US
+77,1400 Farmington Ave,Bristol,6010,US
+78,161 Berlin Road,Cromwell,6416,US
+79,656 New Haven Ave,Derby,6418,US
+80,69 Prospect Hill Road,East Windsor,6088,US
+81,150 Gold Star Hwy,Groton,6340,US
+82,900 Boston Post Road,Guilford,6437,US
+83,2300 Dixwell Ave,Hamden,6514,US
+84,495 Flatbush Ave,Hartford,6106,US
+85,180 River Rd,Lisbon,6351,US
+86,420 Buckland Hills Dr,Manchester,6040,US
+87,1365 Boston Post Road,Milford,6460,US
+88,1100 New Haven Road,Naugatuck,6770,US
+89,315 Foxon Blvd,New Haven,6513,US
+90,164 Danbury Rd,New Milford,6776,US
+91,3164 Berlin Turnpike,Newington,6111,US
+92,474 Boston Post Road,North Windham,6256,US
+93,650 Main Ave,Norwalk,6851,US
+94,680 Connecticut Avenue,Norwalk,6854,US
+95,220 Salem Turnpike,Norwich,6360,US
+96,655 Boston Post Rd,Old Saybrook,6475,US
+97,625 School Street,Putnam,6260,US
+98,80 Town Line Rd,Rocky Hill,6067,US
+99,465 Bridgeport Avenue,Shelton,6484,US
+100,150 Barnum Avenue Cutoff,Stratford,6614,US
+101,970 Torringford Street,Torrington,6790,US
+102,910 Wolcott St,Waterbury,6705,US
+103,515 Sawmill Road,West Haven,6516,US
+104,2473 Hackworth Road,Adamsville,35005,US
+105,5560 Mcclellan Blvd,Anniston,36206,US
+106,1011 US Hwy 72 East,Athens,35611,US
+107,973 Gilbert Ferry Road Se,Attalla,35954,US
+108,1717 South College Street,Auburn,36830,US
+109,750 Academy Drive,Bessemer,35022,US
+110,312 Palisades Blvd,Birmingham,35209,US
+111,1600 Montclair Rd,Birmingham,35210,US
+112,5919 Trussville Crossings Pkwy,Birmingham,35235,US
+113,9248 Parkway East,Birmingham,35206,US
+114,10675 AL-5,Brent,35034,US
+115,2041 Douglas Avenue,Brewton,36426,US
+116,1916 Center Point Rd,Center Point,35215,US
+117,1950 W Main St,Centre,35960,US
+118,16077 US-280,Chelsea,35043,US
+119,1415 7Th Street South,Clanton,35045,US
+120,626 Olive Street Sw,Cullman,35055,US
+121,3300 South Oates Street,Dothan,36301,US
+122,4310 Montgomery Hwy,Dothan,36303,US
+123,600 Boll Weevil Circle,Enterprise,36330,US
+124,3176 South Eufaula Avenue,Eufaula,36027,US
+125,7100 Aaron Aronov Drive,Fairfield,35064,US
+126,3100 Hough Rd,Florence,35630,US
+127,2200 South Mckenzie St,Foley,36535,US
+128,340 East Meighan Blvd,Gadsden,35903,US
+129,890 Odum Road,Gardendale,35071,US
+130,1608 W Magnolia Ave,Geneva,36340,US
+131,501 Willow Lane,Greenville,36037,US
+132,170 Fort Morgan Road,Gulf Shores,36542,US
+133,1706 Military Street South,Hamilton,35570,US
+134,209 Lakeshore Parkway,Homewood,35209,US
+135,2780 John Hawkins Pkwy,Hoover,35244,US
+136,5335 Hwy 280 South,Hoover,35242,US
+137,1007 Red Farmer Drive,Hueytown,35023,US
+138,330 Sutton Rd,Huntsville,35763,US
+139,8551 Whitfield Ave,Leeds,35094,US
+140,8650 Madison Blvd,Madison,35758,US
+141,145 Kelley Blvd,Millbrook,36054,US
+142,1970 S University Blvd,Mobile,36609,US
+143,6350 Cottage Hill Road,Mobile,36609,US
+144,2500 Dawes Road,Mobile,36695,US
+145,5245 Rangeline Service Rd,Mobile,36619,US
+146,685 Schillinger Rd,Mobile,36695,US
+147,10710 Chantilly Pkwy,Montgomery,36117,US
+148,3801 Eastern Blvd,Montgomery,36116,US
+149,6495 Atlanta Hwy,Montgomery,36117,US
+150,851 Ann St,Montgomery,36107,US
+151,517 West Avalon Ave,Muscle Shoals,35661,US
+152,5710 Mcfarland Blvd,Northport,35476,US
+153,92 Plaza Lane,Oxford,36203,US
+154,2181 Pelham Pkwy,Pelham,35124,US
+155,165 Vaughan Ln,Pell City,35125,US
+156,1903 Cobbs Ford Rd,Prattville,36066,US
+157,1095 Industrial Pkwy,Saraland,36571,US
+159,7855 Moffett Rd,Semmes,36575,US
+159,150 Springville Station Blvd,Springville,35146,US
+160,214 Haynes Street,Talladega,35160,US
+161,1300 Gilmer Ave,Tallassee,36078,US
+162,1420 Us 231 South,Troy,36081,US
+163,1501 Skyland Blvd E,Tuscaloosa,35405,US
+164,3501 20th Av,Valley,36854,US
+165,1300 Montgomery Highway,Vestavia Hills,35216,US
