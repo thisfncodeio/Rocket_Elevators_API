@@ -25,6 +25,7 @@ gem 'sendgrid-ruby'
 gem 'twilio-ruby'
 gem 'slack-notifier'
 gem 'dropbox_api'
+gem 'ibm_watson'
 gem 'zendesk_api'
 
 ```
