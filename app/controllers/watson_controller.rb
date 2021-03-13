@@ -35,13 +35,13 @@ class WatsonController < ActionController::Base
         #     audio_file << response
         # end
 
-        message = "Greeting user #{current_user.id}. There is #{Elevator::count} elevators in #{Building::count} buildings of your 
-                    #{Customer::count} customers. Currently, #{Elevator.where(status: 'Intervention').count} elevators are not in 
-                    Running Status and are being serviced. You currently have #{Quote::count} quotes awaiting processing.
-                    You currently have #{Lead::count} leads in your contact requests. 
-                    #{Battery::count} Batteries are deployed across 
-                    #{Address.where(id: Building.select(:address_id).distinct).select(:city).distinct.count} cities"
-
+        # message = "Greeting user #{current_user.id}. There is #{Elevator::count} elevators in #{Building::count} buildings of your 
+        #             #{Customer::count} customers. Currently, #{Elevator.where(status: 'Intervention').count} elevators are not in 
+        #             Running Status and are being serviced. You currently have #{Quote::count} quotes awaiting processing.
+        #             You currently have #{Lead::count} leads in your contact requests. 
+        #             #{Battery::count} Batteries are deployed across 
+        #             #{Address.where(id: Building.select(:address_id).distinct).select(:city).distinct.count} cities"
+        message = "Thank God!"
         response = text_to_speech.synthesize(
             text: message,
             accept: "audio/mp3",
@@ -50,6 +50,7 @@ class WatsonController < ActionController::Base
 
         File.open("#{Rails.root}/public/outputs.mp3", "wb") do |audio_file|
                         audio_file.write(response)
-        end    
+        end
+        redirect_back fallback_location: root_path    
     end
 end
