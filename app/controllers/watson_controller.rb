@@ -2,9 +2,9 @@
 require 'json'
 require "ibm_watson/authenticators"
 require "ibm_watson/text_to_speech_v1"
-include IBMWatson
 
 class WatsonController < ActionController::Base
+    include IBMWatson
     skip_before_action :verify_authenticity_token
 
   
