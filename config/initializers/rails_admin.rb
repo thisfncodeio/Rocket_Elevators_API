@@ -1,5 +1,6 @@
 require Rails.root.join('lib', 'rails_admin', 'map.rb')
 require Rails.root.join('lib', 'rails_admin', 'watson.rb')
+require Rails.root.join('lib', 'rails_admin', 'spotify.rb')
 
 RailsAdmin.config do |config|
   config.main_app_name = ["Rocket Elevators", "BackOffice"]
@@ -46,7 +47,7 @@ RailsAdmin.config do |config|
 
     map
     watson
-
+    spotify
     ## With an audit adapter, you can add:
     # history_index
     # history_show

@@ -29,8 +29,9 @@ Rails.application.routes.draw do
   # /leads is the action from the form in index.html.erb
   post "/leads" => "leads#create"
 
-  match '/watson'     => 'watson#speak', via: :get
-  
- 
+  get '/watson/update' => 'watson#speak'
+  # match '/watson'     => 'watson#speak', via: :get
+  # match '/spotify'    => 'spotify#player', via: :get
+  # get '/auth/spotify/callback', to: 'users#spotify'
    
 end
