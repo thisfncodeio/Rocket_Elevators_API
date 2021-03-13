@@ -34,9 +34,9 @@ class WatsonController < ActionController::Base
         #     ).result
         #     audio_file << response
         # end
-
-        message = "Greeting user #{current_user.id}. There is #{Elevator::count} elevators in #{Building::count} buildings of your 
-                    #{Customer::count} customers. Currently, #{Elevator.where(status: 'Intervention').count} elevators are not in 
+        employee = Employee.find_by(user_id: current_user.id)
+        message = "Hello #{employee.first_name}. There are currently #{Elevator::count} elevators deployed in #{Building::count} buildings of your 
+                    #{Customer::count} customers. Currently, #{Elevator.where.not(status: 'Active').count} elevators are not in 
                     Running Status and are being serviced. You currently have #{Quote::count} quotes awaiting processing.
                     You currently have #{Lead::count} leads in your contact requests. 
                     #{Battery::count} Batteries are deployed across 
