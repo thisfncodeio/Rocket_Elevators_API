@@ -93,7 +93,9 @@ class LeadsController < ApplicationController
                 :value => "The contact #{@lead.full_name_of_contact} from company #{@lead.company_name} can be reached at email #{@lead.email} and at phone number #{@lead.phone}. #{@lead.department_in_charge_of_elevators} has a project named #{@lead.project_name} which would require contribution from Rocket Elevators.
                 Project Description: #{@lead.project_description}
                     Attached Message:
-                    #{@lead.message}"
+                    #{@lead.message}
+                    
+                    #{"The Contact uploaded an attachment" unless @lead.attachment.nil?}"
             }, 
             :requester => { 
                 "name": @lead.full_name_of_contact, 
