@@ -362,7 +362,7 @@ typeArchitecture = ["Neoclassical", "Victorian", "Modern", "Neofuturist"]
     current_battery = Battery.create!({
       building_id: current_building.id,
       building_type: [:Residential, :Commercial, :Corporate, :Hybrid].sample,
-      status: [:Active, :intervation, :Inactive].sample,
+      status: [:Active, :Intervention, :Inactive].sample,
       employee_id: Employee.order('rand()').limit(1).first.id,
       date_of_commissioning: Faker::Date.between(from: '2018-02-23', to: '2021-02-23'),
       date_of_last_inspection: Faker::Date.between(from: '2018-02-23', to: '2021-02-23'),
