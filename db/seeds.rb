@@ -79,24 +79,25 @@ User.create!(email: 'user@user.com', password: 'password', superadmin_role: 0, e
 
 
 #-----------------------------------------------### Seed Lead ###-------------------------------------------------
-puts "Seed Lead"
+# puts "Seed Lead"
 
-ext = ['zip', 'pdf', 'jpg', 'png', 'txt']
+# ext = ['zip', 'pdf', 'jpg', 'png', 'txt']
 
-300.times do
-  Lead.create!({
-    full_name_of_contact: Faker::Name.name,
-    company_name: Faker::Company.name,
-    email: Faker::Internet.email,
-    phone: Faker::PhoneNumber.unique.cell_phone,
-    project_name: Faker::Lorem.sentence(word_count: 2),
-    project_description: Faker::Lorem.unique.sentence,
-    department_in_charge_of_elevators: [:Sales, :Support, :Administration].sample,
-    message: Faker::Lorem.unique.paragraph,
-    file_name: Faker::File.file_name(dir: 'foo/bar', name: 'contact', ext: ext.sample),
-    created_at: Faker::Date.between(from: '2018-02-23', to: '2021-02-23')
-  })
-end
+# 300.times do
+#   Lead.create!({
+#     full_name_of_contact: Faker::Name.name,
+#     company_name: Faker::Company.name,
+#     email: Faker::Internet.email,
+#     phone: Faker::PhoneNumber.unique.cell_phone,
+#     project_name: Faker::Lorem.sentence(word_count: 2),
+#     project_description: Faker::Lorem.unique.sentence,
+#     department_in_charge_of_elevators: [:Sales, :Support, :Administration].sample,
+#     message: Faker::Lorem.unique.paragraph,
+#     file_name: Faker::File.file_name(dir: 'foo/bar', name: 'contact', ext: ext.sample),
+#     created_at: Faker::Date.between(from: '2018-02-23', to: '2021-02-23'),
+#     customer_id: customer.id
+#   })
+# end
 
 #-----------------------------------------------### Seed Address ###-------------------------------------------------
 puts "Seed Addresses"

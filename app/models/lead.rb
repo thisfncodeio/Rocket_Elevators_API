@@ -1,4 +1,5 @@
 class Lead < ApplicationRecord
+   # belongs_to :customer
    # after_save :create_lead_ticket
 
    # def create_lead_ticket

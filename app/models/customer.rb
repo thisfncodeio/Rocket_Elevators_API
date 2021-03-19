@@ -2,6 +2,7 @@ class Customer < ApplicationRecord
     belongs_to :user
     belongs_to :address
     has_many :buildings 
+    has_one :lead
 
     after_create :migrate_to_dropbox # call migrate_to_dropbox after creating a customer
     after_update :migrate_to_dropbox  # call migrate_to_dropbox after updating a customer
