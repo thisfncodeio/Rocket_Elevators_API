@@ -78,8 +78,14 @@ namespace :warehouse do
     end # task
 
     desc "Describes past interventions that have been done on either a battery, a column or an elevator. Each entry tells us what has been done during the intervention, in which building, by whom, when, etc."
-    task :intervention => :environment do
+    task :intervention => :environment do #rake/rails warehouse:intervention
         puts "Interventions Started"
+
+        #rake db:drop db:create db:migrate db:seed
+        #rake seed:leads
+        #DB=warehouse rails db:drop db:create
+        #DB=warehouse rails db:migrate
+        #rake warehouse:import warehouse:intervention
 
         WarehouseRecord.connection.execute("TRUNCATE fact_interventions")
 

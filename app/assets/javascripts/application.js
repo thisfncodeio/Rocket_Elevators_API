@@ -11,8 +11,8 @@
 // about supported directives.
 //
 
-//= require jquery
 //= require popper
+//= require jquery
 //= require rails-ujs
 //= require activestorage
 //= require plugins/jquery/jquery-3.3.1.min
@@ -29,6 +29,7 @@
 //= require toastr
 //= require chartkick
 //= require Chart.bundle
-//= require contact
+// require contact
 //= require chartkick
 //= require Chart.bundle
+//= require intervention

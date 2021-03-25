@@ -7,6 +7,9 @@ class Customer < ApplicationRecord
     after_create :migrate_to_dropbox # call migrate_to_dropbox after creating a customer
     after_update :migrate_to_dropbox  # call migrate_to_dropbox after updating a customer
 
+    # def info
+    #   "#{id} - #{company_name}"
+    # end
     
     # The funstion below migrates attachement to dropbox: it follows the following steps:
     # 1. Connect to the Rocket Elevators DropBox account

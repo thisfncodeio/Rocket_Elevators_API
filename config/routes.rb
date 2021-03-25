@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  # resources :interventions
+  get "/interventions" => "interventions#index"
+  post "/interventions" => "interventions#create"
+  get "/get_buildings/:customer_id", to: "interventions#get_buildings"
+  get "/get_batteries/:building_id", to: "interventions#get_batteries"
+  get "/get_columns/:battery_id", to: "interventions#get_columns"
+  get "/get_elevators/:column_id", to: "interventions#get_elevators"
+  
   devise_for :users
   
   resources :quotes

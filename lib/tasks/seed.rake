@@ -39,8 +39,23 @@ namespace :seed do
           isCustomer = false
         end
 
-
-
         puts "Seed Ended"
     end # task
+
+    task :interventions => :environment do
+      Intervention.create!(
+        author: 1,
+        customer_id: 1,
+        building_id: 1,
+        battery_id: 1,
+        column_id: 1,
+        elevator_id: 1,
+        employee_id: 2,
+        start_date: nil,
+        end_date: nil,
+        result: nil,
+        report: nil,
+        status: nil
+      )
+    end
 end # namespace

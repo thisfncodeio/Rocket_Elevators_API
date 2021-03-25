@@ -1,0 +1,70 @@
+<html>
+
+ <body class="smoothscroll enable-animation">
+  <!-- wrapper -->
+  <div id="wrapper">
+
+    <!-- PAGE HEADER -->
+    <section class="page-header page-header-xlg parallax parallax-4" style = "background-image: url(<%= asset_path("Rocket_Elevator_Assets/Quote/AdobeStock_556688421.jpg") %>)">
+      <div class="overlay dark-4"><!-- dark overlay [1 to 9 opacity] --></div>
+
+      <div class="container">
+
+        <div class="bold font-raleway wow fadeInUp animated">
+            <h2 class="fs-55 fw-400 text-center">INTERVENTIONS</h2>
+        </div>
+
+      </div>
+    </section>
+    <!-- /PAGE HEADER --> 
+
+    <%# <div class="row no-gutters wow slideInUp" data-wow-duration="1s"> %>
+    <div>
+      <%# <div class="col-md-12 home-form"> %>
+
+        <%= form_tag(interventions_path, method: "post", class: "container mt-50", remote: false) do %>
+          <div class="form-group form-row">
+            <div class="col-12 col-md">
+              <%= select_tag "customers", options_from_collection_for_select(Customer.all, "id", "company_name"), prompt: "-- Customer --", class: "form-control mb-0 mr-sm-0 mb-sm-0" %>
+            </div>
+          </div>
+          <div class="form-group form-row">
+            <div class="col-12 col-md">
+              <%= select_tag "buildings", options_from_collection_for_select(Building.all, "id", "full_name_of_the_building_administrator"), prompt: "-- Building --", class: "form-control mb-0 mr-sm-0 mb-sm-0" %>
+            </div>
+            <div class="col-12 col-md">
+              <%= select_tag "batteries", options_from_collection_for_select(Battery.all, "id", "id"), prompt: "-- Battery --", class: "form-control mb-0 mr-sm-0 mb-sm-0" %>
+            </div>
+            <div class="col-12 col-md">
+              <%= select_tag "columns", options_from_collection_for_select(Column.all, "id", "id"), prompt: "-- Column --", class: "form-control mb-0 mr-sm-0 mb-sm-0" %>
+            </div>
+            <div class="col-12 col-md">
+              <%= select_tag "elevators", options_from_collection_for_select(Elevator.all, "id", "id"), prompt: "-- Elevator --", class: "form-control mb-0 mr-sm-0 mb-sm-0" %>
+            </div>
+          </div>
+          <div class="form-group form-row">
+            <div class="col">
+              <%= select_tag "employees", options_from_collection_for_select(Employee.all, "id", "full_name"), prompt: "-- Employee --", class: "form-control mb-0 mr-sm-0 mb-sm-0" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= label_tag "description", "Intervention Description", class: "form-label" %>
+            <%= text_area_tag "description", nil, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= submit_tag("Submit Intervention", class: "btn btn-primary btn-block") %>
+          </div>
+        <% end %>
+
+      <%# </div> %>
+    </div>
+
+
+  <div>
+  <!-- /wrapper -->
+
+  <!-- SCROLL TO TOP -->
+  <a href="#" id="toTop"></a>
+
+  </body>
+</html>

@@ -16,3 +16,5 @@ class CreateFactIntervention < ActiveRecord::Migration[5.2]
     end
   end
 end
+
+#rails g migration createIntervention author customer_id:integer buidling_id:integer
