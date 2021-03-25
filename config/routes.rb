@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
   # resources :interventions
-  get "/interventions" => "interventions#index"
+
+  # Authenticate user to use intervention
+  authenticate :user, ->(user) { user.superadmin_role? or user.employee_role? } do
+    get "/interventions" => "interventions#index"
+  end
+  # get "/interventions" => "interventions#index"
   post "/interventions" => "interventions#create"
+
+
   get "/get_buildings/:customer_id", to: "interventions#get_buildings"
   get "/get_batteries/:building_id", to: "interventions#get_batteries"
   get "/get_columns/:battery_id", to: "interventions#get_columns"

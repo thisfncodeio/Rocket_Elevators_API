@@ -42,7 +42,9 @@
                             <%= link_to "CONTACT", "#{root_path}#contact", 'data-turbolinks': false%>
                         </li>
                         <li><!-- INTERVENTION -->
-                            <%= link_to "INTERVENTION", interventions_path, 'data-turbolinks': false%>
+                            <% if current_user and (current_user.superadmin_role? or current_user.employee_role?) %>
+                                <%= link_to "INTERVENTION", interventions_path, 'data-turbolinks': false%>
+                            <% end%>
                         </li>
                         <li class="dropdown"><!-- SERVICES -->
                             <a class="dropdown-toggle" href="#">

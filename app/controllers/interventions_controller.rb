@@ -26,18 +26,14 @@ class InterventionsController < ApplicationController
     @intervention.author = current_user.employee.id
     @intervention.customer_id = params[:customers]
     @intervention.building_id = params[:buildings]
-    @intervention.battery_id = params[:batteries]
-    @intervention.column_id = params[:columns]
+    @intervention.battery_id = params[:batteries] unless params[:columns] != ""
+    @intervention.column_id = params[:columns] unless params[:elevators] != ""
     @intervention.elevator_id = params[:elevators]
     @intervention.employee_id = params[:employees]
 
     if @intervention.save!
-      # respond_to do |format|
-      #   format.html { redirect_to root_path, notice: "Intervention Saved" }
-      # end
       redirect_back fallback_location: root_path, notice: "Intervention Successful"
     end
-
 
     # respond_to do |format|
     #   if @intervention.save
@@ -124,9 +120,6 @@ class InterventionsController < ApplicationController
     params.require(:intervention).permit(:author, :customer_id, :building_id, :battery_id, :column_id, :elevator_id, :employee_id, :start_date, :end_date, :result, :report, :status)
   end
 end
-
-
-#Form Dropdown --- (make selection) ---> (make ajax call) ---> (controller retrieves data) ---> (return data to the view) ---< (update the page)
 
 
 

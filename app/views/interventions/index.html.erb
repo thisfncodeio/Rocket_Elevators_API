@@ -24,32 +24,38 @@
 
         <%= form_tag(interventions_path, method: "post", class: "container mt-50", remote: false) do %>
           <div class="form-group form-row">
-            <div class="col-12 col-md">
-              <%= select_tag "customers", options_from_collection_for_select(Customer.all, "id", "company_name"), prompt: "-- Customer --", class: "form-control mb-0 mr-sm-0 mb-sm-0" %>
+            <div class="col-12 col-md" id="customer-group">
+              <%= label_tag "customers", "Customer", class: "form-label" %>
+              <%= select_tag "customers", options_from_collection_for_select(Customer.all, "id", "company_name"), prompt: "-- Required --", required: true, class: "form-control mb-0 mr-sm-0 mb-sm-0" %>
             </div>
           </div>
           <div class="form-group form-row">
-            <div class="col-12 col-md">
-              <%= select_tag "buildings", options_from_collection_for_select(Building.all, "id", "full_name_of_the_building_administrator"), prompt: "-- Building --", class: "form-control mb-0 mr-sm-0 mb-sm-0" %>
+            <div class="col-12 col-md" id="building-group">
+              <%= label_tag "buildings", "Building", class: "form-label" %>
+              <%= select_tag "buildings", options_from_collection_for_select(Building.all, "id", "full_name_of_the_building_administrator"), prompt: "-- Required --", required: true, class: "form-control mb-0 mr-sm-0 mb-sm-0" %>
             </div>
-            <div class="col-12 col-md">
-              <%= select_tag "batteries", options_from_collection_for_select(Battery.all, "id", "id"), prompt: "-- Battery --", class: "form-control mb-0 mr-sm-0 mb-sm-0" %>
+            <div class="col-12 col-md" id="battery-group">
+              <%= label_tag "batteries", "Battery", class: "form-label" %>
+              <%= select_tag "batteries", options_from_collection_for_select(Battery.all, "id", "id"), prompt: "-- Required --", required: true, class: "form-control mb-0 mr-sm-0 mb-sm-0" %>
             </div>
-            <div class="col-12 col-md">
-              <%= select_tag "columns", options_from_collection_for_select(Column.all, "id", "id"), prompt: "-- Column --", class: "form-control mb-0 mr-sm-0 mb-sm-0" %>
+            <div class="col-12 col-md" id="column-group">
+              <%= label_tag "columns", "Column", class: "form-label" %>
+              <%= select_tag "columns", options_from_collection_for_select(Column.all, "id", "id"), prompt: "-- None --", class: "form-control mb-0 mr-sm-0 mb-sm-0" %>
             </div>
-            <div class="col-12 col-md">
-              <%= select_tag "elevators", options_from_collection_for_select(Elevator.all, "id", "id"), prompt: "-- Elevator --", class: "form-control mb-0 mr-sm-0 mb-sm-0" %>
+            <div class="col-12 col-md" id="elevator-group">
+              <%= label_tag "elevators", "Elevator", class: "form-label" %>
+              <%= select_tag "elevators", options_from_collection_for_select(Elevator.all, "id", "id"), prompt: "-- None --", class: "form-control mb-0 mr-sm-0 mb-sm-0" %>
             </div>
           </div>
           <div class="form-group form-row">
-            <div class="col">
-              <%= select_tag "employees", options_from_collection_for_select(Employee.all, "id", "full_name"), prompt: "-- Employee --", class: "form-control mb-0 mr-sm-0 mb-sm-0" %>
+            <div class="col" id="employee-group">
+              <%= label_tag "employees", "Employee", class: "form-label" %>
+              <%= select_tag "employees", options_from_collection_for_select(Employee.all, "id", "full_name"), prompt: "-- None --", class: "form-control mb-0 mr-sm-0 mb-sm-0" %>
             </div>
           </div>
           <div class="form-group">
             <%= label_tag "description", "Intervention Description", class: "form-label" %>
-            <%= text_area_tag "description", nil, class: "form-control" %>
+            <%= text_area_tag "description", nil, class: "form-control h-150" %>
           </div>
           <div class="form-group">
             <%= submit_tag("Submit Intervention", class: "btn btn-primary btn-block") %>
