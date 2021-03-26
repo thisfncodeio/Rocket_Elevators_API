@@ -15,7 +15,7 @@ $(function () {
   // If a selection has NOT been made yet
   if ($("select#customers").val() == "") { 
     // Show/Hide appropriate elements
-    $("div.col-12:not(#customer-group), div#employee-group").hide();
+    $("div.col-12:not(#customer-group)").hide();
 
     // Clear the option fields of all the other select fields
     $("select#buildings option").remove();
@@ -39,7 +39,6 @@ $(function () {
   // We want something to happen when the value changes
   $("select#customers").change(function () {
     // Show/Hide appropriate elements
-    $("div#employee-group").show();
     $("div#building-group").show();
 
     // Get the value of the selected option
@@ -49,7 +48,7 @@ $(function () {
     // then make sure the other selection options remain empty
     if (id_value_string == "") {
       // Show/Hide appropriate elements
-      $("div.col-12:not(#customer-group), div#employee-group").hide();
+      $("div.col-12:not(#customer-group)").hide();
 
       // Clear the option fields of all the other select fields
       $("select#buildings option").remove();
@@ -168,7 +167,7 @@ $(function () {
 
           // Fill course select
           $.each(data, function (i, j) {
-            option = "<option value=\"" + j.id + "\">" + j.id + "</option>";
+            option = "<option value=\"" + j.id + "\">#" + j.id + "</option>";
             $(option).appendTo("select#batteries");
           });
         }
@@ -228,7 +227,7 @@ $(function () {
 
           // Fill course select
           $.each(data, function (i, j) {
-            option = "<option value=\"" + j.id + "\">" + j.id + "</option>";
+            option = "<option value=\"" + j.id + "\">#" + j.id + "</option>";
             $(option).appendTo("select#columns");
           });
         }
@@ -282,7 +281,7 @@ $(function () {
 
           // Fill course select
           $.each(data, function (i, j) {
-            option = "<option value=\"" + j.id + "\">" + j.id + "</option>";
+            option = "<option value=\"" + j.id + "\">#" + j.id + "</option>";
             $(option).appendTo("select#elevators");
           });
         }

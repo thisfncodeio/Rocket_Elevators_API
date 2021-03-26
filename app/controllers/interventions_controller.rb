@@ -30,10 +30,39 @@ class InterventionsController < ApplicationController
     @intervention.column_id = params[:columns] unless params[:elevators] != ""
     @intervention.elevator_id = params[:elevators]
     @intervention.employee_id = params[:employees]
+    @intervention.result = "Incomplete"
+    @intervention.report = params[:description]
+    @intervention.status = "Pending"
 
     if @intervention.save!
-      redirect_back fallback_location: root_path, notice: "Intervention Successful"
+      redirect_back fallback_location: root_path, notice: "Intervention Created"
     end
+
+    client = ZendeskAPI::Client.new do |config|
+        config.url = ENV['ZENDESK_URL']
+        config.username = ENV['ZENDESK_USERNAME']
+        config.token = ENV['ZENDESK_TOKEN']
+    end
+
+    ZendeskAPI::Ticket.create!(client, 
+      :subject => "Intervention create by #{current_user.employee.first_name} #{current_user.employee.last_name}", 
+      :comment => { 
+        :value => "Requester: #{current_user.employee.first_name} #{current_user.employee.last_name}
+                   Company Name: #{Customer.find(params[:customers]).company_name}
+                   Building ID: #{params[:buildings]}
+                   Battery ID: #{params[:batteries]}
+                   Column ID: #{params[:columns]}
+                   Elevator ID: #{params[:elevators]}
+                   Assigned Employee: #{Employee.find(params[:employees]).first_name} #{Employee.find(params[:employees]).last_name}
+                   Description: #{params[:description]}"
+      }, 
+      :requester => { 
+          "name": "#{current_user.employee.first_name} #{current_user.employee.last_name}", 
+          # "email": @lead.email 
+      },
+      :priority => "urgent",
+      :type => "problem"
+    )
 
     # respond_to do |format|
     #   if @intervention.save
